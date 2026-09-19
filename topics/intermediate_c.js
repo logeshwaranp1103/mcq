@@ -10,7 +10,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 1,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output of the following code? `int x=7; if(x>5) printf(\"A\"); else printf(\"B\");`",
+    "question": "What is the output of the following code? `int x=7;\nif(x>5)\n  printf(\"A\");\nelse\n  printf(\"B\");`",
     "options": {
       "A": "A",
       "B": "B",
@@ -25,7 +25,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 2,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int i=1, sum=0; while(i<=4){ sum=sum+i; i++; } printf(\"%d\",sum);`",
+    "question": "What is the output? `int i=1, sum=0;\nwhile(i<=4) {\n  sum=sum+i;\n  i++;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "10",
       "B": "8",
@@ -55,7 +55,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 4,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[4]={3,6,9,12}; printf(\"%d\",a[2]);`",
+    "question": "What is the output? `int a[4] = {3, 6, 9, 12};\nprintf(\"%d\", a[2]);`",
     "options": {
       "A": "3",
       "B": "6",
@@ -70,7 +70,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 5,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int x=4; x=x+3; if(x%2==1) printf(\"Odd\"); else printf(\"Even\");`",
+    "question": "What is the output? `int x=4;\nx=x+3;\nif(x%2==1)\n  printf(\"Odd\");\nelse\n  printf(\"Even\");`",
     "options": {
       "A": "Odd",
       "B": "Even",
@@ -100,7 +100,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 7,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int n=8; while(n>2){ n=n-2; } printf(\"%d\",n);`",
+    "question": "What is the output? `int n=8;\nwhile(n>2) {\n  n=n-2;\n}\nprintf(\"%d\", n);`",
     "options": {
       "A": "0",
       "B": "1",
@@ -130,7 +130,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 9,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int x=10; if(x>=10) printf(\"Yes\");`",
+    "question": "What is the output? `int x=10;\nif(x>=10)\n  printf(\"Yes\");`",
     "options": {
       "A": "Yes",
       "B": "No",
@@ -160,7 +160,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 11,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a=5,b=2; if(a>b) a=a-b; printf(\"%d\",a);`",
+    "question": "What is the output? `int a=5, b=2;\nif(a>b)\n  a=a-b;\nprintf(\"%d\", a);`",
     "options": {
       "A": "2",
       "B": "3",
@@ -190,7 +190,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 13,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int i=0; do{ printf(\"%d\",i); i++; }while(i<3);`",
+    "question": "What is the output? `int i=0;\ndo {\n  printf(\"%d\", i);\n  i++;\n} while (i<3);`",
     "options": {
       "A": "012",
       "B": "123",
@@ -220,7 +220,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 15,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int i=1,sum=0; while(i<=5){ if(i%2==0) sum+=i; else sum-=i; i++; } printf(\"%d\",sum);`",
+    "question": "What is the output? `int i=1, sum=0;\nwhile(i<=5) {\n  if(i%2==0)\n    sum+=i;\n  else\n    sum-=i;\n  i++;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "-3",
       "B": "3",
@@ -235,7 +235,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 16,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={4,7,2,9,6}; int i=0; while(i<5){ if(a[i]>5) a[i]--; i++; } printf(\"%d\",a[3]);`",
+    "question": "What is the output? `int a[] = {4, 7, 2, 9, 6};\nint i=0;\nwhile(i<5) {\n  if(a[i]>5)\n    a[i]--;\n  i++;\n}\nprintf(\"%d\", a[3]);`",
     "options": {
       "A": "9",
       "B": "8",
@@ -265,7 +265,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 18,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int n=25,count=0; while(n>1){ n=n/2; count++; } printf(\"%d\",count);`",
+    "question": "What is the output? `int n=25, count=0;\nwhile(n>1) {\n  n=n/2;\n  count++;\n}\nprintf(\"%d\", count);`",
     "options": {
       "A": "3",
       "B": "4",
@@ -295,7 +295,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 20,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={8,3,5,2}; int i=0,sum=0; while(i<4){ if(i%2==0) sum+=a[i]; i++; } printf(\"%d\",sum);`",
+    "question": "What is the output? `int a[] = {8, 3, 5, 2};\nint i=0, sum=0;\nwhile(i<4) {\n  if(i%2==0)\n    sum+=a[i];\n  i++;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "8",
       "B": "10",
@@ -325,7 +325,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 22,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int x=3; while(x<20){ x=x*2; if(x>10) x=x-3; } printf(\"%d\",x);`",
+    "question": "What is the output? `int x=3;\nwhile(x<20) {\n  x=x*2;\n  if(x>10)\n    x=x-3;\n}\nprintf(\"%d\", x);`",
     "options": {
       "A": "12",
       "B": "15",
@@ -355,7 +355,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 24,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={3,1,4,1,5}; int i=0; while(i<5){ if(a[i]%2!=0) a[i]+=1; i++; } printf(\"%d\",a[4]);`",
+    "question": "What is the output? `int a[] = {3, 1, 4, 1, 5};\nint i=0;\nwhile(i<5) {\n  if(a[i]%2!=0)\n    a[i]+=1;\n  i++;\n}\nprintf(\"%d\", a[4]);`",
     "options": {
       "A": "5",
       "B": "6",
@@ -385,7 +385,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 26,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int i=1; do{ if(i%3==0) printf(\"%d \",i); i++; }while(i<=7);`",
+    "question": "What is the output? `int i=1;\ndo {\n  if(i%3==0)\n    printf(\"%d \", i);\n  i++;\n} while (i<=7);`",
     "options": {
       "A": "1 4 2007",
       "B": "2 5",
@@ -415,7 +415,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 28,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={10,20,30,40}; int i=3; while(i>=0){ if(a[i]>20) printf(\"%d \",a[i]); i-=1; }`",
+    "question": "What is the output? `int a[] = {10, 20, 30, 40};\nint i=3;\nwhile(i>=0) {\n  if(a[i]>20)\n    printf(\"%d \", a[i]);\n  i-=1;\n}`",
     "options": {
       "A": "10 20",
       "B": "20 30",
@@ -445,7 +445,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 30,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int x=1; while(x<10){ x+=3; } printf(\"%d\",x);`",
+    "question": "What is the output? `int x=1;\nwhile(x<10) {\n  x+=3;\n}\nprintf(\"%d\", x);`",
     "options": {
       "A": "7",
       "B": "9",
@@ -490,7 +490,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 33,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={2,5,8,11}; int i=0; while(i<4){ if(a[i]>a[1]) printf(\"%d \",a[i]); i++; }`",
+    "question": "What is the output? `int a[] = {2, 5, 8, 11};\nint i=0;\nwhile(i<4) {\n  if(a[i]>a[1])\n    printf(\"%d \", a[i]);\n  i++;\n}`",
     "options": {
       "A": "2 5",
       "B": "5 8",
@@ -505,7 +505,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 34,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={4,7,2,9,5}; int i=0,j=4; while(i<j){ if(a[i]<a[j]) i++; else j--; } printf(\"%d\",a[i]);`",
+    "question": "What is the output? `int a[] = {4, 7, 2, 9, 5};\nint i=0, j=4;\nwhile(i<j) {\n  if(a[i]<a[j])\n    i++;\n  else\n    j--;\n}\nprintf(\"%d\", a[i]);`",
     "options": {
       "A": "4",
       "B": "7",
@@ -535,7 +535,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 36,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={2,4,6,8,10}; int i=0,sum=0; while(i<5){ if(a[i]%4==0) sum+=a[i]; else if(a[i]%3==0) sum-=a[i]; i++; } printf(\"%d\",sum);`",
+    "question": "What is the output? `int a[] = {2, 4, 6, 8, 10};\nint i=0, sum=0;\nwhile(i<5) {\n  if(a[i]%4==0)\n    sum+=a[i];\n  else if(a[i]%3==0)\n    sum-=a[i];\n  i++;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "4",
       "B": "8",
@@ -565,7 +565,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 38,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={5,1,4,2,8}; int i=0; while(i<4){ if(a[i]>a[i+1]){ int t=a[i]; a[i]=a[i+1]; a[i+1]=t; } i++; } printf(\"%d\",a[2]);`",
+    "question": "What is the output? `int a[] = {5, 1, 4, 2, 8};\nint i=0;\nwhile(i<4) {\n  if(a[i]>a[i+1]) {\n    int t=a[i];\n    a[i]=a[i+1];\n    a[i+1]=t;\n  }\n  i++;\n}\nprintf(\"%d\", a[2]);`",
     "options": {
       "A": "1",
       "B": "2",
@@ -595,7 +595,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 40,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={3,6,9,12,15}; int i=0,sum=0; while(i<5){ if(i+1<5 && a[i+1]>a[i]) sum+=a[i+1]-a[i]; i++; } printf(\"%d\",sum);`",
+    "question": "What is the output? `int a[] = {3, 6, 9, 12, 15};\nint i=0, sum=0;\nwhile(i<5) {\n  if(i+1<5 && a[i+1]>a[i])\n    sum+=a[i+1]-a[i];\n  i++;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "3",
       "B": "6",
@@ -625,7 +625,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 42,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={7,2,9,4,6}; int i=0, max=a[0], second=a[0]; while(i<5){ if(a[i]>max){ second=max; max=a[i]; } else if(a[i]>second && a[i]!=max){ second=a[i]; } i++; } printf(\"%d\",second);`",
+    "question": "What is the output? `int a[] = {7, 2, 9, 4, 6};\nint i=0, max=a[0], second=a[0];\nwhile(i<5) {\n  if(a[i]>max) {\n    second=max;\n    max=a[i];\n  } else if (a[i]>second && a[i]!=max) {\n    second=a[i];\n  }\n  i++;\n}\nprintf(\"%d\", second);`",
     "options": {
       "A": "2",
       "B": "4",
@@ -655,7 +655,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 44,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={1,2,3,4,5}; int i=0,j=4; while(i<j){ int t=a[i]; a[i]=a[j]; a[j]=t; i++; j--; } printf(\"%d %d\",a[1],a[3]);`",
+    "question": "What is the output? `int a[] = {1, 2, 3, 4, 5};\nint i=0, j=4;\nwhile(i<j) {\n  int t=a[i];\n  a[i]=a[j];\n  a[j]=t;\n  i++;\n  j--;\n}\nprintf(\"%d %d\", a[1], a[3]);`",
     "options": {
       "A": "2 4",
       "B": "4 2",
@@ -685,7 +685,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 46,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={4,1,7,2,9}; int i=1, count=0; while(i<4){ if(a[i]>a[i-1] && a[i]>a[i+1]) count++; i++; } printf(\"%d\",count);`",
+    "question": "What is the output? `int a[] = {4, 1, 7, 2, 9};\nint i=1, count=0;\nwhile(i<4) {\n  if(a[i]>a[i-1] && a[i]>a[i+1])\n    count++;\n  i++;\n}\nprintf(\"%d\", count);`",
     "options": {
       "A": "0",
       "B": "1",
@@ -715,7 +715,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 48,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={2,7,4,9,6}; int i=0,result=0; while(i<5){ if(a[i]%2==0 && a[i]>5) result+=a[i]; else if(a[i]%2!=0 && a[i]<8) result-=a[i]; i++; } printf(\"%d\",result);`",
+    "question": "What is the output? `int a[] = {2, 7, 4, 9, 6};\nint i=0, result=0;\nwhile(i<5) {\n  if(a[i]%2==0 && a[i]>5)\n    result+=a[i];\n  else if(a[i]%2!=0 && a[i]<8)\n    result-=a[i];\n  i++;\n}\nprintf(\"%d\", result);`",
     "options": {
       "A": "-9",
       "B": "-1",
@@ -730,7 +730,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 49,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={5,10,15,20}; int i=0,sum=0; while(i<4){ if(a[i]%5==0 && a[i]>10) sum+=a[i]; i++; } printf(\"%d\",sum);`",
+    "question": "What is the output? `int a[] = {5, 10, 15, 20};\nint i=0, sum=0;\nwhile(i<4) {\n  if(a[i]%5==0 && a[i]>10)\n    sum+=a[i];\n  i++;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "10",
       "B": "15",
@@ -745,7 +745,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 50,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Predict the output of the following code: `int i; for(i=10;i>=1;i-=2) printf(\"%d \",i);`",
+    "question": "Predict the output of the following code: `int i;\nfor (i=10; i>=1; i-=2)\n  printf(\"%d \", i);`",
     "options": {
       "A": "10 8 6 4 2",
       "B": "10 9 8 7",
@@ -775,7 +775,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 52,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Trace the following code and state its output: `int a=5; a+=3; printf(\"%d\",a);`",
+    "question": "Trace the following code and state its output: `int a=5;\na+=3;\nprintf(\"%d\", a);`",
     "options": {
       "A": "5",
       "B": "8",
@@ -790,7 +790,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 53,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Examine the code below and determine the output it produces: `int x=3,y=4; printf(\"%d\",x+y*2);`",
+    "question": "Examine the code below and determine the output it produces: `int x=3, y=4;\nprintf(\"%d\", x+y*2);`",
     "options": {
       "A": "14",
       "B": "11",
@@ -835,7 +835,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 56,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Given the following code, determine the value printed: `int a[4]={1,2,3,4}; int sum=0; for(int i=0;i<4;i++) sum+=a[i]; printf(\"%d\",sum);`",
+    "question": "Given the following code, determine the value printed: `int a[4] = {1, 2, 3, 4};\nint sum=0;\nfor (int i=0; i<4; i++)\n  sum+=a[i];\nprintf(\"%d\", sum);`",
     "options": {
       "A": "6",
       "B": "10",
@@ -850,7 +850,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 57,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Read through the code and state the exact output: `int x=5; while(x>0){ printf(\"%d\",x); x--; }`",
+    "question": "Read through the code and state the exact output: `int x=5;\nwhile(x>0) {\n  printf(\"%d\", x);\n  x--;\n}`",
     "options": {
       "A": "12345",
       "B": "54321",
@@ -865,7 +865,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 58,
     "subtopic": "C Programming & Problem Solving",
-    "question": "The following code executes -- determine what it prints: `int a[3]={2,4,6}; printf(\"%d\",a[0]+a[2]);`",
+    "question": "The following code executes -- determine what it prints: `int a[3] = {2, 4, 6};\nprintf(\"%d\", a[0]+a[2]);`",
     "options": {
       "A": "6",
       "B": "8",
@@ -880,7 +880,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 59,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Consider the code below and identify its output: `int i,sum=0; for(i=1;i<=5;i++) sum+=i; printf(\"%d\",sum);`",
+    "question": "Consider the code below and identify its output: `int i, sum=0;\nfor (i=1; i<=5; i++)\n  sum+=i;\nprintf(\"%d\", sum);`",
     "options": {
       "A": "10",
       "B": "15",
@@ -895,7 +895,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 60,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Run the following code mentally and state its output: `int a=10,b=20; if(a<b) printf(\"A\"); else printf(\"B\");`",
+    "question": "Run the following code mentally and state its output: `int a=10, b=20;\nif(a<b)\n  printf(\"A\");\nelse\n  printf(\"B\");`",
     "options": {
       "A": "A",
       "B": "B",
@@ -925,7 +925,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 62,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Predict the output of the following code: `int x=5,y=10,z; z=(x>y)?x:y; printf(\"%d\",z);`",
+    "question": "Predict the output of the following code: `int x=5, y=10, z;\nz=(x>y)?x:y;\nprintf(\"%d\", z);`",
     "options": {
       "A": "5",
       "B": "10",
@@ -955,7 +955,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 64,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Trace the following code and state its output: `int a[3]={5,10,15}; int b[3]; for(int i=0;i<3;i++) b[i]=a[i]*2; printf(\"%d %d %d\",b[0],b[1],b[2]);`",
+    "question": "Trace the following code and state its output: `int a[3] = {5, 10, 15};\nint b[3];\nfor (int i=0; i<3; i++)\n  b[i]=a[i]*2;\nprintf(\"%d %d %d\", b[0], b[1], b[2]);`",
     "options": {
       "A": "5 10 15",
       "B": "10 20 30",
@@ -970,7 +970,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 65,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Examine the code below and determine the output it produces: `int count=0; for(int i=1;i<=20;i++){ if(i%3==0 && i%5==0) count++; } printf(\"%d\",count);`",
+    "question": "Examine the code below and determine the output it produces: `int count=0;\nfor (int i=1; i<=20; i++) {\n  if(i%3==0 && i%5==0)\n    count++;\n}\nprintf(\"%d\", count);`",
     "options": {
       "A": "0",
       "B": "1",
@@ -1000,7 +1000,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 67,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Study the following program and identify the output: `int a[5]={10,20,30,40,50}; int sum=0; for(int i=4;i>=0;i--) sum+=a[i]; printf(\"%d\",sum);`",
+    "question": "Study the following program and identify the output: `int a[5] = {10, 20, 30, 40, 50};\nint sum=0;\nfor (int i=4; i>=0; i--)\n  sum+=a[i];\nprintf(\"%d\", sum);`",
     "options": {
       "A": "100",
       "B": "120",
@@ -1030,7 +1030,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 69,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Analyze the code snippet below and find its output: `int a[5]={2,3,6,7,10}; int even=0,odd=0; for(int i=0;i<5;i++){ if(a[i]%2==0) even++; else odd++; } printf(\"%d %d\",even,odd);`",
+    "question": "Analyze the code snippet below and find its output: `int a[5] = {2, 3, 6, 7, 10};\nint even=0, odd=0;\nfor (int i=0; i<5; i++) {\n  if(a[i]%2==0)\n    even++;\n  else\n    odd++;\n}\nprintf(\"%d %d\", even, odd);`",
     "options": {
       "A": "2 3",
       "B": "3 2",
@@ -1060,7 +1060,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 71,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Given the following code, determine the value printed: `int i,sum=0; for(i=1;i<=5;i++){ if(i==3) sum+=10; else sum+=i; } printf(\"%d\",sum);`",
+    "question": "Given the following code, determine the value printed: `int i, sum=0;\nfor (i=1; i<=5; i++) {\n  if(i==3)\n    sum+=10;\n  else\n    sum+=i;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "15",
       "B": "20",
@@ -1105,7 +1105,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 74,
     "subtopic": "C Programming & Problem Solving",
-    "question": "The following code executes -- determine what it prints: `int a[3][2]={{1,2},{3,4},{5,6}}; int sum=0; for(int i=0;i<3;i++) for(int j=0;j<2;j++) sum+=a[i][j]; printf(\"%d\",sum);`",
+    "question": "The following code executes -- determine what it prints: `int a[3][2] = {{1, 2}, {3, 4}, {5, 6}};\nint sum=0;\nfor (int i=0; i<3; i++)\n  for (int j=0; j<2; j++)\n    sum+=a[i][j];\nprintf(\"%d\", sum);`",
     "options": {
       "A": "15",
       "B": "18",
@@ -1120,7 +1120,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 75,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Consider the code below and identify its output: `char s[]=\"Hello\"; int count=0; for(int i=0;s[i]!='\\0';i++){ if(s[i]=='l') count++; } printf(\"%d\",count);`",
+    "question": "Consider the code below and identify its output: `char s[]=\"Hello\";\nint count=0;\nfor (int i=0; s[i]!='\\0'; i++) {\n  if(s[i]=='l')\n    count++;\n}\nprintf(\"%d\", count);`",
     "options": {
       "A": "0",
       "B": "1",
@@ -1135,7 +1135,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 76,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Run the following code mentally and state its output: `int i=1,sum=0; while(i<=6){ sum+=i*i; i++; } printf(\"%d\",sum);`",
+    "question": "Run the following code mentally and state its output: `int i=1, sum=0;\nwhile(i<=6) {\n  sum+=i*i;\n  i++;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "21",
       "B": "56",
@@ -1150,7 +1150,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 77,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Predict the output of the following code: `int a[4]={5,10,15,20}; int prod=1; for(int i=0;i<4;i++) prod*=a[i]; printf(\"%d\",prod);`",
+    "question": "Predict the output of the following code: `int a[4] = {5, 10, 15, 20};\nint prod=1;\nfor (int i=0; i<4; i++)\n  prod*=a[i];\nprintf(\"%d\", prod);`",
     "options": {
       "A": "1500",
       "B": "15000",
@@ -1165,7 +1165,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 78,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Trace the following code and state its output: `int a[6]={3,7,2,9,4,1}; int max=a[0]; for(int i=1;i<6;i++) if(a[i]>max) max=a[i]; printf(\"%d\",max);`",
+    "question": "Trace the following code and state its output: `int a[6] = {3, 7, 2, 9, 4, 1};\nint max=a[0];\nfor (int i=1; i<6; i++)\n  if(a[i]>max)\n    max=a[i];\nprintf(\"%d\", max);`",
     "options": {
       "A": "3",
       "B": "7",
@@ -1180,7 +1180,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 79,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Examine the code below and determine the output it produces: `int sum=0; for(int i=1;i<=10;i++){ if(i%2==0) continue; sum+=i; } printf(\"%d\",sum);`",
+    "question": "Examine the code below and determine the output it produces: `int sum=0;\nfor (int i=1; i<=10; i++) {\n  if(i%2==0)\n    continue;\n  sum+=i;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "25",
       "B": "30",
@@ -1195,7 +1195,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 80,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Study the following program and identify the output: `int i=0; while(i<10){ if(i==5) break; i++; } printf(\"%d\",i);`",
+    "question": "Study the following program and identify the output: `int i=0;\nwhile(i<10) {\n  if(i==5)\n    break;\n  i++;\n}\nprintf(\"%d\", i);`",
     "options": {
       "A": "4",
       "B": "5",
@@ -1225,7 +1225,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 82,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Analyze the code snippet below and find its output: `int a[3][3]={{1,2,3},{4,5,6},{7,8,9}}; int sum=0; for(int i=0;i<3;i++) for(int j=0;j<3;j++) if(i!=j) sum+=a[i][j]; printf(\"%d\",sum);`",
+    "question": "Analyze the code snippet below and find its output: `int a[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};\nint sum=0;\nfor (int i=0; i<3; i++)\n  for (int j=0; j<3; j++)\n    if(i!=j)\n      sum+=a[i][j];\nprintf(\"%d\", sum);`",
     "options": {
       "A": "15",
       "B": "25",
@@ -1240,7 +1240,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 83,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Given the following code, determine the value printed: `int n=6,a=0,b=1,c; for(int i=2;i<=n;i++){ c=a+b; a=b; b=c; } printf(\"%d\",b);`",
+    "question": "Given the following code, determine the value printed: `int n=6, a=0, b=1, c;\nfor (int i=2; i<=n; i++) {\n  c=a+b;\n  a=b;\n  b=c;\n}\nprintf(\"%d\", b);`",
     "options": {
       "A": "5",
       "B": "6",
@@ -1270,7 +1270,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 85,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Read through the code and state the exact output: `int a[4]={8,3,5,1}; int i,j,temp; for(i=0;i<3;i++){ for(j=0;j<3-i;j++){ if(a[j]>a[j+1]){ temp=a[j]; a[j]=a[j+1]; a[j+1]=temp; } } } printf(\"%d%d%d%d\",a[0],a[1],a[2],a[3]);`",
+    "question": "Read through the code and state the exact output: `int a[4] = {8, 3, 5, 1};\nint i, j, temp;\nfor (i=0; i<3; i++) {\n  for (j=0; j<3-i; j++) {\n    if(a[j]>a[j+1]) {\n      temp=a[j];\n      a[j]=a[j+1];\n      a[j+1]=temp;\n    }\n  }\n}\nprintf(\"%d%d%d%d\", a[0], a[1], a[2], a[3]);`",
     "options": {
       "A": "8351",
       "B": "1358",
@@ -1300,7 +1300,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 87,
     "subtopic": "C Programming & Problem Solving",
-    "question": "The following code executes -- determine what it prints: `int i,j,sum=0; for(i=1;i<=3;i++){ for(j=1;j<=i;j++){ sum+=j; } } printf(\"%d\",sum);`",
+    "question": "The following code executes -- determine what it prints: `int i, j, sum=0;\nfor (i=1; i<=3; i++) {\n  for (j=1; j<=i; j++) {\n    sum+=j;\n  }\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "6",
       "B": "9",
@@ -1315,7 +1315,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 88,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Consider the code below and identify its output: `int a[5]={2,4,6,8,10}; int i=0,j=4,sum=0; while(i<=j){ sum+=a[i]+a[j]; i++; j--; } printf(\"%d\",sum);`",
+    "question": "Consider the code below and identify its output: `int a[5] = {2, 4, 6, 8, 10};\nint i=0, j=4, sum=0;\nwhile(i<=j) {\n  sum+=a[i]+a[j];\n  i++;\n  j--;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "24",
       "B": "30",
@@ -1330,7 +1330,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 89,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Run the following code mentally and state its output: `int count=0; for(int i=2;i<=30;i++){ int isPrime=1; for(int j=2;j<i;j++){ if(i%j==0){ isPrime=0; break; } } if(isPrime) count++; } printf(\"%d\",count);`",
+    "question": "Run the following code mentally and state its output: `int count=0;\nfor (int i=2; i<=30; i++) {\n  int isPrime=1;\n  for (int j=2; j<i; j++) {\n    if(i%j==0) {\n      isPrime=0;\n      break;\n    }\n  }\n  if(isPrime)\n    count++;\n}\nprintf(\"%d\", count);`",
     "options": {
       "A": "8",
       "B": "9",
@@ -1345,7 +1345,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 90,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Predict the output of the following code: `int a[6]={4,2,7,1,9,3}; int temp; for(int i=0;i<5;i++){ for(int j=0;j<5-i;j++){ if(a[j]>a[j+1]){ temp=a[j]; a[j]=a[j+1]; a[j+1]=temp; } } } printf(\"%d\",a[5]);`",
+    "question": "Predict the output of the following code: `int a[6] = {4, 2, 7, 1, 9, 3};\nint temp;\nfor (int i=0; i<5; i++) {\n  for (int j=0; j<5-i; j++) {\n    if(a[j]>a[j+1]) {\n      temp=a[j];\n      a[j]=a[j+1];\n      a[j+1]=temp;\n    }\n  }\n}\nprintf(\"%d\", a[5]);`",
     "options": {
       "A": "1",
       "B": "3",
@@ -1375,7 +1375,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 92,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Trace the following code and state its output: `int fib[10]; fib[0]=0; fib[1]=1; for(int i=2;i<10;i++) fib[i]=fib[i-1]+fib[i-2]; printf(\"%d\",fib[8]);`",
+    "question": "Trace the following code and state its output: `int fib[10];\nfib[0]=0;\nfib[1]=1;\nfor (int i=2; i<10; i++)\n  fib[i]=fib[i-1]+fib[i-2];\nprintf(\"%d\", fib[8]);`",
     "options": {
       "A": "13",
       "B": "21",
@@ -1390,7 +1390,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 93,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Examine the code below and determine the output it produces: `int i=1,sum=0; while(i<=10){ if(i%2==0){ i++; continue; } sum+=i; i++; } printf(\"%d\",sum);`",
+    "question": "Examine the code below and determine the output it produces: `int i=1, sum=0;\nwhile(i<=10) {\n  if(i%2==0) {\n    i++;\n    continue;\n  }\n  sum+=i;\n  i++;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "20",
       "B": "25",
@@ -1405,7 +1405,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 94,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Study the following program and identify the output: `int a[5]={3,1,4,1,5}; int count=0; for(int i=0;i<5;i++) for(int j=i+1;j<5;j++) if(a[i]==a[j]) count++; printf(\"%d\",count);`",
+    "question": "Study the following program and identify the output: `int a[5] = {3, 1, 4, 1, 5};\nint count=0;\nfor (int i=0; i<5; i++)\n  for (int j=i+1; j<5; j++)\n    if(a[i]==a[j])\n      count++;\nprintf(\"%d\", count);`",
     "options": {
       "A": "0",
       "B": "1",
@@ -1420,7 +1420,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 95,
     "subtopic": "C Programming & Problem Solving",
-    "question": "Analyze the code snippet below and find its output: `int i=0,j=10,sum=0; while(i<j){ sum+=(j-i); i++; j--; } printf(\"%d\",sum);`",
+    "question": "Analyze the code snippet below and find its output: `int i=0, j=10, sum=0;\nwhile(i<j) {\n  sum+=(j-i);\n  i++;\n  j--;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "20",
       "B": "25",
@@ -1435,7 +1435,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 96,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output of the following code? `int x=12; if(x%4==0) printf(\"A\"); else printf(\"B\");`",
+    "question": "What is the output of the following code? `int x=12;\nif(x%4==0)\n  printf(\"A\");\nelse\n  printf(\"B\");`",
     "options": {
       "A": "0",
       "B": "B",
@@ -1450,7 +1450,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 97,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int i=1,sum=0; while(i<=6){ sum+=i; i++; } printf(\"%d\",sum);`",
+    "question": "What is the output? `int i=1, sum=0;\nwhile(i<=6) {\n  sum+=i;\n  i++;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "6",
       "B": "21",
@@ -1465,7 +1465,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 98,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[5]={10,20,30,40,50}; printf(\"%d\",a[3]);`",
+    "question": "What is the output? `int a[5] = {10, 20, 30, 40, 50};\nprintf(\"%d\", a[3]);`",
     "options": {
       "A": "20",
       "B": "30",
@@ -1480,7 +1480,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 99,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int x=15; x=x-6; if(x%3==0) printf(\"Div3\"); else printf(\"NotDiv3\");`",
+    "question": "What is the output? `int x=15;\nx=x-6;\nif(x%3==0)\n  printf(\"Div3\");\nelse\n  printf(\"NotDiv3\");`",
     "options": {
       "A": "NotDiv3",
       "B": "9",
@@ -1495,7 +1495,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 100,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int n=9; while(n>0){ n=n-3; } printf(\"%d\",n);`",
+    "question": "What is the output? `int n=9;\nwhile(n>0) {\n  n=n-3;\n}\nprintf(\"%d\", n);`",
     "options": {
       "A": "3",
       "B": "-3",
@@ -1510,7 +1510,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 101,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a=6,b=9; if(a<b) printf(\"Small\"); else printf(\"Big\");`",
+    "question": "What is the output? `int a=6, b=9;\nif(a<b)\n  printf(\"Small\");\nelse\n  printf(\"Big\");`",
     "options": {
       "A": "6",
       "B": "Big",
@@ -1525,7 +1525,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 102,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[4]={7,14,21,28}; printf(\"%d\",a[0]+a[3]);`",
+    "question": "What is the output? `int a[4] = {7, 14, 21, 28};\nprintf(\"%d\", a[0]+a[3]);`",
     "options": {
       "A": "49",
       "B": "21",
@@ -1540,7 +1540,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 103,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int x=5; for(int i=1;i<=3;i++){ x=x+i; } printf(\"%d\",x);`",
+    "question": "What is the output? `int x=5;\nfor (int i=1; i<=3; i++) {\n  x=x+i;\n}\nprintf(\"%d\", x);`",
     "options": {
       "A": "8",
       "B": "9",
@@ -1645,7 +1645,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 110,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={5,10,15,20,25}; int i=0,sum=0; while(i<5){ if(a[i]%10==0) sum+=a[i]; i++; } printf(\"%d\",sum);`",
+    "question": "What is the output? `int a[] = {5, 10, 15, 20, 25};\nint i=0, sum=0;\nwhile(i<5) {\n  if(a[i]%10==0)\n    sum+=a[i];\n  i++;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "10",
       "B": "30",
@@ -1660,7 +1660,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 111,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={3,8,1,6,9}; int i=0; while(i<5){ if(a[i]>5) a[i]+=2; i++; } printf(\"%d\",a[4]);`",
+    "question": "What is the output? `int a[] = {3, 8, 1, 6, 9};\nint i=0;\nwhile(i<5) {\n  if(a[i]>5)\n    a[i]+=2;\n  i++;\n}\nprintf(\"%d\", a[4]);`",
     "options": {
       "A": "8",
       "B": "6",
@@ -1675,7 +1675,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 112,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int i,sum=0; for(i=1;i<=10;i++){ if(i%2==0) sum+=i; else sum-=i; } printf(\"%d\",sum);`",
+    "question": "What is the output? `int i, sum=0;\nfor (i=1; i<=10; i++) {\n  if(i%2==0)\n    sum+=i;\n  else\n    sum-=i;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "5",
       "B": "30",
@@ -1690,7 +1690,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 113,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int n=100,count=0; while(n>1){ n=n/3; count++; } printf(\"%d\",count);`",
+    "question": "What is the output? `int n=100, count=0;\nwhile(n>1) {\n  n=n/3;\n  count++;\n}\nprintf(\"%d\", count);`",
     "options": {
       "A": "6",
       "B": "3",
@@ -1705,7 +1705,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 114,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={2,-3,5,-7,9}; int i=0; while(i<5){ if(a[i]<0) a[i]=0; i++; } printf(\"%d\",a[1]+a[3]);`",
+    "question": "What is the output? `int a[] = {2, -3, 5, -7, 9};\nint i=0;\nwhile(i<5) {\n  if(a[i]<0)\n    a[i]=0;\n  i++;\n}\nprintf(\"%d\", a[1]+a[3]);`",
     "options": {
       "A": "-3",
       "B": "2",
@@ -1720,7 +1720,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 115,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={4,9,2,7,5}; int i=0,sum=0; while(i<5){ if(i%2==1) sum+=a[i]; i++; } printf(\"%d\",sum);`",
+    "question": "What is the output? `int a[] = {4, 9, 2, 7, 5};\nint i=0, sum=0;\nwhile(i<5) {\n  if(i%2==1)\n    sum+=a[i];\n  i++;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "16",
       "B": "2",
@@ -1735,7 +1735,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 116,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int x=2; while(x<50){ x=x*3; if(x>20) x=x-5; } printf(\"%d\",x);`",
+    "question": "What is the output? `int x=2;\nwhile(x<50) {\n  x=x*3;\n  if(x>20)\n    x=x-5;\n}\nprintf(\"%d\", x);`",
     "options": {
       "A": "137",
       "B": "49",
@@ -1750,7 +1750,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 117,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={6,3,8,3,9}; int idx=-1,i=0; while(i<5){ if(a[i]==3 && idx==-1) idx=i; i++; } printf(\"%d\",idx);`",
+    "question": "What is the output? `int a[] = {6, 3, 8, 3, 9};\nint idx=-1, i=0;\nwhile(i<5) {\n  if(a[i]==3 && idx==-1)\n    idx=i;\n  i++;\n}\nprintf(\"%d\", idx);`",
     "options": {
       "A": "1",
       "B": "3",
@@ -1765,7 +1765,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 118,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={5,2,9,1,7}; int i=0; while(i<5){ if(a[i]%2!=0) a[i]-=1; i++; } printf(\"%d\",a[2]);`",
+    "question": "What is the output? `int a[] = {5, 2, 9, 1, 7};\nint i=0;\nwhile(i<5) {\n  if(a[i]%2!=0)\n    a[i]-=1;\n  i++;\n}\nprintf(\"%d\", a[2]);`",
     "options": {
       "A": "8",
       "B": "1",
@@ -1780,7 +1780,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 119,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int i=1,count=0; do{ if(i%4==0) count++; i++; }while(i<=16); printf(\"%d\",count);`",
+    "question": "What is the output? `int i=1, count=0;\ndo {\n  if(i%4==0)\n    count++;\n  i++;\n} while (i<=16);printf(\"%d\", count);`",
     "options": {
       "A": "3",
       "B": "5",
@@ -1795,7 +1795,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 120,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={12,7,18,3,25}; int i=4,sum=0; while(i>=0){ if(a[i]<15) sum+=a[i]; i--; } printf(\"%d\",sum);`",
+    "question": "What is the output? `int a[] = {12, 7, 18, 3, 25};\nint i=4, sum=0;\nwhile(i>=0) {\n  if(a[i]<15)\n    sum+=a[i];\n  i--;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "7",
       "B": "43",
@@ -1810,7 +1810,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 121,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int max=0,i; int a[]={4,17,9,22,6}; for(i=0;i<5;i++){ if(a[i]>max) max=a[i]; } printf(\"%d\",max);`",
+    "question": "What is the output? `int max=0, i;\nint a[] = {4, 17, 9, 22, 6};\nfor (i=0; i<5; i++) {\n  if(a[i]>max)\n    max=a[i];\n}\nprintf(\"%d\", max);`",
     "options": {
       "A": "17",
       "B": "22",
@@ -1945,7 +1945,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 130,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={8,3,10,4,6}; int i=0,j=4; while(i<j){ if(a[i]>a[j]) j--; else i++; } printf(\"%d\",a[i]);`",
+    "question": "What is the output? `int a[] = {8, 3, 10, 4, 6};\nint i=0, j=4;\nwhile(i<j) {\n  if(a[i]>a[j])\n    j--;\n  else\n    i++;\n}\nprintf(\"%d\", a[i]);`",
     "options": {
       "A": "10",
       "B": "6",
@@ -1960,7 +1960,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 131,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={5,10,15,20,25}; int i=0,sum=0; while(i<5){ if(a[i]%5==0 && a[i]%3==0) sum+=a[i]; else if(a[i]%5==0) sum-=1; i++; } printf(\"%d\",sum);`",
+    "question": "What is the output? `int a[] = {5, 10, 15, 20, 25};\nint i=0, sum=0;\nwhile(i<5) {\n  if(a[i]%5==0 && a[i]%3==0)\n    sum+=a[i];\n  else if(a[i]%5==0)\n    sum-=1;\n  i++;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "11",
       "B": "10",
@@ -1975,7 +1975,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 132,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={3,7,2,9,4,1}; int i=1,idx=-1; while(i<5){ if(a[i]>a[i-1] && a[i]>a[i+1] && idx==-1) idx=i; i++; } printf(\"%d\",idx);`",
+    "question": "What is the output? `int a[] = {3, 7, 2, 9, 4, 1};\nint i=1, idx=-1;\nwhile(i<5) {\n  if(a[i]>a[i-1] && a[i]>a[i+1] && idx==-1)\n    idx=i;\n  i++;\n}\nprintf(\"%d\", idx);`",
     "options": {
       "A": "1",
       "B": "3",
@@ -1990,7 +1990,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 133,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={9,2,7,4,1}; int i=0; while(i<4){ if(a[i]<a[i+1]){ int t=a[i]; a[i]=a[i+1]; a[i+1]=t; } i++; } printf(\"%d\",a[1]);`",
+    "question": "What is the output? `int a[] = {9, 2, 7, 4, 1};\nint i=0;\nwhile(i<4) {\n  if(a[i]<a[i+1]) {\n    int t=a[i];\n    a[i]=a[i+1];\n    a[i+1]=t;\n  }\n  i++;\n}\nprintf(\"%d\", a[1]);`",
     "options": {
       "A": "9",
       "B": "4",
@@ -2005,7 +2005,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 134,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={2,5,1,8,3}; int i=0,j=4; while(i<j){ int t=a[i]; a[i]=a[j]; a[j]=t; i++; j--; } printf(\"%d %d\",a[0],a[2]);`",
+    "question": "What is the output? `int a[] = {2, 5, 1, 8, 3};\nint i=0, j=4;\nwhile(i<j) {\n  int t=a[i];\n  a[i]=a[j];\n  a[j]=t;\n  i++;\n  j--;\n}\nprintf(\"%d %d\", a[0], a[2]);`",
     "options": {
       "A": "8 1",
       "B": "8 5",
@@ -2020,7 +2020,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 135,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={4,8,2,10,6}; int i=0,sum=0; while(i<5){ if(i+1<5 && a[i+1]<a[i]) sum+=a[i]-a[i+1]; i++; } printf(\"%d\",sum);`",
+    "question": "What is the output? `int a[] = {4, 8, 2, 10, 6};\nint i=0, sum=0;\nwhile(i<5) {\n  if(i+1<5 && a[i+1]<a[i])\n    sum+=a[i]-a[i+1];\n  i++;\n}\nprintf(\"%d\", sum);`",
     "options": {
       "A": "6",
       "B": "4",
@@ -2035,7 +2035,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 136,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={3,3,5,3,7}; int i=0,count=0; while(i<5){ if(a[i]==3) count++; i++; } printf(\"%d\",count);`",
+    "question": "What is the output? `int a[] = {3, 3, 5, 3, 7};\nint i=0, count=0;\nwhile(i<5) {\n  if(a[i]==3)\n    count++;\n  i++;\n}\nprintf(\"%d\", count);`",
     "options": {
       "A": "2",
       "B": "5",
@@ -2050,7 +2050,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 137,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[]={6,2,9,4,9,1}; int i=0,max=a[0],second=-1; while(i<6){ if(a[i]>max){ second=max; max=a[i]; } else if(a[i]>second && a[i]!=max){ second=a[i]; } i++; } printf(\"%d\",second);`",
+    "question": "What is the output? `int a[] = {6, 2, 9, 4, 9, 1};\nint i=0, max=a[0], second=-1;\nwhile(i<6) {\n  if(a[i]>max) {\n    second=max;\n    max=a[i];\n  } else if (a[i]>second && a[i]!=max) {\n    second=a[i];\n  }\n  i++;\n}\nprintf(\"%d\", second);`",
     "options": {
       "A": "-1",
       "B": "6",
@@ -2170,7 +2170,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 145,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int x=8; if(x>5 && x<10) printf(\"Mid\"); else printf(\"Out\");`",
+    "question": "What is the output? `int x=8;\nif(x>5 && x<10)\n  printf(\"Mid\");\nelse\n  printf(\"Out\");`",
     "options": {
       "A": "Mid",
       "B": "Out",
@@ -2185,7 +2185,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 146,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `char s[]=\"hello\"; printf(\"%d\",(int)strlen(s));`",
+    "question": "What is the output? `char s[]=\"hello\";\nprintf(\"%d\", (int)strlen(s));`",
     "options": {
       "A": "5",
       "B": "6",
@@ -2200,7 +2200,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 147,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[3][2]={{1,2},{3,4},{5,6}}; printf(\"%d\",a[1][1]);`",
+    "question": "What is the output? `int a[3][2] = {{1, 2}, {3, 4}, {5, 6}};\nprintf(\"%d\", a[1][1]);`",
     "options": {
       "A": "4",
       "B": "3",
@@ -2215,7 +2215,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 148,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int x=7,y=3; printf(\"%d\",x/y);`",
+    "question": "What is the output? `int x=7, y=3;\nprintf(\"%d\", x/y);`",
     "options": {
       "A": "2",
       "B": "3",
@@ -2230,7 +2230,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 149,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int x=7,y=3; printf(\"%d\",x%y);`",
+    "question": "What is the output? `int x=7, y=3;\nprintf(\"%d\", x%y);`",
     "options": {
       "A": "1",
       "B": "2",
@@ -2245,7 +2245,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 150,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `char c='A'; printf(\"%c\",c+1);`",
+    "question": "What is the output? `char c='A';\nprintf(\"%c\", c+1);`",
     "options": {
       "A": "B",
       "B": "A",
@@ -2260,7 +2260,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 151,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[3]={1,2,3}; int *p=a; printf(\"%d\",*(p+1));`",
+    "question": "What is the output? `int a[3] = {1, 2, 3};\nint *p=a;\nprintf(\"%d\", *(p+1));`",
     "options": {
       "A": "2",
       "B": "1",
@@ -2275,7 +2275,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 152,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int x=5; int *p=&x; *p=10; printf(\"%d\",x);`",
+    "question": "What is the output? `int x=5;\nint *p=&x;\n*p=10;\nprintf(\"%d\", x);`",
     "options": {
       "A": "10",
       "B": "5",
@@ -2290,7 +2290,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 153,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int x=3,y=4; int z = (x>y) ? x : y; printf(\"%d\",z);`",
+    "question": "What is the output? `int x=3, y=4;\nint z = (x>y) ? x : y;\nprintf(\"%d\", z);`",
     "options": {
       "A": "4",
       "B": "3",
@@ -2380,7 +2380,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 159,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int sum(int a,int b){return a+b;} int main(){printf(\"%d\",sum(3,4));return 0;}`",
+    "question": "What is the output? `int sum(int a, int b) {\n  return a+b;\n}\nint main() {\n  printf(\"%d\", sum(3, 4));\n  return 0;\n}`",
     "options": {
       "A": "7",
       "B": "12",
@@ -2395,7 +2395,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 160,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `void inc(int *p){ (*p)++; } int main(){ int x=5; inc(&x); printf(\"%d\",x); return 0;}`",
+    "question": "What is the output? `void inc(int *p) {\n  (*p)++;\n}\nint main() {\n  int x=5;\n  inc(&x);\n  printf(\"%d\", x);\n  return 0;\n}`",
     "options": {
       "A": "6",
       "B": "5",
@@ -2410,7 +2410,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 161,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int fact(int n){ if(n<=1) return 1; return n*fact(n-1); } int main(){ printf(\"%d\",fact(5)); return 0; }`",
+    "question": "What is the output? `int fact(int n) {\n  if(n<=1)\n    return 1;\n  return n*fact(n-1);\n}\nint main() {\n  printf(\"%d\", fact(5));\n  return 0;\n}`",
     "options": {
       "A": "120",
       "B": "24",
@@ -2425,7 +2425,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 162,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `char s[]=\"Hello\"; s[0]='h'; printf(\"%s\",s);`",
+    "question": "What is the output? `char s[]=\"Hello\";\ns[0]='h';\nprintf(\"%s\", s);`",
     "options": {
       "A": "hello",
       "B": "Hello",
@@ -2440,7 +2440,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 163,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[2][3]={{1,2,3},{4,5,6}}; int sum=0; for(int i=0;i<2;i++) for(int j=0;j<3;j++) sum+=a[i][j]; printf(\"%d\",sum);`",
+    "question": "What is the output? `int a[2][3] = {{1, 2, 3}, {4, 5, 6}};\nint sum=0;\nfor (int i=0; i<2; i++)\n  for (int j=0; j<3; j++)\n    sum+=a[i][j];\nprintf(\"%d\", sum);`",
     "options": {
       "A": "21",
       "B": "15",
@@ -2455,7 +2455,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 164,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int fib(int n){ if(n<2) return n; return fib(n-1)+fib(n-2); } int main(){ printf(\"%d\",fib(6)); return 0; }`",
+    "question": "What is the output? `int fib(int n) {\n  if(n<2)\n    return n;\n  return fib(n-1)+fib(n-2);\n}\nint main() {\n  printf(\"%d\", fib(6));\n  return 0;\n}`",
     "options": {
       "A": "8",
       "B": "5",
@@ -2470,7 +2470,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 165,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `char s[]=\"programming\"; int count=0; for(int i=0;s[i]!='\\0';i++){ if(s[i]=='g') count++; } printf(\"%d\",count);`",
+    "question": "What is the output? `char s[]=\"programming\";\nint count=0;\nfor (int i=0; s[i]!='\\0'; i++) {\n  if(s[i]=='g')\n    count++;\n}\nprintf(\"%d\", count);`",
     "options": {
       "A": "2",
       "B": "1",
@@ -2485,7 +2485,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 166,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `void swap(int *a, int *b){ int t=*a; *a=*b; *b=t; } int main(){ int x=3,y=7; swap(&x,&y); printf(\"%d %d\",x,y); return 0; }`",
+    "question": "What is the output? `void swap(int *a, int *b) {\n  int t=*a;\n  *a=*b;\n  *b=t;\n}\nint main() {\n  int x=3, y=7;\n  swap(&x, &y);\n  printf(\"%d %d\", x, y);\n  return 0;\n}`",
     "options": {
       "A": "7 3",
       "B": "3 7",
@@ -2500,7 +2500,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 167,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `struct Point{int x; int y;}; int main(){ struct Point p={3,4}; p.x+=p.y; printf(\"%d\",p.x); return 0; }`",
+    "question": "What is the output? `struct Point {\n  int x;\n  int y;\n};\nint main() {\n  struct Point p = {3, 4};\n  p.x+=p.y;\n  printf(\"%d\", p.x);\n  return 0;\n}`",
     "options": {
       "A": "7",
       "B": "3",
@@ -2515,7 +2515,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 168,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int arr[5]={1,2,3,4,5}; int *p=arr+2; printf(\"%d\",*p+*(p+1));`",
+    "question": "What is the output? `int arr[5] = {1, 2, 3, 4, 5};\nint *p=arr+2;\nprintf(\"%d\", *p+*(p+1));`",
     "options": {
       "A": "7",
       "B": "5",
@@ -2530,7 +2530,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 169,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `char s[]=\"abcdef\"; printf(\"%c\",s[strlen(s)-1]);`",
+    "question": "What is the output? `char s[]=\"abcdef\";\nprintf(\"%c\", s[strlen(s)-1]);`",
     "options": {
       "A": "f",
       "B": "e",
@@ -2545,7 +2545,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 170,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int mul(int a,int b){ return a*b; } int square(int x){ return mul(x,x); } int main(){ printf(\"%d\",square(6)); return 0; }`",
+    "question": "What is the output? `int mul(int a, int b) {\n  return a*b;\n}\nint square(int x) {\n  return mul(x, x);\n}\nint main() {\n  printf(\"%d\", square(6));\n  return 0;\n}`",
     "options": {
       "A": "36",
       "B": "12",
@@ -2680,7 +2680,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 179,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int power(int base,int exp){ if(exp==0) return 1; return base*power(base,exp-1); } int main(){ printf(\"%d\",power(2,6)); return 0; }`",
+    "question": "What is the output? `int power(int base, int exp) {\n  if(exp==0)\n    return 1;\n  return base*power(base, exp-1);\n}\nint main() {\n  printf(\"%d\", power(2, 6));\n  return 0;\n}`",
     "options": {
       "A": "64",
       "B": "32",
@@ -2695,7 +2695,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 180,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `void modify(int arr[], int n){ for(int i=0;i<n;i++) arr[i]*=2; } int main(){ int a[4]={1,2,3,4}; modify(a,4); printf(\"%d\",a[2]); return 0; }`",
+    "question": "What is the output? `void modify(int arr[], int n) {\n  for (int i=0; i<n; i++)\n    arr[i]*=2;\n}\nint main() {\n  int a[4] = {1, 2, 3, 4};\n  modify(a, 4);\n  printf(\"%d\", a[2]);\n  return 0;\n}`",
     "options": {
       "A": "6",
       "B": "3",
@@ -2710,7 +2710,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 181,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int gcd(int a,int b){ if(b==0) return a; return gcd(b,a%b); } int main(){ printf(\"%d\",gcd(48,18)); return 0; }`",
+    "question": "What is the output? `int gcd(int a, int b) {\n  if(b==0)\n    return a;\n  return gcd(b, a%b);\n}\nint main() {\n  printf(\"%d\", gcd(48, 18));\n  return 0;\n}`",
     "options": {
       "A": "6",
       "B": "18",
@@ -2725,7 +2725,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 182,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `struct Point{int x,y;}; void movePoint(struct Point *p, int dx, int dy){ p->x+=dx; p->y+=dy; } int main(){ struct Point p={1,1}; movePoint(&p,3,4); printf(\"%d %d\",p.x,p.y); return 0; }`",
+    "question": "What is the output? `struct Point {\n  int x, y;\n};\nvoid movePoint(struct Point *p, int dx, int dy) {\n  p->x+=dx;\n  p->y+=dy;\n}\nint main() {\n  struct Point p = {1, 1};\n  movePoint(&p, 3, 4);\n  printf(\"%d %d\", p.x, p.y);\n  return 0;\n}`",
     "options": {
       "A": "4 5",
       "B": "1 1",
@@ -2740,7 +2740,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 183,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `char* reverse(char *s){ int n=strlen(s); for(int i=0;i<n/2;i++){ char t=s[i]; s[i]=s[n-1-i]; s[n-1-i]=t; } return s; } int main(){ char s[]=\"abcde\"; printf(\"%s\",reverse(s)); return 0; }`",
+    "question": "What is the output? `char* reverse(char *s) {\n  int n=strlen(s);\n  for (int i=0; i<n/2; i++) {\n    char t=s[i];\n    s[i]=s[n-1-i];\n    s[n-1-i]=t;\n  }\n  return s;\n}\nint main() {\n  char s[]=\"abcde\";\n  printf(\"%s\", reverse(s));\n  return 0;\n}`",
     "options": {
       "A": "edcba",
       "B": "abcde",
@@ -2755,7 +2755,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 184,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int sumArr(int *arr,int n){ if(n==0) return 0; return arr[n-1]+sumArr(arr,n-1); } int main(){ int a[5]={1,2,3,4,5}; printf(\"%d\",sumArr(a,5)); return 0; }`",
+    "question": "What is the output? `int sumArr(int *arr, int n) {\n  if(n==0)\n    return 0;\n  return arr[n-1]+sumArr(arr, n-1);\n}\nint main() {\n  int a[5] = {1, 2, 3, 4, 5};\n  printf(\"%d\", sumArr(a, 5));\n  return 0;\n}`",
     "options": {
       "A": "15",
       "B": "10",
@@ -2770,7 +2770,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 185,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int a[3][3]={{1,2,3},{4,5,6},{7,8,9}}; int trace=0; for(int i=0;i<3;i++) trace+=a[i][i]; printf(\"%d\",trace);`",
+    "question": "What is the output? `int a[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};\nint trace=0;\nfor (int i=0; i<3; i++)\n  trace+=a[i][i];\nprintf(\"%d\", trace);`",
     "options": {
       "A": "15",
       "B": "9",
@@ -2785,7 +2785,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 186,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output? `int isPalin(char *s){ int n=strlen(s); for(int i=0;i<n/2;i++){ if(s[i]!=s[n-1-i]) return 0; } return 1; } int main(){ printf(\"%d\",isPalin(\"madam\")); return 0; }`",
+    "question": "What is the output? `int isPalin(char *s) {\n  int n=strlen(s);\n  for (int i=0; i<n/2; i++) {\n    if(s[i]!=s[n-1-i])\n      return 0;\n  }\n  return 1;\n}\nint main() {\n  printf(\"%d\", isPalin(\"madam\"));\n  return 0;\n}`",
     "options": {
       "A": "1",
       "B": "0",
@@ -2920,7 +2920,7 @@ window.TOPICS["intermediate_c"] = {
   {
     "id": 195,
     "subtopic": "C Programming & Problem Solving",
-    "question": "What is the output of the following C program? #include <stdio.h> int main() { int a[] = {4, 7, 2, 9, 5}; int i, result = 0; for (i = 0; i < 5; i++) { if (a[i] % 2 == 0) result += a[i]; else result -= a[i]; } printf(\"%d\", result); return 0; }",
+    "question": "What is the output of the following C program? `#include <stdio.h>\nint main() {\n  int a[] = {4, 7, 2, 9, 5};\n  int i, result = 0;\n  for (i = 0; i < 5; i++) {\n    if (a[i] % 2 == 0)\n      result += a[i];\n    else\n      result -= a[i];\n  }\n  printf(\"%d\", result);\n  return 0;\n}`",
     "options": {
       "A": "-15",
       "B": "-7",
@@ -2934,7 +2934,3 @@ window.TOPICS["intermediate_c"] = {
   }
 ]
 };
-
-// ==========================================
-// 6. APPLICATION ENGINE & LOGIC
-// ==========================================
