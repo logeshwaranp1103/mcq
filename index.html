@@ -22,7 +22,7 @@
           <span>⚡</span>
         </div>
         <div class="brand-text">
-          <h1>MCQ Master</h1>
+          <h1>MCQ</h1>
           <span class="brand-subtitle">Interactive Prep Platform</span>
         </div>
       </div>
@@ -58,11 +58,11 @@
         <div class="mode-toggle-group" role="tablist" aria-label="Study or Quiz Mode">
           <button id="modeQuizBtn" class="mode-btn active" role="tab" aria-selected="true" title="Practice test with instant colored feedback">
             <span class="icon">🎯</span>
-            <span class="text">Quiz Test</span>
+            <span class="text">Quiz</span>
           </button>
           <button id="modeReadBtn" class="mode-btn" role="tab" aria-selected="false" title="Study mode with all answers directly shown">
             <span class="icon">📖</span>
-            <span class="text">Read Mode</span>
+            <span class="text">Read</span>
           </button>
         </div>
 
@@ -83,35 +83,26 @@
   <!-- Sub-bar: Statistics, Filter, and Controls -->
   <section class="stats-bar">
     <div class="stats-container">
-      <!-- Live Counters -->
+      <!-- Live Counters & Reset Button -->
       <div class="stats-metrics">
         <div class="metric-pill total" title="Total Questions">
-          <span class="label">Total</span>
+          <span class="label">Tot</span>
           <span class="value" id="statTotal">300</span>
         </div>
         <div class="metric-pill answered" title="Answered Questions">
-          <span class="label">Answered</span>
+          <span class="label">Ans</span>
           <span class="value" id="statAnswered">0</span>
         </div>
         <div class="metric-pill correct" title="Correct Answers">
-          <span class="label">Correct</span>
+          <span class="label">✔</span>
           <span class="value" id="statCorrect">0</span>
         </div>
         <div class="metric-pill wrong" title="Incorrect Answers">
-          <span class="label">Wrong</span>
+          <span class="label">✘</span>
           <span class="value" id="statWrong">0</span>
         </div>
-      </div>
 
-      <!-- Search & Filters -->
-      <div class="stats-controls">
-        <div class="search-box">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="searchInput" placeholder="Search question or code..." aria-label="Search questions" />
-          <button id="clearSearchBtn" class="clear-search-btn" style="display:none;" title="Clear search">✕</button>
-        </div>
-
-        <button id="resetQuizBtn" class="btn-secondary danger-hover" title="Reset your answers and score for this topic">
+        <button id="resetQuizBtn" class="reset-btn danger-hover" title="Reset your answers and score for this topic">
           ↺ Reset
         </button>
       </div>
@@ -129,7 +120,7 @@
       <!-- Single Question Navigation Header (shown in single view) -->
       <div class="single-nav-bar" id="singleNavBar">
         <button id="prevQuestionBtn" class="nav-arrow-btn" title="Previous Question (Left Arrow)">
-          ← Previous
+          ← 
         </button>
         
         <div class="single-indicator">
@@ -143,7 +134,7 @@
             ★ <span class="star-text">Bookmark</span>
           </button>
           <button id="nextQuestionBtn" class="nav-arrow-btn primary" title="Next Question (Right Arrow)">
-            Next →
+             →
           </button>
         </div>
       </div>
@@ -313,8 +304,6 @@
     closeDrawerBtn: document.getElementById('closeDrawerBtn'),
     paletteDrawer: document.getElementById('paletteDrawer'),
     paletteGrid: document.getElementById('paletteGrid'),
-    searchInput: document.getElementById('searchInput'),
-    clearSearchBtn: document.getElementById('clearSearchBtn'),
     questionsContainer: document.getElementById('questionsContainer'),
     singleNavBar: document.getElementById('singleNavBar'),
     prevQuestionBtn: document.getElementById('prevQuestionBtn'),
@@ -575,8 +564,6 @@
       document.getElementById('clearFiltersBtn')?.addEventListener('click', () => {
         state.searchQuery = '';
         state.paletteFilter = 'all';
-        elements.searchInput.value = '';
-        elements.clearSearchBtn.style.display = 'none';
         elements.paletteFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'all'));
         render();
       });
@@ -1052,22 +1039,6 @@
       if (currentQ) {
         toggleBookmark(currentQ.id);
       }
-    });
-
-    // Search Input
-    elements.searchInput.addEventListener('input', (e) => {
-      state.searchQuery = e.target.value.trim().toLowerCase();
-      elements.clearSearchBtn.style.display = state.searchQuery ? 'block' : 'none';
-      state.currentIndex = 0;
-      render();
-    });
-
-    elements.clearSearchBtn.addEventListener('click', () => {
-      elements.searchInput.value = '';
-      state.searchQuery = '';
-      elements.clearSearchBtn.style.display = 'none';
-      state.currentIndex = 0;
-      render();
     });
 
     // Drawer Filter Chips
