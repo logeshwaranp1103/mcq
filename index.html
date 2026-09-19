@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCQ Master | Basic & Intermediate Level Quiz Platform</title>
+  <meta name="description" content="Master 300 Data Structures & Algorithms Multiple Choice Questions with interactive Quiz Test Mode and Study Read Mode." />
+  
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark-theme">
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-logo">
+          <span>⚡</span>
+        </div>
+        <div class="brand-text">
+          <h1>MCQ Master</h1>
+          <span class="brand-subtitle">Interactive Prep Platform</span>
+        </div>
+      </div>
+
+      <!-- Level Switcher & Topic Selector -->
+      <div class="level-topic-container">
+        <!-- Level Switcher Tabs -->
+        <div class="level-switcher" role="tablist" aria-label="Difficulty Level">
+          <button id="levelBasicBtn" class="level-tab-btn active" data-level="basic" role="tab" aria-selected="true" title="Switch to Basic Level">
+            <span class="lvl-icon">🌱</span>
+            <span class="lvl-title">Basic Level</span>
+          </button>
+          <button id="levelInterBtn" class="level-tab-btn" data-level="intermediate" role="tab" aria-selected="false" title="Switch to Intermediate Level">
+            <span class="lvl-icon">⚡</span>
+            <span class="lvl-title">Intermediate Level</span>
+          </button>
+        </div>
+
+        <!-- Topic Selector Dropdown -->
+        <div class="topic-select-wrapper">
+          <label for="topicSelect" class="sr-only">Select Topic</label>
+          <div class="custom-select">
+            <select id="topicSelect" aria-label="Select Topic">
+              <!-- Loaded dynamically from TOPICS -->
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode Switcher & Controls -->
+      <div class="nav-actions">
+        <!-- Mode Tabs -->
+        <div class="mode-toggle-group" role="tablist" aria-label="Study or Quiz Mode">
+          <button id="modeQuizBtn" class="mode-btn active" role="tab" aria-selected="true" title="Practice test with instant colored feedback">
+            <span class="icon">🎯</span>
+            <span class="text">Quiz Test</span>
+          </button>
+          <button id="modeReadBtn" class="mode-btn" role="tab" aria-selected="false" title="Study mode with all answers directly shown">
+            <span class="icon">📖</span>
+            <span class="text">Read Mode</span>
+          </button>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="themeToggleBtn" class="icon-btn" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+          <span id="themeIcon">☀️</span>
+        </button>
+
+        <!-- Drawer Toggle Button (Mobile & Desktop) -->
+        <button id="drawerToggleBtn" class="icon-btn highlight" title="Open Question Palette (1-300)" aria-label="Question Grid">
+          <span class="icon">🔢</span>
+          <span class="drawer-label">Palette</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sub-bar: Statistics, Filter, and Controls -->
+  <section class="stats-bar">
+    <div class="stats-container">
+      <!-- Live Counters -->
+      <div class="stats-metrics">
+        <div class="metric-pill total" title="Total Questions">
+          <span class="label">Total</span>
+          <span class="value" id="statTotal">300</span>
+        </div>
+        <div class="metric-pill answered" title="Answered Questions">
+          <span class="label">Answered</span>
+          <span class="value" id="statAnswered">0</span>
+        </div>
+        <div class="metric-pill correct" title="Correct Answers">
+          <span class="label">Correct</span>
+          <span class="value" id="statCorrect">0</span>
+        </div>
+        <div class="metric-pill wrong" title="Incorrect Answers">
+          <span class="label">Wrong</span>
+          <span class="value" id="statWrong">0</span>
+        </div>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="stats-controls">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search question or code..." aria-label="Search questions" />
+          <button id="clearSearchBtn" class="clear-search-btn" style="display:none;" title="Clear search">✕</button>
+        </div>
+
+        <button id="resetQuizBtn" class="btn-secondary danger-hover" title="Reset your answers and score for this topic">
+          ↺ Reset
+        </button>
+      </div>
+    </div>
+    <!-- Progress Bar -->
+    <div class="progress-track" aria-label="Quiz completion progress">
+      <div class="progress-bar-fill" id="progressBarFill" style="width: 0%"></div>
+    </div>
+  </section>
+
+  <!-- Main Content Layout -->
+  <main class="main-layout">
+    <!-- Center Quiz / Reading Container -->
+    <div class="content-area">
+      <!-- Single Question Navigation Header (shown in single view) -->
+      <div class="single-nav-bar" id="singleNavBar">
+        <button id="prevQuestionBtn" class="nav-arrow-btn" title="Previous Question (Left Arrow)">
+          ← Previous
+        </button>
+        
+        <div class="single-indicator">
+          <span class="ind-label">Question</span>
+          <input type="number" id="jumpInput" min="1" max="300" value="1" title="Type question number and press Enter" />
+          <span class="ind-total">/ <span id="jumpTotal">300</span></span>
+        </div>
+
+        <div class="single-right-actions">
+          <button id="bookmarkBtn" class="star-btn" title="Bookmark this question">
+            ★ <span class="star-text">Bookmark</span>
+          </button>
+          <button id="nextQuestionBtn" class="nav-arrow-btn primary" title="Next Question (Right Arrow)">
+            Next →
+          </button>
+        </div>
+      </div>
+
+      <!-- Container where question cards are rendered -->
+      <div id="questionsContainer" class="questions-container single-view">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+
+    <!-- Quick Jump Palette Drawer (Collapsible) -->
+    <aside class="palette-drawer" id="paletteDrawer" aria-label="Question Navigation Palette">
+      <div class="drawer-header">
+        <h3>Question Navigator</h3>
+        <button id="closeDrawerBtn" class="close-drawer-btn" title="Close Drawer">✕</button>
+      </div>
+
+      <!-- Filter pills inside drawer -->
+      <div class="palette-filters">
+        <button class="palette-filter-chip active" data-filter="all">All (<span id="chipAll">300</span>)</button>
+        <button class="palette-filter-chip correct" data-filter="correct">Correct (<span id="chipCorrect">0</span>)</button>
+        <button class="palette-filter-chip wrong" data-filter="wrong">Wrong (<span id="chipWrong">0</span>)</button>
+        <button class="palette-filter-chip unattempted" data-filter="unattempted">Unanswered (<span id="chipUnattempted">300</span>)</button>
+        <button class="palette-filter-chip bookmarked" data-filter="bookmarked">Bookmarked (<span id="chipBookmarked">0</span>)</button>
+      </div>
+
+      <div class="drawer-legend">
+        <span class="legend-item"><span class="dot dot-unattempted"></span> Unattempted</span>
+        <span class="legend-item"><span class="dot dot-correct"></span> Correct</span>
+        <span class="legend-item"><span class="dot dot-wrong"></span> Wrong</span>
+        <span class="legend-item"><span class="dot dot-bookmarked"></span> ★ Starred</span>
+      </div>
+
+      <!-- 1 to 300 Buttons Grid -->
+      <div class="palette-grid" id="paletteGrid">
+        <!-- Rendered dynamically -->
+      </div>
+    </aside>
+  </main>
+
+  <!-- Summary Modal -->
+  <div class="modal-backdrop" id="summaryModal" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>🎉 Quiz Progress Summary</h2>
+        <button id="closeModalBtn" class="close-modal-btn">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="score-circle-container">
+          <div class="score-circle" id="scoreCircle">
+            <span class="score-percentage" id="modalAccuracy">0%</span>
+            <span class="score-caption">Accuracy</span>
+          </div>
+        </div>
+
+        <div class="modal-grid">
+          <div class="modal-stat">
+            <span class="stat-number" id="modalTotal">300</span>
+            <span class="stat-name">Total Questions</span>
+          </div>
+          <div class="modal-stat">
+            <span class="stat-number" id="modalAnswered">0</span>
+            <span class="stat-name">Attempted</span>
+          </div>
+          <div class="modal-stat success">
+            <span class="stat-number" id="modalCorrect">0</span>
+            <span class="stat-name">Correct Answers</span>
+          </div>
+          <div class="modal-stat danger">
+            <span class="stat-number" id="modalWrong">0</span>
+            <span class="stat-name">Incorrect</span>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button id="retryIncorrectBtn" class="btn-secondary">⚠️ Practice Incorrect Only</button>
+          <button id="continueQuizBtn" class="btn-primary">Continue Quiz</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reset Confirmation Modal -->
+  <div class="modal-backdrop" id="resetModal" style="display: none;">
+    <div class="modal-card mini">
+      <div class="modal-header">
+        <h3>Reset Topic Progress?</h3>
+        <button id="closeResetModalBtn" class="close-modal-btn">✕</button>
+      </div>
+      <div class="modal-body">
+        <p>This will clear all your answers, scores, and bookmarks for this topic. Are you sure?</p>
+        <div class="modal-actions">
+          <button id="cancelResetBtn" class="btn-secondary">Cancel</button>
+          <button id="confirmResetBtn" class="btn-primary danger">Yes, Reset All</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastNotification" class="toast"></div>
+
+  <!-- Modular Topic Data Files -->
+  <script src="topics/dsa.js"></script>
+  <script src="topics/profit_loss.js"></script>
+  <script src="topics/percentages.js"></script>
+  <script src="topics/ratio_proportion.js"></script>
+  <script src="topics/intermediate_c.js"></script>
+  <script src="topics/ds_programming.js"></script>
+
+  <script>
+// ==========================================
+// APPLICATION CONTROLLER & LOGIC
+// ==========================================
+/**
+ * AlgoMCQ Pro - Application Logic
+ * Supports Multi-topic, Quiz Test Mode (with colored feedback), Read Mode,
+ * Single & List Views, Question Palette (1-300), Search & Filters, and LocalStorage.
+ */
+
+(function () {
+  'use strict';
+
+  // State Management
+  // Level Configuration
+  const LEVEL_CONFIG = {
+    basic: {
+      id: 'basic',
+      name: 'Basic Level',
+      icon: '🌱',
+      topicOrder: ['dsa', 'profit_loss', 'percentages', 'ratio_proportion']
+    },
+    intermediate: {
+      id: 'intermediate',
+      name: 'Intermediate Level',
+      icon: '⚡',
+      topicOrder: ['intermediate_c', 'ds_programming']
+    }
+  };
+
+  // State Management
+  const state = {
+    currentLevel: 'basic',
+    currentTopicId: 'dsa',
+    mode: 'quiz', // 'quiz' | 'read'
+    viewMode: 'single', // 'single' | 'list'
+    currentIndex: 0, // 0-based index in filtered questions
+    searchQuery: '',
+    selectedSubtopic: 'all',
+    paletteFilter: 'all', // 'all' | 'correct' | 'wrong' | 'unattempted' | 'bookmarked'
+    userAnswers: {}, // { [qid]: 'A' | 'B' | ... }
+    bookmarks: new Set(),
+    theme: localStorage.getItem('algomcq_theme') || 'dark'
+  };
+
+  // DOM Elements
+  const elements = {
+    body: document.body,
+    levelBasicBtn: document.getElementById('levelBasicBtn'),
+    levelInterBtn: document.getElementById('levelInterBtn'),
+    topicSelect: document.getElementById('topicSelect'),
+    modeQuizBtn: document.getElementById('modeQuizBtn'),
+    modeReadBtn: document.getElementById('modeReadBtn'),
+    themeToggleBtn: document.getElementById('themeToggleBtn'),
+    themeIcon: document.getElementById('themeIcon'),
+    drawerToggleBtn: document.getElementById('drawerToggleBtn'),
+    closeDrawerBtn: document.getElementById('closeDrawerBtn'),
+    paletteDrawer: document.getElementById('paletteDrawer'),
+    paletteGrid: document.getElementById('paletteGrid'),
+    searchInput: document.getElementById('searchInput'),
+    clearSearchBtn: document.getElementById('clearSearchBtn'),
+    questionsContainer: document.getElementById('questionsContainer'),
+    singleNavBar: document.getElementById('singleNavBar'),
+    prevQuestionBtn: document.getElementById('prevQuestionBtn'),
+    nextQuestionBtn: document.getElementById('nextQuestionBtn'),
+    jumpInput: document.getElementById('jumpInput'),
+    jumpTotal: document.getElementById('jumpTotal'),
+    bookmarkBtn: document.getElementById('bookmarkBtn'),
+    resetQuizBtn: document.getElementById('resetQuizBtn'),
+    // Stats
+    statTotal: document.getElementById('statTotal'),
+    statAnswered: document.getElementById('statAnswered'),
+    statCorrect: document.getElementById('statCorrect'),
+    statWrong: document.getElementById('statWrong'),
+    statAccuracy: document.getElementById('statAccuracy'),
+    progressBarFill: document.getElementById('progressBarFill'),
+    // Chips in Drawer
+    chipAll: document.getElementById('chipAll'),
+    chipCorrect: document.getElementById('chipCorrect'),
+    chipWrong: document.getElementById('chipWrong'),
+    chipUnattempted: document.getElementById('chipUnattempted'),
+    chipBookmarked: document.getElementById('chipBookmarked'),
+    paletteFilterChips: document.querySelectorAll('.palette-filter-chip'),
+    // Modals
+    summaryModal: document.getElementById('summaryModal'),
+    closeModalBtn: document.getElementById('closeModalBtn'),
+    continueQuizBtn: document.getElementById('continueQuizBtn'),
+    retryIncorrectBtn: document.getElementById('retryIncorrectBtn'),
+    modalAccuracy: document.getElementById('modalAccuracy'),
+    scoreCircle: document.getElementById('scoreCircle'),
+    modalTotal: document.getElementById('modalTotal'),
+    modalAnswered: document.getElementById('modalAnswered'),
+    modalCorrect: document.getElementById('modalCorrect'),
+    modalWrong: document.getElementById('modalWrong'),
+    resetModal: document.getElementById('resetModal'),
+    closeResetModalBtn: document.getElementById('closeResetModalBtn'),
+    cancelResetBtn: document.getElementById('cancelResetBtn'),
+    confirmResetBtn: document.getElementById('confirmResetBtn'),
+    toast: document.getElementById('toastNotification')
+  };
+
+  // Audio Context for optional subtle feedback
+  let audioCtx = null;
+  function playFeedbackSound(isCorrect) {
+    try {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) audioCtx = new AudioContext();
+      }
+      if (!audioCtx) return;
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      const now = audioCtx.currentTime;
+
+      if (isCorrect) {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, now); // D5
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.15); // A5
+        gain.gain.setValueAtTime(0.08, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+        osc.start(now);
+        osc.stop(now + 0.25);
+      } else {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(260, now);
+        osc.frequency.exponentialRampToValueAtTime(180, now + 0.18);
+        gain.gain.setValueAtTime(0.08, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+        osc.start(now);
+        osc.stop(now + 0.22);
+      }
+    } catch (e) {
+      // Audio not supported or blocked, ignore gracefully
+    }
+  }
+
+  // Helper: Toast Message
+  let toastTimer = null;
+  function showToast(msg) {
+    if (!elements.toast) return;
+    elements.toast.textContent = msg;
+    elements.toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      elements.toast.classList.remove('show');
+    }, 2400);
+  }
+
+  // Get current topic object
+  function getCurrentTopic() {
+    const topics = window.TOPICS || {};
+    return topics[state.currentTopicId] || topics['dsa'] || { questions: [] };
+  }
+
+  // Load / Save State in LocalStorage
+  function loadStoredData() {
+    const key = `algomcq_${state.currentTopicId}_data`;
+    try {
+      const saved = localStorage.getItem(key);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        state.userAnswers = parsed.userAnswers || {};
+        state.bookmarks = new Set(parsed.bookmarks || []);
+      } else {
+        state.userAnswers = {};
+        state.bookmarks = new Set();
+      }
+    } catch (e) {
+      state.userAnswers = {};
+      state.bookmarks = new Set();
+    }
+  }
+
+  function saveStoredData() {
+    const key = `algomcq_${state.currentTopicId}_data`;
+    try {
+      const payload = {
+        userAnswers: state.userAnswers,
+        bookmarks: Array.from(state.bookmarks)
+      };
+      localStorage.setItem(key, JSON.stringify(payload));
+    } catch (e) {
+      console.warn('Failed to save to localStorage:', e);
+    }
+  }
+
+  // Filter questions according to current filters
+  function getFilteredQuestions() {
+    const topic = getCurrentTopic();
+    const all = topic.questions || [];
+
+    return all.filter((q) => {
+      // Search query filter
+      if (state.searchQuery) {
+        const qText = (q.question + ' ' + Object.values(q.options).join(' ')).toLowerCase();
+        if (!qText.includes(state.searchQuery)) {
+          return false;
+        }
+      }
+
+      // Palette drawer quick status filter
+      if (state.paletteFilter !== 'all') {
+        const userAnswer = state.userAnswers[q.id];
+        const isAnswered = userAnswer !== undefined;
+        const isCorrect = isAnswered && userAnswer === q.answer;
+        const isBookmarked = state.bookmarks.has(q.id);
+
+        if (state.paletteFilter === 'correct' && !isCorrect) return false;
+        if (state.paletteFilter === 'wrong' && (!isAnswered || isCorrect)) return false;
+        if (state.paletteFilter === 'unattempted' && isAnswered) return false;
+        if (state.paletteFilter === 'bookmarked' && !isBookmarked) return false;
+      }
+
+      return true;
+    });
+  }
+
+  // Format Code in Question if found
+  function formatQuestionText(text) {
+    // Check if question contains code snippets (e.g. int[], for, while, System.out, class, etc.)
+    const codeKeywords = ['int[]', 'for (', 'while (', 'System.out', 'class ', 'Node ', 'Stack<', 'Queue<', 'Map<', 'PriorityQueue<', 'Deque<', 'boolean check('];
+    const hasCode = codeKeywords.some(kw => text.includes(kw));
+
+    if (!hasCode) {
+      return `<div class="question-text">${escapeHTML(text)}</div>`;
+    }
+
+    // Split text into prompt and code if discernible
+    const lines = text.split('\n');
+    let promptLines = [];
+    let codeLines = [];
+    let inCode = false;
+
+    lines.forEach(line => {
+      const trimmed = line.trim();
+      if (!inCode && (codeKeywords.some(kw => trimmed.startsWith(kw)) || trimmed.startsWith('//') || trimmed.includes('{') || trimmed.endsWith(';'))) {
+        inCode = true;
+      }
+      if (inCode) {
+        codeLines.push(line);
+      } else {
+        promptLines.push(line);
+      }
+    });
+
+    if (codeLines.length > 0) {
+      return `
+        <div class="question-text">${escapeHTML(promptLines.join('\n')).trim()}</div>
+        <div class="code-snippet">${escapeHTML(codeLines.join('\n')).trim()}</div>
+      `;
+    }
+
+    return `<div class="question-text">${escapeHTML(text)}</div>`;
+  }
+
+  function escapeHTML(str) {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  // Render Questions
+  function render() {
+    const topic = getCurrentTopic();
+    const allQuestions = topic.questions || [];
+    const filteredQuestions = getFilteredQuestions();
+
+    // Ensure valid index
+    if (state.currentIndex >= filteredQuestions.length) {
+      state.currentIndex = Math.max(0, filteredQuestions.length - 1);
+    }
+
+    // Update Top & Single Nav Indicators
+    updateStatsBar(allQuestions);
+    updatePaletteDrawer(allQuestions);
+
+    if (filteredQuestions.length === 0) {
+      elements.questionsContainer.innerHTML = `
+        <div class="question-card" style="text-align: center; padding: 3rem 1.5rem;">
+          <h3 style="margin-bottom: 0.5rem;">🔍 No Questions Found</h3>
+          <p style="color: var(--text-muted); margin-bottom: 1.25rem;">No questions match your current search or filter criteria.</p>
+          <button id="clearFiltersBtn" class="btn-primary">Clear Filters</button>
+        </div>
+      `;
+      document.getElementById('clearFiltersBtn')?.addEventListener('click', () => {
+        state.searchQuery = '';
+        state.paletteFilter = 'all';
+        elements.searchInput.value = '';
+        elements.clearSearchBtn.style.display = 'none';
+        elements.paletteFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'all'));
+        render();
+      });
+
+      if (state.viewMode === 'single') {
+        elements.singleNavBar.style.display = 'none';
+      }
+      return;
+    }
+
+    if (state.viewMode === 'single') {
+      elements.singleNavBar.style.display = 'flex';
+      elements.questionsContainer.className = 'questions-container single-view';
+
+      const currentQ = filteredQuestions[state.currentIndex];
+      elements.jumpInput.value = state.currentIndex + 1;
+      elements.jumpTotal.textContent = filteredQuestions.length;
+      elements.jumpInput.max = filteredQuestions.length;
+
+      // Update Prev / Next buttons
+      elements.prevQuestionBtn.disabled = state.currentIndex === 0;
+      elements.nextQuestionBtn.disabled = state.currentIndex === filteredQuestions.length - 1;
+
+      // Update Single Bookmark button
+      const isBookmarked = state.bookmarks.has(currentQ.id);
+      elements.bookmarkBtn.classList.toggle('active', isBookmarked);
+      elements.bookmarkBtn.querySelector('.star-text').textContent = isBookmarked ? 'Bookmarked' : 'Bookmark';
+
+      // Render Single Card
+      elements.questionsContainer.innerHTML = createQuestionCardHTML(currentQ, state.currentIndex + 1, filteredQuestions.length);
+    } else {
+      // List View
+      elements.singleNavBar.style.display = 'none';
+      elements.questionsContainer.className = 'questions-container list-view';
+
+      elements.questionsContainer.innerHTML = filteredQuestions.map((q, idx) => {
+        return createQuestionCardHTML(q, idx + 1, filteredQuestions.length);
+      }).join('');
+    }
+
+    // Attach Event Listeners to Options and Buttons
+    attachCardEventListeners();
+  }
+
+  // HTML generator for a single question card
+  function createQuestionCardHTML(q, displayNum, totalCount) {
+    const userAnswer = state.userAnswers[q.id];
+    const isAnswered = userAnswer !== undefined;
+    const isCorrect = isAnswered && userAnswer === q.answer;
+    const isBookmarked = state.bookmarks.has(q.id);
+
+    // Badges
+    const statusBadgeClass = isAnswered ? (isCorrect ? 'correct' : 'wrong') : '';
+    const statusBadgeText = isAnswered ? (isCorrect ? '✓ Correct' : '✕ Incorrect') : '';
+
+    // Options HTML (Supports A-D or A-F dynamically)
+    const optionKeys = Object.keys(q.options).sort();
+    const optionsHTML = optionKeys.map(letter => {
+      const optText = q.options[letter] || '';
+      let optClass = 'option-item';
+      let icon = '';
+
+      if (state.mode === 'quiz') {
+        if (isAnswered) {
+          optClass += ' locked';
+          if (letter === userAnswer) {
+            if (isCorrect) {
+              optClass += ' selected-correct';
+              icon = '✓';
+            } else {
+              optClass += ' selected-wrong';
+              icon = '✕';
+            }
+          } else if (letter === q.answer) {
+            // Reveal correct answer if user got it wrong
+            optClass += ' revealed-correct';
+            icon = '✓';
+          }
+        }
+      } else {
+        // Read Mode: highlight correct answer directly
+        if (letter === q.answer) {
+          optClass += ' is-read-answer locked';
+          icon = '✓';
+        } else {
+          optClass += ' locked';
+        }
+      }
+
+      return `
+        <button class="${optClass}" data-qid="${q.id}" data-option="${letter}" ${isAnswered || state.mode === 'read' ? 'disabled' : ''}>
+          <span class="option-letter">${letter}</span>
+          <span class="option-text">${escapeHTML(optText)}</span>
+          <span class="option-status-icon">${icon}</span>
+        </button>
+      `;
+    }).join('');
+
+    // Study Note box (always shown in Read Mode, and shown in Quiz Mode after answering)
+    let studyNoteHTML = '';
+    if (state.mode === 'read' || isAnswered) {
+      studyNoteHTML = `
+        <div class="study-note-box">
+          <span class="note-icon">💡</span>
+          <div class="note-content">
+            <strong>Correct Answer: Option ${q.answer}</strong> — 
+            <span>${escapeHTML(q.options[q.answer] || '')}</span>
+            ${q.explanation ? `<div style="margin-top: 0.4rem; color: #38bdf8; font-size: 0.84rem; font-weight: 500;">ℹ️ ${escapeHTML(q.explanation)}</div>` : ''}
+            <div style="margin-top: 0.35rem; color: var(--text-muted); font-size: 0.78rem;">
+              Question #${q.id} • ${escapeHTML(q.subtopic || '')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    return `
+      <article class="question-card" id="qcard-${q.id}">
+        <div class="card-header">
+          <div class="card-badges">
+            <span class="badge-qid">Q${q.id}</span>
+            <span class="badge-status ${statusBadgeClass}">${statusBadgeText}</span>
+          </div>
+          <div class="card-actions">
+            <button class="card-star-btn ${isBookmarked ? 'active' : ''}" data-qid="${q.id}" title="${isBookmarked ? 'Remove Bookmark' : 'Bookmark Question'}">
+              ★
+            </button>
+          </div>
+        </div>
+
+        <div class="question-title">
+          ${formatQuestionText(q.question)}
+        </div>
+
+        <div class="options-list">
+          ${optionsHTML}
+        </div>
+
+        ${studyNoteHTML}
+      </article>
+    `;
+  }
+
+  // Attach card event listeners
+  function attachCardEventListeners() {
+    // Option Clicks in Quiz Mode
+    if (state.mode === 'quiz') {
+      const optionButtons = elements.questionsContainer.querySelectorAll('.option-item:not(.locked)');
+      optionButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const qid = parseInt(btn.dataset.qid, 10);
+          const chosenOption = btn.dataset.option;
+          handleOptionSelect(qid, chosenOption);
+        });
+      });
+    }
+
+    // Card Bookmark star clicks
+    const starButtons = elements.questionsContainer.querySelectorAll('.card-star-btn');
+    starButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const qid = parseInt(btn.dataset.qid, 10);
+        toggleBookmark(qid);
+      });
+    });
+  }
+
+  // Handle user selecting an option in Quiz Test Mode
+  function handleOptionSelect(qid, chosenOption) {
+    if (state.userAnswers[qid] !== undefined) return; // already answered
+
+    const topic = getCurrentTopic();
+    const question = topic.questions.find(q => q.id === qid);
+    if (!question) return;
+
+    const isCorrect = chosenOption === question.answer;
+
+    // Record answer
+    state.userAnswers[qid] = chosenOption;
+    saveStoredData();
+
+    // Sound effect
+    playFeedbackSound(isCorrect);
+
+    // If in Single view, re-render to lock and show feedback
+    render();
+
+    if (isCorrect) {
+      showToast(`🎯 Correct! Option ${chosenOption}`);
+    } else {
+      showToast(`❌ Incorrect. Correct answer is Option ${question.answer}`);
+    }
+  }
+
+  // Toggle Bookmark
+  function toggleBookmark(qid) {
+    if (state.bookmarks.has(qid)) {
+      state.bookmarks.delete(qid);
+      showToast(`Removed Q${qid} from bookmarks`);
+    } else {
+      state.bookmarks.add(qid);
+      showToast(`⭐ Bookmarked Q${qid}`);
+    }
+    saveStoredData();
+    render();
+  }
+
+  // Update Top Stats Bar & Progress Track
+  function updateStatsBar(allQuestions) {
+    const total = allQuestions.length;
+    let answered = 0;
+    let correct = 0;
+    let wrong = 0;
+
+    allQuestions.forEach(q => {
+      const ans = state.userAnswers[q.id];
+      if (ans !== undefined) {
+        answered++;
+        if (ans === q.answer) {
+          correct++;
+        } else {
+          wrong++;
+        }
+      }
+    });
+
+    const accuracy = answered > 0 ? Math.round((correct / answered) * 100) : 0;
+    const progressPercent = total > 0 ? Math.round((answered / total) * 100) : 0;
+
+    elements.statTotal.textContent = total;
+    elements.statAnswered.textContent = answered;
+    elements.statCorrect.textContent = correct;
+    elements.statWrong.textContent = wrong;
+    if (elements.statAccuracy) elements.statAccuracy.textContent = `${accuracy}%`;
+    elements.progressBarFill.style.width = `${progressPercent}%`;
+
+    // Update Drawer Chips counts
+    const unattempted = total - answered;
+    const bookmarkedCount = state.bookmarks.size;
+
+    elements.chipAll.textContent = total;
+    elements.chipCorrect.textContent = correct;
+    elements.chipWrong.textContent = wrong;
+    elements.chipUnattempted.textContent = unattempted;
+    elements.chipBookmarked.textContent = bookmarkedCount;
+
+    // Modal Stats update
+    elements.modalTotal.textContent = total;
+    elements.modalAnswered.textContent = answered;
+    elements.modalCorrect.textContent = correct;
+    elements.modalWrong.textContent = wrong;
+    elements.modalAccuracy.textContent = `${accuracy}%`;
+    elements.scoreCircle.style.setProperty('--acc', accuracy);
+  }
+
+  // Update Palette Drawer (1-300 Grid)
+  function updatePaletteDrawer(allQuestions) {
+    const filteredQuestions = getFilteredQuestions();
+    const currentQ = filteredQuestions[state.currentIndex];
+
+    elements.paletteGrid.innerHTML = allQuestions.map((q, idx) => {
+      const ans = state.userAnswers[q.id];
+      const isAnswered = ans !== undefined;
+      const isCorrect = isAnswered && ans === q.answer;
+      const isWrong = isAnswered && !isCorrect;
+      const isBookmarked = state.bookmarks.has(q.id);
+      const isCurrent = currentQ && currentQ.id === q.id;
+
+      let cls = 'palette-item';
+      if (isCorrect) cls += ' correct';
+      else if (isWrong) cls += ' wrong';
+      if (isBookmarked) cls += ' bookmarked';
+      if (isCurrent && state.viewMode === 'single') cls += ' current';
+
+      return `<button class="${cls}" data-qid="${q.id}" title="Q${q.id}: ${q.subtopic || ''}">${q.id}</button>`;
+    }).join('');
+
+    // Attach click events on palette items to jump directly to question
+    elements.paletteGrid.querySelectorAll('.palette-item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetQid = parseInt(btn.dataset.qid, 10);
+        jumpToQuestionId(targetQid);
+        if (window.innerWidth <= 1024) {
+          elements.paletteDrawer.classList.remove('open');
+        }
+      });
+    });
+  }
+
+  // Jump to Question by QID
+  function jumpToQuestionId(targetQid) {
+    // If target question is hidden by current filters, reset filter to 'all' so it is visible
+    const filtered = getFilteredQuestions();
+    let index = filtered.findIndex(q => q.id === targetQid);
+
+    if (index === -1) {
+      state.searchQuery = '';
+      state.paletteFilter = 'all';
+      elements.searchInput.value = '';
+      elements.paletteFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'all'));
+      const refiltered = getFilteredQuestions();
+      index = refiltered.findIndex(q => q.id === targetQid);
+    }
+
+    if (index !== -1) {
+      state.currentIndex = index;
+      if (state.viewMode === 'list') {
+        render();
+        const card = document.getElementById(`qcard-${targetQid}`);
+        if (card) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } else {
+        render();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  }
+
+  // Update Level Switcher Buttons
+  function updateLevelTabs() {
+    const topic = getCurrentTopic();
+    const currentLvl = topic.level || (LEVEL_CONFIG.basic.topicOrder.includes(state.currentTopicId) ? 'basic' : 'intermediate');
+    state.currentLevel = currentLvl;
+
+    if (elements.levelBasicBtn && elements.levelInterBtn) {
+      const isBasic = currentLvl === 'basic';
+      elements.levelBasicBtn.classList.toggle('active', isBasic);
+      elements.levelBasicBtn.setAttribute('aria-selected', isBasic ? 'true' : 'false');
+      elements.levelInterBtn.classList.toggle('active', !isBasic);
+      elements.levelInterBtn.setAttribute('aria-selected', !isBasic ? 'true' : 'false');
+    }
+  }
+
+  // Setup Topics Selector: shows ONLY the courses of the current active level
+  function initTopics() {
+    const topics = window.TOPICS || {};
+    const lvlKey = state.currentLevel === 'intermediate' ? 'intermediate' : 'basic';
+    const cfg = LEVEL_CONFIG[lvlKey];
+
+    let html = '';
+    cfg.topicOrder.forEach(key => {
+      const t = topics[key];
+      if (t) {
+        const count = (t.questions || []).length;
+        html += `<option value="${key}" ${key === state.currentTopicId ? 'selected' : ''}>${t.icon || '📚'} ${escapeHTML(t.title)} (${count} Qs)</option>`;
+      }
+    });
+
+    elements.topicSelect.innerHTML = html;
+    elements.topicSelect.value = state.currentTopicId;
+    updateLevelTabs();
+  }
+
+  // Switch Topic within the current level
+  function switchTopic(topicId) {
+    state.currentTopicId = topicId;
+    localStorage.setItem('algomcq_last_topic', state.currentTopicId);
+    state.currentIndex = 0;
+    state.searchQuery = '';
+    state.paletteFilter = 'all';
+    elements.topicSelect.value = state.currentTopicId;
+    loadStoredData();
+    render();
+    showToast(`Switched to ${getCurrentTopic().title}`);
+  }
+
+  // Switch Level: switches level and updates dropdown to ONLY show that level's courses
+  function switchLevel(levelKey) {
+    state.currentLevel = levelKey;
+    const cfg = LEVEL_CONFIG[levelKey];
+    
+    // If current topic is not in the new level, select first course of this level
+    if (!cfg.topicOrder.includes(state.currentTopicId)) {
+      state.currentTopicId = cfg.topicOrder[0];
+    }
+    
+    localStorage.setItem('algomcq_last_topic', state.currentTopicId);
+    state.currentIndex = 0;
+    state.searchQuery = '';
+    state.paletteFilter = 'all';
+
+    initTopics();
+    loadStoredData();
+    render();
+    showToast(`Switched to ${cfg.name}`);
+  }
+
+  // Event Listeners Initialization
+  function setupEventListeners() {
+    // Level Switcher Buttons
+    elements.levelBasicBtn?.addEventListener('click', () => {
+      if (state.currentLevel === 'basic') return;
+      switchLevel('basic');
+    });
+
+    elements.levelInterBtn?.addEventListener('click', () => {
+      if (state.currentLevel === 'intermediate') return;
+      switchLevel('intermediate');
+    });
+
+    // Topic Change
+    elements.topicSelect.addEventListener('change', (e) => {
+      switchTopic(e.target.value);
+    });
+
+    // Mode Toggle (Quiz Test vs Read Mode)
+    elements.modeQuizBtn.addEventListener('click', () => {
+      if (state.mode === 'quiz') return;
+      state.mode = 'quiz';
+      document.body.classList.remove('mode-read');
+      elements.modeQuizBtn.classList.add('active');
+      elements.modeQuizBtn.setAttribute('aria-selected', 'true');
+      elements.modeReadBtn.classList.remove('active');
+      elements.modeReadBtn.setAttribute('aria-selected', 'false');
+      render();
+      showToast('🎯 Quiz Test Mode active - Click options to test yourself');
+    });
+
+    elements.modeReadBtn.addEventListener('click', () => {
+      if (state.mode === 'read') return;
+      state.mode = 'read';
+      document.body.classList.add('mode-read');
+      elements.modeReadBtn.classList.add('active');
+      elements.modeReadBtn.setAttribute('aria-selected', 'true');
+      elements.modeQuizBtn.classList.remove('active');
+      elements.modeQuizBtn.setAttribute('aria-selected', 'false');
+      render();
+      showToast('📖 Read Mode active - Answers & study notes revealed');
+    });
+
+    // Theme Toggle
+    elements.themeToggleBtn.addEventListener('click', () => {
+      const isLight = document.body.classList.toggle('light-theme');
+      state.theme = isLight ? 'light' : 'dark';
+      elements.themeIcon.textContent = isLight ? '🌙' : '☀️';
+      localStorage.setItem('algomcq_theme', state.theme);
+    });
+
+    // Navigation Next / Prev Buttons
+    const goPrev = () => {
+      if (state.currentIndex > 0) {
+        state.currentIndex--;
+        render();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+    const goNext = () => {
+      const filtered = getFilteredQuestions();
+      if (state.currentIndex < filtered.length - 1) {
+        state.currentIndex++;
+        render();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+
+    elements.prevQuestionBtn.addEventListener('click', goPrev);
+    elements.nextQuestionBtn.addEventListener('click', goNext);
+
+    // Jump Input
+    elements.jumpInput.addEventListener('change', () => {
+      let val = parseInt(elements.jumpInput.value, 10);
+      const filtered = getFilteredQuestions();
+      if (isNaN(val) || val < 1) val = 1;
+      if (val > filtered.length) val = filtered.length;
+      state.currentIndex = val - 1;
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Header Bookmark Button (in single nav bar)
+    elements.bookmarkBtn.addEventListener('click', () => {
+      const filtered = getFilteredQuestions();
+      const currentQ = filtered[state.currentIndex];
+      if (currentQ) {
+        toggleBookmark(currentQ.id);
+      }
+    });
+
+    // Search Input
+    elements.searchInput.addEventListener('input', (e) => {
+      state.searchQuery = e.target.value.trim().toLowerCase();
+      elements.clearSearchBtn.style.display = state.searchQuery ? 'block' : 'none';
+      state.currentIndex = 0;
+      render();
+    });
+
+    elements.clearSearchBtn.addEventListener('click', () => {
+      elements.searchInput.value = '';
+      state.searchQuery = '';
+      elements.clearSearchBtn.style.display = 'none';
+      state.currentIndex = 0;
+      render();
+    });
+
+    // Drawer Filter Chips
+    elements.paletteFilterChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        elements.paletteFilterChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        state.paletteFilter = chip.dataset.filter;
+        state.currentIndex = 0;
+        render();
+      });
+    });
+
+    // Drawer Mobile Toggle
+    elements.drawerToggleBtn.addEventListener('click', () => {
+      elements.paletteDrawer.classList.toggle('open');
+    });
+    elements.closeDrawerBtn.addEventListener('click', () => {
+      elements.paletteDrawer.classList.remove('open');
+    });
+
+    // Practice Incorrect Only from Modal
+    elements.retryIncorrectBtn.addEventListener('click', () => {
+      elements.summaryModal.style.display = 'none';
+      elements.paletteFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'wrong'));
+      state.paletteFilter = 'wrong';
+      state.currentIndex = 0;
+      render();
+      showToast('⚠️ Filtered to Incorrect Questions only');
+    });
+
+    // Reset Quiz Modal
+    elements.resetQuizBtn.addEventListener('click', () => {
+      elements.resetModal.style.display = 'flex';
+    });
+    elements.closeResetModalBtn.addEventListener('click', () => {
+      elements.resetModal.style.display = 'none';
+    });
+    elements.cancelResetBtn.addEventListener('click', () => {
+      elements.resetModal.style.display = 'none';
+    });
+    elements.confirmResetBtn.addEventListener('click', () => {
+      state.userAnswers = {};
+      state.bookmarks = new Set();
+      saveStoredData();
+      elements.resetModal.style.display = 'none';
+      render();
+      showToast('Progress reset successfully!');
+    });
+
+    // Close modals on clicking backdrop
+    window.addEventListener('click', (e) => {
+      if (e.target === elements.summaryModal) elements.summaryModal.style.display = 'none';
+      if (e.target === elements.resetModal) elements.resetModal.style.display = 'none';
+    });
+
+    // Keyboard Shortcuts
+    window.addEventListener('keydown', (e) => {
+      // Don't intercept if user is typing in search or jump input
+      if (['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+        return;
+      }
+
+      if (e.key === 'ArrowLeft') {
+        goPrev();
+      } else if (e.key === 'ArrowRight') {
+        goNext();
+      } else if (['1', '2', '3', '4', '5', '6', 'a', 'b', 'c', 'd', 'e', 'f', 'A', 'B', 'C', 'D', 'E', 'F'].includes(e.key) && state.mode === 'quiz' && state.viewMode === 'single') {
+        const map = { '1': 'A', '2': 'B', '3': 'C', '4': 'D', '5': 'E', '6': 'F', 'a': 'A', 'b': 'B', 'c': 'C', 'd': 'D', 'e': 'E', 'f': 'F' };
+        const opt = map[e.key] || e.key.toUpperCase();
+        const filtered = getFilteredQuestions();
+        const currentQ = filtered[state.currentIndex];
+        if (currentQ && currentQ.options[opt] !== undefined && state.userAnswers[currentQ.id] === undefined) {
+          handleOptionSelect(currentQ.id, opt);
+        }
+      }
+    });
+  }
+
+  // Application Startup
+  function init() {
+    // Restore Theme
+    if (state.theme === 'light') {
+      document.body.classList.add('light-theme');
+      elements.themeIcon.textContent = '🌙';
+    } else {
+      document.body.classList.remove('light-theme');
+      elements.themeIcon.textContent = '☀️';
+    }
+
+    const savedTopic = localStorage.getItem('algomcq_last_topic');
+    if (savedTopic && window.TOPICS && window.TOPICS[savedTopic]) {
+      state.currentTopicId = savedTopic;
+    } else if (window.TOPICS && window.TOPICS['dsa']) {
+      state.currentTopicId = 'dsa';
+    } else if (window.TOPICS && window.TOPICS['profit_loss']) {
+      state.currentTopicId = 'profit_loss';
+    }
+
+    const currentTopicObj = getCurrentTopic();
+    state.currentLevel = currentTopicObj.level || (LEVEL_CONFIG.intermediate.topicOrder.includes(state.currentTopicId) ? 'intermediate' : 'basic');
+
+    initTopics();
+    loadStoredData();
+    setupEventListeners();
+    render();
+  }
+
+  // Run on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+</script>
+</body>
+</html>
