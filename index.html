@@ -478,7 +478,36 @@
 
   // Format Code in Question if found
   function formatQuestionText(text) {
-    // Check if question contains code snippets (e.g. int[], for, while, System.out, class, etc.)
+    text = (text || '').trim();
+
+    // 1. Backtick code blocks: e.g. "What is the output? `int x=7; ...`"
+    if (text.includes('`')) {
+      const parts = text.split('`');
+      if (parts.length >= 3) {
+        const prompt = parts[0].trim();
+        const code = parts[1].trim();
+        const rest = parts.slice(2).join('`').trim();
+        const fullPrompt = [prompt, rest].filter(Boolean).join(' ');
+        let out = '';
+        if (fullPrompt) out += `<div class="question-text">${escapeHTML(fullPrompt)}</div>`;
+        if (code) out += `<div class="code-snippet">${escapeHTML(code)}</div>`;
+        return out;
+      }
+    }
+
+    // 2. C programs starting with #include or int main / void main
+    const cMatch = text.match(/(\s*(#include|int\s+main|void\s+main)\b[\s\S]*)/);
+    if (cMatch) {
+      const idx = cMatch.index;
+      const prompt = text.slice(0, idx).trim();
+      const code = text.slice(idx).trim();
+      let out = '';
+      if (prompt) out += `<div class="question-text">${escapeHTML(prompt)}</div>`;
+      if (code) out += `<div class="code-snippet">${escapeHTML(code)}</div>`;
+      return out;
+    }
+
+    // 3. Multi-line code check
     const codeKeywords = ['int[]', 'for (', 'while (', 'System.out', 'class ', 'Node ', 'Stack<', 'Queue<', 'Map<', 'PriorityQueue<', 'Deque<', 'boolean check('];
     const hasCode = codeKeywords.some(kw => text.includes(kw));
 
@@ -486,7 +515,6 @@
       return `<div class="question-text">${escapeHTML(text)}</div>`;
     }
 
-    // Split text into prompt and code if discernible
     const lines = text.split('\n');
     let promptLines = [];
     let codeLines = [];
@@ -504,14 +532,12 @@
       }
     });
 
-    if (codeLines.length > 0) {
-      return `
-        <div class="question-text">${escapeHTML(promptLines.join('\n')).trim()}</div>
-        <div class="code-snippet">${escapeHTML(codeLines.join('\n')).trim()}</div>
-      `;
-    }
-
-    return `<div class="question-text">${escapeHTML(text)}</div>`;
+    const prompt = promptLines.join('\n').trim();
+    const code = codeLines.join('\n').trim();
+    let out = '';
+    if (prompt) out += `<div class="question-text">${escapeHTML(prompt)}</div>`;
+    if (code) out += `<div class="code-snippet">${escapeHTML(code)}</div>`;
+    return out || `<div class="question-text">${escapeHTML(text)}</div>`;
   }
 
   function escapeHTML(str) {
@@ -681,9 +707,7 @@
           </div>
         </div>
 
-        <div class="question-title">
-          ${formatQuestionText(q.question)}
-        </div>
+        <div class="question-title">${formatQuestionText(q.question)}</div>
 
         <div class="options-list">
           ${optionsHTML}

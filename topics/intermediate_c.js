@@ -192,7 +192,7 @@ window.TOPICS["intermediate_c"] = {
     "subtopic": "C Programming & Problem Solving",
     "question": "What is the output? `int i=0; do{ printf(\"%d\",i); i++; }while(i<3);`",
     "options": {
-      "A": "012 (Correct Output)",
+      "A": "012",
       "B": "123",
       "C": "1",
       "D": "123",
@@ -2922,7 +2922,7 @@ window.TOPICS["intermediate_c"] = {
     "subtopic": "C Programming & Problem Solving",
     "question": "What is the output of the following C program? #include <stdio.h> int main() { int a[] = {4, 7, 2, 9, 5}; int i, result = 0; for (i = 0; i < 5; i++) { if (a[i] % 2 == 0) result += a[i]; else result -= a[i]; } printf(\"%d\", result); return 0; }",
     "options": {
-      "A": "-15 (Correct Output)",
+      "A": "-15",
       "B": "-7",
       "C": "-9",
       "D": "7",
