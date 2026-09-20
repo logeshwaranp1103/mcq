@@ -669,8 +669,9 @@
         <div class="study-note-box">
           <span class="note-icon">💡</span>
           <div class="note-content">
-            <strong>Correct Answer: Option ${q.answer}</strong> — 
-            <span>${escapeHTML(q.options[q.answer] || '')}</span>
+            ${q.options && q.options[q.answer] 
+              ? `<strong>Correct Answer: Option ${q.answer}</strong> — <span>${escapeHTML(q.options[q.answer] || '')}</span>` 
+              : `<strong>Correct Answer: None of the options (All options are wrong)</strong>`}
             ${q.explanation ? `<div style="margin-top: 0.4rem; color: #38bdf8; font-size: 0.84rem; font-weight: 500;">ℹ️ ${escapeHTML(q.explanation)}</div>` : ''}
             <div style="margin-top: 0.35rem; color: var(--text-muted); font-size: 0.78rem;">
               Question #${q.id} • ${escapeHTML(q.subtopic || '')}
@@ -752,7 +753,11 @@
     if (isCorrect) {
       showToast(`🎯 Correct! Option ${chosenOption}`);
     } else {
-      showToast(`❌ Incorrect. Correct answer is Option ${question.answer}`);
+      if (question.options && question.options[question.answer]) {
+        showToast(`❌ Incorrect. Correct answer is Option ${question.answer}`);
+      } else {
+        showToast(`❌ Incorrect. All options are wrong. Right answer is not given in options.`);
+      }
     }
   }
 
