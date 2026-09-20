@@ -13,7 +13,7 @@
   
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="dark-theme">
+<body class="dark-theme" oncopy="return false;" oncut="return false;" oncontextmenu="return false;" ondragstart="return false;">
   <!-- Top Navigation Bar -->
   <header class="navbar">
     <div class="nav-container">
@@ -76,6 +76,39 @@
           <span class="icon">🔢</span>
           <span class="drawer-label">Palette</span>
         </button>
+
+        <!-- Help Button with Question Mark -->
+        <div class="help-popover-wrapper" id="helpWrapper">
+          <button id="helpBtn" class="icon-btn help-btn" aria-label="Help & Instructions" onclick="return false;">
+            <span class="help-mark">?</span>
+          </button>
+          <div id="helpTooltip" class="help-tooltip" role="tooltip">
+            <div class="help-tooltip-header">
+              <span class="help-tooltip-icon">💡</span>
+              <span class="help-tooltip-title">Help & Instructions</span>
+            </div>
+            <div class="help-tooltip-body">
+              The website is for reading and take sample assessment. In case of any wrong answer, contact the owner of this webpage.
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Button with Person Image -->
+        <div class="help-popover-wrapper contact-popover-wrapper" id="contactWrapper">
+          <button id="contactBtn" class="icon-btn contact-btn" aria-label="Contact" onclick="return false;">
+            <span class="contact-icon">👤</span>
+          </button>
+          <div id="contactTooltip" class="help-tooltip contact-tooltip" role="tooltip">
+            <div class="help-tooltip-header">
+              <span class="help-tooltip-icon">👤</span>
+              <span class="help-tooltip-title">Contact</span>
+            </div>
+            <div class="help-tooltip-body" id="contactContent">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=logeshwaranp.ad25@bitsathy.ac.in&su=Hi%20Logeshwaran%20" target="_blank" rel="noopener noreferrer">Contact Mail_1</a>&emsp;
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=logeshwaranpalanic7@gmail.com&su=Hi%20Logeshwaran%20" target="_blank" rel="noopener noreferrer">Contact Mail_2</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -301,6 +334,10 @@
     themeToggleBtn: document.getElementById('themeToggleBtn'),
     themeIcon: document.getElementById('themeIcon'),
     drawerToggleBtn: document.getElementById('drawerToggleBtn'),
+    helpBtn: document.getElementById('helpBtn'),
+    helpWrapper: document.getElementById('helpWrapper'),
+    contactBtn: document.getElementById('contactBtn'),
+    contactWrapper: document.getElementById('contactWrapper'),
     closeDrawerBtn: document.getElementById('closeDrawerBtn'),
     paletteDrawer: document.getElementById('paletteDrawer'),
     paletteGrid: document.getElementById('paletteGrid'),
@@ -662,16 +699,18 @@
       `;
     }).join('');
 
-    // Study Note box (always shown in Read Mode, and shown in Quiz Mode after answering)
+    // Study Note box (always shown in Read Mode, and shown in Quiz Mode after answering, or always if no valid option)
     let studyNoteHTML = '';
-    if (state.mode === 'read' || isAnswered) {
+    const hasNoValidOption = !q.options || !q.options[q.answer] || q.answer === 'None';
+
+    if (state.mode === 'read' || isAnswered || hasNoValidOption) {
       studyNoteHTML = `
-        <div class="study-note-box">
+        <div class="study-note-box ${hasNoValidOption ? 'near-question' : ''}">
           <span class="note-icon">💡</span>
           <div class="note-content">
             ${q.options && q.options[q.answer] 
               ? `<strong>Correct Answer: Option ${q.answer}</strong> — <span>${escapeHTML(q.options[q.answer] || '')}</span>` 
-              : `<strong>Correct Answer: None of the options (All options are wrong)</strong>`}
+              : `<strong>Correct Answer: Option ${escapeHTML(q.answer || 'None')} —</strong>`}
             ${q.explanation ? `<div style="margin-top: 0.4rem; color: #38bdf8; font-size: 0.84rem; font-weight: 500;">ℹ️ ${escapeHTML(q.explanation)}</div>` : ''}
             <div style="margin-top: 0.35rem; color: var(--text-muted); font-size: 0.78rem;">
               Question #${q.id} • ${escapeHTML(q.subtopic || '')}
@@ -697,11 +736,13 @@
 
         <div class="question-title">${formatQuestionText(q.question)}</div>
 
+        ${hasNoValidOption && studyNoteHTML ? studyNoteHTML : ''}
+
         <div class="options-list">
           ${optionsHTML}
         </div>
 
-        ${studyNoteHTML}
+        ${!hasNoValidOption && studyNoteHTML ? studyNoteHTML : ''}
       </article>
     `;
   }
@@ -1100,10 +1141,53 @@
       if (e.target === elements.resetModal) elements.resetModal.style.display = 'none';
     });
 
-    // Keyboard Shortcuts
+    // ==========================================
+    // PREVENT COPY & CONTENT THEFT
+    // ==========================================
+    document.addEventListener('copy', (e) => {
+      e.preventDefault();
+      if (e.clipboardData) {
+        e.clipboardData.setData('text/plain', '');
+      }
+      showToast('⚠️ Copying content is disabled');
+      return false;
+    });
+
+    document.addEventListener('cut', (e) => {
+      e.preventDefault();
+      return false;
+    });
+
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      showToast('⚠️ Right click is disabled');
+      return false;
+    });
+
+    document.addEventListener('dragstart', (e) => {
+      e.preventDefault();
+      return false;
+    });
+
+    // Keyboard Shortcuts & Anti-Copy Interception
     window.addEventListener('keydown', (e) => {
+      const isCtrlOrCmd = e.ctrlKey || e.metaKey;
+      const key = e.key.toLowerCase();
+      const isInput = ['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName);
+
+      // Prevent Ctrl+C, Ctrl+A (outside inputs), Ctrl+X (outside inputs), Ctrl+S, Ctrl+P, Ctrl+U
+      if (isCtrlOrCmd) {
+        if (key === 'c' || (!isInput && key === 'a') || (!isInput && key === 'x') || key === 's' || key === 'p' || key === 'u') {
+          e.preventDefault();
+          if (key === 'c') {
+            showToast('⚠️ Copying content is disabled');
+          }
+          return false;
+        }
+      }
+
       // Don't intercept if user is typing in search or jump input
-      if (['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+      if (isInput) {
         return;
       }
 

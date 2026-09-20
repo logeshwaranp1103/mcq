@@ -87,10 +87,22 @@ body.light-theme {
 }
 
 /* Reset & Base */
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+input, textarea {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 
 html, body {
@@ -357,6 +369,140 @@ optgroup option {
 .icon-btn.highlight:hover {
   background-color: var(--accent);
   color: #ffffff;
+}
+
+/* Help Button & Popover */
+.help-popover-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.icon-btn.help-btn,
+.icon-btn.contact-btn {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  user-select: none;
+}
+
+.icon-btn.help-btn:hover,
+.icon-btn.contact-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background-color: var(--accent-light);
+}
+
+.contact-icon {
+  display: inline-block;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.contact-tooltip .help-tooltip-body:empty::before {
+  content: 'Contact information will be updated soon.';
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.help-mark {
+  display: inline-block;
+  font-weight: 800;
+  font-family: var(--font-sans);
+  line-height: 1;
+}
+
+/* Tooltip / Popover */
+.help-tooltip {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 270px;
+  max-width: calc(100vw - 32px);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 0.8rem 0.95rem;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px) scale(0.96);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+  pointer-events: none;
+}
+
+/* Pointer arrow */
+.help-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 14px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--bg-card);
+  border-top: 1px solid var(--border-color);
+  border-left: 1px solid var(--border-color);
+  transform: rotate(45deg);
+  z-index: 2;
+}
+
+/* Invisible hover bridge connecting button and content box so hover is never lost */
+.help-tooltip::after {
+  content: '';
+  position: absolute;
+  top: -16px;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background: transparent;
+}
+
+/* Keep tooltip open when hovering either button/wrapper or content box itself */
+.help-popover-wrapper:hover .help-tooltip,
+.help-tooltip:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.help-tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.35rem;
+}
+
+.help-tooltip-icon {
+  font-size: 0.95rem;
+}
+
+.help-tooltip-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.help-tooltip-body {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.help-tooltip-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.help-tooltip-body a:hover {
+  color: var(--accent-hover);
 }
 
 /* Stats & Filter Bar */
@@ -1004,6 +1150,11 @@ body.mode-read .option-item.is-read-answer .option-status-icon {
   align-items: flex-start;
   gap: 0.65rem;
   flex-shrink: 0;
+}
+
+.study-note-box.near-question {
+  margin-top: 0.4rem;
+  margin-bottom: 0.85rem;
 }
 
 .study-note-box .note-icon {
