@@ -572,6 +572,14 @@ optgroup option {
   color: var(--danger);
 }
 
+.metric-pill.retried {
+  background-color: var(--warning-bg);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+.metric-pill.retried .value {
+  color: var(--warning);
+}
+
 .metric-pill.accuracy {
   background-color: var(--accent-light);
   border-color: var(--accent);
@@ -801,6 +809,126 @@ optgroup option {
   border-color: var(--accent);
 }
 
+.single-left-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Quiz Controls Checkbox Group */
+.quiz-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: var(--transition);
+}
+
+.quiz-checkbox-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.38rem 0.75rem;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+  transition: var(--transition);
+  position: relative;
+}
+
+.quiz-checkbox-btn:hover {
+  background-color: var(--bg-card-hover);
+  color: var(--text-primary);
+  border-color: var(--accent);
+}
+
+.quiz-checkbox-btn input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.quiz-checkbox-btn .checkbox-box {
+  width: 17px;
+  height: 17px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-primary);
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.quiz-checkbox-btn .check-mark {
+  font-size: 11px;
+  font-weight: 800;
+  color: #ffffff;
+  transform: scale(0);
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 1;
+}
+
+.quiz-checkbox-btn .toggle-icon {
+  font-size: 0.85rem;
+  line-height: 1;
+  display: inline-block;
+}
+
+/* Checked States */
+.quiz-checkbox-btn.checked,
+.quiz-checkbox-btn:has(input:checked) {
+  background-color: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.quiz-checkbox-btn.checked .checkbox-box,
+.quiz-checkbox-btn:has(input:checked) .checkbox-box {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+}
+
+.quiz-checkbox-btn.checked .check-mark,
+.quiz-checkbox-btn:has(input:checked) .check-mark {
+  transform: scale(1);
+}
+
+/* Distinguish Allow Retry with an amber/warning accent when active */
+#allowRetryLabel.checked,
+#allowRetryLabel:has(input:checked) {
+  background-color: var(--warning-bg);
+  border-color: var(--warning);
+  color: var(--warning);
+}
+
+#allowRetryLabel.checked .checkbox-box,
+#allowRetryLabel:has(input:checked) .checkbox-box {
+  background-color: var(--warning);
+  border-color: var(--warning);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}
+
+/* Accessibility Focus */
+.quiz-checkbox-btn input[type="checkbox"]:focus-visible + .checkbox-box {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Dim when in read mode */
+body.mode-read .quiz-controls-group {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
 .single-right-actions {
   display: flex;
   align-items: center;
@@ -923,6 +1051,13 @@ optgroup option {
   background-color: var(--danger-bg);
   color: var(--danger);
   border: 1px solid var(--danger-border);
+}
+
+.badge-status.retried {
+  display: inline-flex;
+  background-color: var(--warning-bg);
+  color: var(--warning);
+  border: 1px solid #d97706;
 }
 
 .card-actions {
@@ -1309,6 +1444,12 @@ body.mode-read .option-item.is-read-answer .option-status-icon {
   border-color: var(--accent);
 }
 
+.palette-filter-chip.retried.active {
+  background-color: var(--warning);
+  color: #ffffff;
+  border-color: #d97706;
+}
+
 .drawer-legend {
   display: flex;
   align-items: center;
@@ -1332,6 +1473,7 @@ body.mode-read .option-item.is-read-answer .option-status-icon {
 }
 .dot-unattempted { background-color: var(--border-color); }
 .dot-correct { background-color: var(--success); }
+.dot-retried { background-color: var(--warning); }
 .dot-wrong { background-color: var(--danger); }
 .dot-bookmarked { background-color: var(--warning); }
 
@@ -1382,6 +1524,12 @@ body.mode-read .option-item.is-read-answer .option-status-icon {
   background-color: var(--success) !important;
   color: #ffffff !important;
   border-color: var(--success-border) !important;
+}
+
+.palette-item.retried {
+  background-color: var(--warning) !important;
+  color: #ffffff !important;
+  border-color: #d97706 !important;
 }
 
 .palette-item.wrong {
@@ -1500,7 +1648,7 @@ body.mode-read .option-item.is-read-answer .option-status-icon {
 
 .modal-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
   gap: 0.85rem;
   margin-bottom: 1.5rem;
 }
@@ -1517,6 +1665,10 @@ body.mode-read .option-item.is-read-answer .option-status-icon {
   border-color: var(--success);
   background-color: var(--success-bg);
 }
+.modal-stat.warning {
+  border-color: var(--warning);
+  background-color: var(--warning-bg);
+}
 .modal-stat.danger {
   border-color: var(--danger);
   background-color: var(--danger-bg);
@@ -1530,6 +1682,7 @@ body.mode-read .option-item.is-read-answer .option-status-icon {
 }
 
 .modal-stat.success .stat-number { color: var(--success); }
+.modal-stat.warning .stat-number { color: var(--warning); }
 .modal-stat.danger .stat-number { color: var(--danger); }
 
 .modal-stat .stat-name {
@@ -1765,11 +1918,36 @@ body.mode-read .option-item.is-read-answer .option-status-icon {
   /* Single Nav Bar */
   .single-nav-bar {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     padding: 0.45rem 0.75rem;
     margin-bottom: 0.65rem;
     border-radius: var(--radius-md);
+    gap: 0.5rem;
+  }
+
+  .single-left-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .quiz-controls-group {
+    order: 3;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding-top: 0.35rem;
+    border-top: 1px dashed var(--border-color);
+  }
+
+  .quiz-checkbox-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.78rem;
   }
 
   .nav-arrow-btn {

@@ -130,6 +130,10 @@
           <span class="label">✔</span>
           <span class="value" id="statCorrect">0</span>
         </div>
+        <div class="metric-pill retried" id="statRetriedPill" title="Solved on Retry">
+          <span class="label">🔄</span>
+          <span class="value" id="statRetried">0</span>
+        </div>
         <div class="metric-pill wrong" title="Incorrect Answers">
           <span class="label">✘</span>
           <span class="value" id="statWrong">0</span>
@@ -152,14 +156,35 @@
     <div class="content-area">
       <!-- Single Question Navigation Header (shown in single view) -->
       <div class="single-nav-bar" id="singleNavBar">
-        <button id="prevQuestionBtn" class="nav-arrow-btn" title="Previous Question (Left Arrow)">
-          ← 
-        </button>
-        
-        <div class="single-indicator">
-          <span class="ind-label">Question</span>
-          <input type="number" id="jumpInput" min="1" max="300" value="1" title="Type question number and press Enter" />
-          <span class="ind-total">/ <span id="jumpTotal">300</span></span>
+        <div class="single-left-actions">
+          <button id="prevQuestionBtn" class="nav-arrow-btn" title="Previous Question (Left Arrow)">
+            ← 
+          </button>
+          
+          <div class="single-indicator">
+            <span class="ind-label">Question</span>
+            <input type="number" id="jumpInput" min="1" max="300" value="1" title="Type question number and press Enter" />
+            <span class="ind-total">/ <span id="jumpTotal">300</span></span>
+          </div>
+        </div>
+
+        <!-- Quiz Mode Checkbox Controls -->
+        <div class="quiz-controls-group" id="quizControlsGroup" aria-label="Quiz Practice Options">
+          <label class="quiz-checkbox-btn" id="autoNextLabel" title="Auto Next: Automatically advance to the next question when correct answer is selected">
+            <input type="checkbox" id="autoNextCheck" />
+            <span class="checkbox-box" aria-hidden="true">
+              <span class="check-mark">✓</span>
+            </span>
+            <span class="checkbox-label"><span class="toggle-icon">⚡</span> Auto Next</span>
+          </label>
+
+          <label class="quiz-checkbox-btn" id="allowRetryLabel" title="Allow Retry: If selected answer is wrong, allow clicking other options for the same question">
+            <input type="checkbox" id="allowRetryCheck" />
+            <span class="checkbox-box" aria-hidden="true">
+              <span class="check-mark">✓</span>
+            </span>
+            <span class="checkbox-label"><span class="toggle-icon">🔄</span> Allow Retry</span>
+          </label>
         </div>
 
         <div class="single-right-actions">
@@ -189,6 +214,7 @@
       <div class="palette-filters">
         <button class="palette-filter-chip active" data-filter="all">All (<span id="chipAll">300</span>)</button>
         <button class="palette-filter-chip correct" data-filter="correct">Correct (<span id="chipCorrect">0</span>)</button>
+        <button class="palette-filter-chip retried" data-filter="retried">Retried (<span id="chipRetried">0</span>)</button>
         <button class="palette-filter-chip wrong" data-filter="wrong">Wrong (<span id="chipWrong">0</span>)</button>
         <button class="palette-filter-chip unattempted" data-filter="unattempted">Unanswered (<span id="chipUnattempted">300</span>)</button>
         <button class="palette-filter-chip bookmarked" data-filter="bookmarked">Bookmarked (<span id="chipBookmarked">0</span>)</button>
@@ -197,6 +223,7 @@
       <div class="drawer-legend">
         <span class="legend-item"><span class="dot dot-unattempted"></span> Unattempted</span>
         <span class="legend-item"><span class="dot dot-correct"></span> Correct</span>
+        <span class="legend-item"><span class="dot dot-retried"></span> Solved on Retry</span>
         <span class="legend-item"><span class="dot dot-wrong"></span> Wrong</span>
         <span class="legend-item"><span class="dot dot-bookmarked"></span> ★ Starred</span>
       </div>
@@ -234,7 +261,11 @@
           </div>
           <div class="modal-stat success">
             <span class="stat-number" id="modalCorrect">0</span>
-            <span class="stat-name">Correct Answers</span>
+            <span class="stat-name">First-try Correct</span>
+          </div>
+          <div class="modal-stat warning">
+            <span class="stat-number" id="modalRetried">0</span>
+            <span class="stat-name">Solved on Retry</span>
           </div>
           <div class="modal-stat danger">
             <span class="stat-number" id="modalWrong">0</span>
@@ -319,7 +350,10 @@
     selectedSubtopic: 'all',
     paletteFilter: 'all', // 'all' | 'correct' | 'wrong' | 'unattempted' | 'bookmarked'
     userAnswers: {}, // { [qid]: 'A' | 'B' | ... }
+    wrongAnswers: {}, // { [qid]: ['A', 'C'] } for retry mode
     bookmarks: new Set(),
+    autoNext: localStorage.getItem('algomcq_auto_next') === 'true',
+    allowRetry: localStorage.getItem('algomcq_allow_retry') === 'true',
     theme: localStorage.getItem('algomcq_theme') || 'dark'
   };
 
@@ -349,16 +383,25 @@
     jumpTotal: document.getElementById('jumpTotal'),
     bookmarkBtn: document.getElementById('bookmarkBtn'),
     resetQuizBtn: document.getElementById('resetQuizBtn'),
+    // Quiz mode toggles
+    autoNextCheck: document.getElementById('autoNextCheck'),
+    autoNextLabel: document.getElementById('autoNextLabel'),
+    allowRetryCheck: document.getElementById('allowRetryCheck'),
+    allowRetryLabel: document.getElementById('allowRetryLabel'),
+    quizControlsGroup: document.getElementById('quizControlsGroup'),
     // Stats
     statTotal: document.getElementById('statTotal'),
     statAnswered: document.getElementById('statAnswered'),
     statCorrect: document.getElementById('statCorrect'),
+    statRetried: document.getElementById('statRetried'),
+    statRetriedPill: document.getElementById('statRetriedPill'),
     statWrong: document.getElementById('statWrong'),
     statAccuracy: document.getElementById('statAccuracy'),
     progressBarFill: document.getElementById('progressBarFill'),
     // Chips in Drawer
     chipAll: document.getElementById('chipAll'),
     chipCorrect: document.getElementById('chipCorrect'),
+    chipRetried: document.getElementById('chipRetried'),
     chipWrong: document.getElementById('chipWrong'),
     chipUnattempted: document.getElementById('chipUnattempted'),
     chipBookmarked: document.getElementById('chipBookmarked'),
@@ -373,6 +416,7 @@
     modalTotal: document.getElementById('modalTotal'),
     modalAnswered: document.getElementById('modalAnswered'),
     modalCorrect: document.getElementById('modalCorrect'),
+    modalRetried: document.getElementById('modalRetried'),
     modalWrong: document.getElementById('modalWrong'),
     resetModal: document.getElementById('resetModal'),
     closeResetModalBtn: document.getElementById('closeResetModalBtn'),
@@ -380,46 +424,6 @@
     confirmResetBtn: document.getElementById('confirmResetBtn'),
     toast: document.getElementById('toastNotification')
   };
-
-  // Audio Context for optional subtle feedback
-  let audioCtx = null;
-  function playFeedbackSound(isCorrect) {
-    try {
-      if (!audioCtx) {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (AudioContext) audioCtx = new AudioContext();
-      }
-      if (!audioCtx) return;
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      const now = audioCtx.currentTime;
-
-      if (isCorrect) {
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(587.33, now); // D5
-        osc.frequency.exponentialRampToValueAtTime(880, now + 0.15); // A5
-        gain.gain.setValueAtTime(0.08, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
-        osc.start(now);
-        osc.stop(now + 0.25);
-      } else {
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(260, now);
-        osc.frequency.exponentialRampToValueAtTime(180, now + 0.18);
-        gain.gain.setValueAtTime(0.08, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
-        osc.start(now);
-        osc.stop(now + 0.22);
-      }
-    } catch (e) {
-      // Audio not supported or blocked, ignore gracefully
-    }
-  }
 
   // Helper: Toast Message
   let toastTimer = null;
@@ -447,13 +451,16 @@
       if (saved) {
         const parsed = JSON.parse(saved);
         state.userAnswers = parsed.userAnswers || {};
+        state.wrongAnswers = parsed.wrongAnswers || {};
         state.bookmarks = new Set(parsed.bookmarks || []);
       } else {
         state.userAnswers = {};
+        state.wrongAnswers = {};
         state.bookmarks = new Set();
       }
     } catch (e) {
       state.userAnswers = {};
+      state.wrongAnswers = {};
       state.bookmarks = new Set();
     }
   }
@@ -463,6 +470,7 @@
     try {
       const payload = {
         userAnswers: state.userAnswers,
+        wrongAnswers: state.wrongAnswers || {},
         bookmarks: Array.from(state.bookmarks)
       };
       localStorage.setItem(key, JSON.stringify(payload));
@@ -488,13 +496,18 @@
       // Palette drawer quick status filter
       if (state.paletteFilter !== 'all') {
         const userAnswer = state.userAnswers[q.id];
+        const wrongs = state.wrongAnswers[q.id] || [];
         const isAnswered = userAnswer !== undefined;
-        const isCorrect = isAnswered && userAnswer === q.answer;
+        const isFirstTryCorrect = isAnswered && userAnswer === q.answer && wrongs.length === 0;
+        const isSolvedOnRetry = isAnswered && userAnswer === q.answer && wrongs.length > 0;
+        const isWrong = (isAnswered && userAnswer !== q.answer) || (!isAnswered && wrongs.length > 0);
+        const hasAttempt = isAnswered || wrongs.length > 0;
         const isBookmarked = state.bookmarks.has(q.id);
 
-        if (state.paletteFilter === 'correct' && !isCorrect) return false;
-        if (state.paletteFilter === 'wrong' && (!isAnswered || isCorrect)) return false;
-        if (state.paletteFilter === 'unattempted' && isAnswered) return false;
+        if (state.paletteFilter === 'correct' && !isFirstTryCorrect) return false;
+        if (state.paletteFilter === 'retried' && !isSolvedOnRetry) return false;
+        if (state.paletteFilter === 'wrong' && !isWrong) return false;
+        if (state.paletteFilter === 'unattempted' && hasAttempt) return false;
         if (state.paletteFilter === 'bookmarked' && !isBookmarked) return false;
       }
 
@@ -645,16 +658,62 @@
     attachCardEventListeners();
   }
 
+  // Helper to cancel any pending auto next transition
+  let autoNextTimer = null;
+  function cancelAutoNext() {
+    if (autoNextTimer) {
+      clearTimeout(autoNextTimer);
+      autoNextTimer = null;
+    }
+  }
+
+  // Navigation Next / Prev functions (accessible globally within controller)
+  function goPrev() {
+    cancelAutoNext();
+    if (state.currentIndex > 0) {
+      state.currentIndex--;
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function goNext() {
+    cancelAutoNext();
+    const filtered = getFilteredQuestions();
+    if (state.currentIndex < filtered.length - 1) {
+      state.currentIndex++;
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
   // HTML generator for a single question card
   function createQuestionCardHTML(q, displayNum, totalCount) {
     const userAnswer = state.userAnswers[q.id];
+    const wrongs = state.wrongAnswers[q.id] || [];
     const isAnswered = userAnswer !== undefined;
+    const isFirstTryCorrect = isAnswered && userAnswer === q.answer && wrongs.length === 0;
+    const isSolvedOnRetry = isAnswered && userAnswer === q.answer && wrongs.length > 0;
     const isCorrect = isAnswered && userAnswer === q.answer;
+    const hasWrongs = !isAnswered && wrongs.length > 0;
     const isBookmarked = state.bookmarks.has(q.id);
 
     // Badges
-    const statusBadgeClass = isAnswered ? (isCorrect ? 'correct' : 'wrong') : '';
-    const statusBadgeText = isAnswered ? (isCorrect ? '✓ Correct' : '✕ Incorrect') : '';
+    let statusBadgeClass = '';
+    let statusBadgeText = '';
+    if (isFirstTryCorrect) {
+      statusBadgeClass = 'correct';
+      statusBadgeText = '✓ Correct';
+    } else if (isSolvedOnRetry) {
+      statusBadgeClass = 'retried';
+      statusBadgeText = '🔄 Solved on Retry';
+    } else if (isAnswered) {
+      statusBadgeClass = 'wrong';
+      statusBadgeText = '✕ Incorrect';
+    } else if (hasWrongs) {
+      statusBadgeClass = 'wrong';
+      statusBadgeText = '✕ Try Again';
+    }
 
     // Options HTML (Supports A-D or A-F dynamically)
     const optionKeys = Object.keys(q.options).sort();
@@ -662,10 +721,12 @@
       const optText = q.options[letter] || '';
       let optClass = 'option-item';
       let icon = '';
+      let isDisabled = false;
 
       if (state.mode === 'quiz') {
         if (isAnswered) {
           optClass += ' locked';
+          isDisabled = true;
           if (letter === userAnswer) {
             if (isCorrect) {
               optClass += ' selected-correct';
@@ -678,10 +739,19 @@
             // Reveal correct answer if user got it wrong
             optClass += ' revealed-correct';
             icon = '✓';
+          } else if (wrongs.includes(letter)) {
+            optClass += ' selected-wrong';
+            icon = '✕';
           }
+        } else if (wrongs.includes(letter)) {
+          // This specific option was tried and was incorrect (Retry mode)
+          optClass += ' selected-wrong locked';
+          icon = '✕';
+          isDisabled = true;
         }
       } else {
         // Read Mode: highlight correct answer directly
+        isDisabled = true;
         if (letter === q.answer) {
           optClass += ' is-read-answer locked';
           icon = '✓';
@@ -691,7 +761,7 @@
       }
 
       return `
-        <button class="${optClass}" data-qid="${q.id}" data-option="${letter}" ${isAnswered || state.mode === 'read' ? 'disabled' : ''}>
+        <button class="${optClass}" data-qid="${q.id}" data-option="${letter}" ${isDisabled ? 'disabled' : ''}>
           <span class="option-letter">${letter}</span>
           <span class="option-text">${escapeHTML(optText)}</span>
           <span class="option-status-icon">${icon}</span>
@@ -703,7 +773,7 @@
     let studyNoteHTML = '';
     const hasNoValidOption = !q.options || !q.options[q.answer] || q.answer === 'None';
 
-    if (state.mode === 'read' || isAnswered || hasNoValidOption) {
+    if (state.mode === 'read' || isAnswered || (hasNoValidOption && state.mode === 'read')) {
       studyNoteHTML = `
         <div class="study-note-box ${hasNoValidOption ? 'near-question' : ''}">
           <span class="note-icon">💡</span>
@@ -779,25 +849,74 @@
     const question = topic.questions.find(q => q.id === qid);
     if (!question) return;
 
+    // Check if this option was already tried and incorrect
+    const currentWrongs = state.wrongAnswers[qid] || [];
+    if (currentWrongs.includes(chosenOption)) return;
+
     const isCorrect = chosenOption === question.answer;
 
-    // Record answer
-    state.userAnswers[qid] = chosenOption;
-    saveStoredData();
-
-    // Sound effect
-    playFeedbackSound(isCorrect);
-
-    // If in Single view, re-render to lock and show feedback
-    render();
-
     if (isCorrect) {
-      showToast(`🎯 Correct! Option ${chosenOption}`);
-    } else {
-      if (question.options && question.options[question.answer]) {
-        showToast(`❌ Incorrect. Correct answer is Option ${question.answer}`);
+      // Record answer
+      state.userAnswers[qid] = chosenOption;
+      saveStoredData();
+
+      // Re-render
+      render();
+      if (currentWrongs.length > 0) {
+        showToast(`🔄 Solved on retry! Option ${chosenOption}`);
       } else {
-        showToast(`❌ Incorrect. All options are wrong. Right answer is not given in options.`);
+        showToast(`🎯 Correct! Option ${chosenOption}`);
+      }
+
+      // Auto Next if enabled
+      if (state.autoNext) {
+        cancelAutoNext();
+        autoNextTimer = setTimeout(() => {
+          autoNextTimer = null;
+          goNext();
+        }, 700);
+      }
+    } else {
+      // Incorrect answer
+      if (state.allowRetry) {
+        // Record wrong attempt
+        if (!state.wrongAnswers[qid]) {
+          state.wrongAnswers[qid] = [];
+        }
+        if (!state.wrongAnswers[qid].includes(chosenOption)) {
+          state.wrongAnswers[qid].push(chosenOption);
+        }
+
+        // Check if all options have been tried or if question has no valid option in options list
+        const optionKeys = Object.keys(question.options || {});
+        const remainingOptions = optionKeys.filter(k => !state.wrongAnswers[qid].includes(k));
+
+        if (remainingOptions.length === 0 || question.answer === 'None' || !question.options[question.answer]) {
+          // All options exhausted: finalize question as incorrect
+          state.userAnswers[qid] = chosenOption;
+          saveStoredData();
+          render();
+          if (question.options && question.options[question.answer]) {
+            showToast(`❌ Incorrect. Correct answer is Option ${question.answer}`);
+          } else {
+            showToast(`❌ Incorrect. All options are wrong.`);
+          }
+        } else {
+          saveStoredData();
+          render();
+          showToast(`❌ Option ${chosenOption} is incorrect. Try another option!`);
+        }
+      } else {
+        // Standard mode without retry: lock immediately and reveal correct answer
+        state.userAnswers[qid] = chosenOption;
+        saveStoredData();
+        render();
+
+        if (question.options && question.options[question.answer]) {
+          showToast(`❌ Incorrect. Correct answer is Option ${question.answer}`);
+        } else {
+          showToast(`❌ Incorrect. All options are wrong. Right answer is not given in options.`);
+        }
       }
     }
   }
@@ -820,17 +939,26 @@
     const total = allQuestions.length;
     let answered = 0;
     let correct = 0;
+    let retried = 0;
     let wrong = 0;
 
     allQuestions.forEach(q => {
       const ans = state.userAnswers[q.id];
-      if (ans !== undefined) {
+      const wrongs = state.wrongAnswers[q.id] || [];
+      const isAnswered = ans !== undefined;
+      const isFirstTryCorrect = isAnswered && ans === q.answer && wrongs.length === 0;
+      const isSolvedOnRetry = isAnswered && ans === q.answer && wrongs.length > 0;
+      const isWrong = (isAnswered && ans !== q.answer) || (!isAnswered && wrongs.length > 0);
+
+      if (isFirstTryCorrect) {
         answered++;
-        if (ans === q.answer) {
-          correct++;
-        } else {
-          wrong++;
-        }
+        correct++;
+      } else if (isSolvedOnRetry) {
+        answered++;
+        retried++;
+      } else if (isWrong) {
+        answered++;
+        wrong++;
       }
     });
 
@@ -840,6 +968,7 @@
     elements.statTotal.textContent = total;
     elements.statAnswered.textContent = answered;
     elements.statCorrect.textContent = correct;
+    if (elements.statRetried) elements.statRetried.textContent = retried;
     elements.statWrong.textContent = wrong;
     if (elements.statAccuracy) elements.statAccuracy.textContent = `${accuracy}%`;
     elements.progressBarFill.style.width = `${progressPercent}%`;
@@ -850,6 +979,7 @@
 
     elements.chipAll.textContent = total;
     elements.chipCorrect.textContent = correct;
+    if (elements.chipRetried) elements.chipRetried.textContent = retried;
     elements.chipWrong.textContent = wrong;
     elements.chipUnattempted.textContent = unattempted;
     elements.chipBookmarked.textContent = bookmarkedCount;
@@ -858,6 +988,7 @@
     elements.modalTotal.textContent = total;
     elements.modalAnswered.textContent = answered;
     elements.modalCorrect.textContent = correct;
+    if (elements.modalRetried) elements.modalRetried.textContent = retried;
     elements.modalWrong.textContent = wrong;
     elements.modalAccuracy.textContent = `${accuracy}%`;
     elements.scoreCircle.style.setProperty('--acc', accuracy);
@@ -870,14 +1001,17 @@
 
     elements.paletteGrid.innerHTML = allQuestions.map((q, idx) => {
       const ans = state.userAnswers[q.id];
+      const wrongs = state.wrongAnswers[q.id] || [];
       const isAnswered = ans !== undefined;
-      const isCorrect = isAnswered && ans === q.answer;
-      const isWrong = isAnswered && !isCorrect;
+      const isFirstTryCorrect = isAnswered && ans === q.answer && wrongs.length === 0;
+      const isSolvedOnRetry = isAnswered && ans === q.answer && wrongs.length > 0;
+      const isWrong = (isAnswered && ans !== q.answer) || (!isAnswered && wrongs.length > 0);
       const isBookmarked = state.bookmarks.has(q.id);
       const isCurrent = currentQ && currentQ.id === q.id;
 
       let cls = 'palette-item';
-      if (isCorrect) cls += ' correct';
+      if (isFirstTryCorrect) cls += ' correct';
+      else if (isSolvedOnRetry) cls += ' retried';
       else if (isWrong) cls += ' wrong';
       if (isBookmarked) cls += ' bookmarked';
       if (isCurrent && state.viewMode === 'single') cls += ' current';
@@ -899,6 +1033,7 @@
 
   // Jump to Question by QID
   function jumpToQuestionId(targetQid) {
+    cancelAutoNext();
     // If target question is hidden by current filters, reset filter to 'all' so it is visible
     const filtered = getFilteredQuestions();
     let index = filtered.findIndex(q => q.id === targetQid);
@@ -964,6 +1099,7 @@
 
   // Switch Topic within the current level
   function switchTopic(topicId) {
+    cancelAutoNext();
     state.currentTopicId = topicId;
     localStorage.setItem('algomcq_last_topic', state.currentTopicId);
     state.currentIndex = 0;
@@ -977,6 +1113,7 @@
 
   // Switch Level: switches level and updates dropdown to ONLY show that level's courses
   function switchLevel(levelKey) {
+    cancelAutoNext();
     state.currentLevel = levelKey;
     const cfg = LEVEL_CONFIG[levelKey];
     
@@ -994,6 +1131,12 @@
     loadStoredData();
     render();
     showToast(`Switched to ${cfg.name}`);
+  }
+
+  // Helper for checkbox visually active class
+  function updateCheckboxVisual(labelEl, isChecked) {
+    if (!labelEl) return;
+    labelEl.classList.toggle('checked', isChecked);
   }
 
   // Event Listeners Initialization
@@ -1029,6 +1172,7 @@
 
     elements.modeReadBtn.addEventListener('click', () => {
       if (state.mode === 'read') return;
+      cancelAutoNext();
       state.mode = 'read';
       document.body.classList.add('mode-read');
       elements.modeReadBtn.classList.add('active');
@@ -1039,6 +1183,31 @@
       showToast('📖 Read Mode active - Answers & study notes revealed');
     });
 
+    // Auto Next Toggle Checkbox
+    if (elements.autoNextCheck) {
+      elements.autoNextCheck.checked = state.autoNext;
+      updateCheckboxVisual(elements.autoNextLabel, state.autoNext);
+      elements.autoNextCheck.addEventListener('change', (e) => {
+        state.autoNext = e.target.checked;
+        localStorage.setItem('algomcq_auto_next', state.autoNext ? 'true' : 'false');
+        updateCheckboxVisual(elements.autoNextLabel, state.autoNext);
+        showToast(state.autoNext ? '⚡ Auto Next enabled' : 'Auto Next disabled');
+        if (!state.autoNext) cancelAutoNext();
+      });
+    }
+
+    // Allow Retry Toggle Checkbox
+    if (elements.allowRetryCheck) {
+      elements.allowRetryCheck.checked = state.allowRetry;
+      updateCheckboxVisual(elements.allowRetryLabel, state.allowRetry);
+      elements.allowRetryCheck.addEventListener('change', (e) => {
+        state.allowRetry = e.target.checked;
+        localStorage.setItem('algomcq_allow_retry', state.allowRetry ? 'true' : 'false');
+        updateCheckboxVisual(elements.allowRetryLabel, state.allowRetry);
+        showToast(state.allowRetry ? '🔄 Allow Retry on wrong answer enabled' : 'Allow Retry disabled');
+      });
+    }
+
     // Theme Toggle
     elements.themeToggleBtn.addEventListener('click', () => {
       const isLight = document.body.classList.toggle('light-theme');
@@ -1048,27 +1217,12 @@
     });
 
     // Navigation Next / Prev Buttons
-    const goPrev = () => {
-      if (state.currentIndex > 0) {
-        state.currentIndex--;
-        render();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    };
-    const goNext = () => {
-      const filtered = getFilteredQuestions();
-      if (state.currentIndex < filtered.length - 1) {
-        state.currentIndex++;
-        render();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    };
-
     elements.prevQuestionBtn.addEventListener('click', goPrev);
     elements.nextQuestionBtn.addEventListener('click', goNext);
 
     // Jump Input
     elements.jumpInput.addEventListener('change', () => {
+      cancelAutoNext();
       let val = parseInt(elements.jumpInput.value, 10);
       const filtered = getFilteredQuestions();
       if (isNaN(val) || val < 1) val = 1;
@@ -1090,6 +1244,7 @@
     // Drawer Filter Chips
     elements.paletteFilterChips.forEach(chip => {
       chip.addEventListener('click', () => {
+        cancelAutoNext();
         elements.paletteFilterChips.forEach(c => c.classList.remove('active'));
         chip.classList.add('active');
         state.paletteFilter = chip.dataset.filter;
@@ -1108,6 +1263,7 @@
 
     // Practice Incorrect Only from Modal
     elements.retryIncorrectBtn.addEventListener('click', () => {
+      cancelAutoNext();
       elements.summaryModal.style.display = 'none';
       elements.paletteFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'wrong'));
       state.paletteFilter = 'wrong';
@@ -1127,7 +1283,9 @@
       elements.resetModal.style.display = 'none';
     });
     elements.confirmResetBtn.addEventListener('click', () => {
+      cancelAutoNext();
       state.userAnswers = {};
+      state.wrongAnswers = {};
       state.bookmarks = new Set();
       saveStoredData();
       elements.resetModal.style.display = 'none';
