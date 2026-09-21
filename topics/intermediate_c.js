@@ -544,8 +544,8 @@ window.TOPICS["intermediate_c"] = {
         "E": "20",
         "F": "24"
       },
-      "answer": "C",
-      "explanation": ""
+      "answer": "None",
+      "explanation": "All options are wrong. The right answer is 6, which is not given in the options."
     },
     {
       "id": 37,
