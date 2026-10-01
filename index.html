@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MCQ Master | Basic & Intermediate Level Quiz Platform</title>
-  <meta name="description" content="Master 300 Data Structures & Algorithms Multiple Choice Questions with interactive Quiz Test Mode and Study Read Mode." />
-  
+  <meta name="description"
+    content="Master 300 Data Structures & Algorithms Multiple Choice Questions with interactive Quiz Test Mode and Study Read Mode." />
+
   <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="dark-theme" oncopy="return false;" oncut="return false;" oncontextmenu="return false;" ondragstart="return false;">
+
+<body class="dark-theme" oncopy="return false;" oncut="return false;" oncontextmenu="return false;"
+  ondragstart="return false;">
   <!-- Top Navigation Bar -->
   <header class="navbar">
     <div class="nav-container">
@@ -31,11 +37,13 @@
       <div class="level-topic-container">
         <!-- Level Switcher Tabs -->
         <div class="level-switcher" role="tablist" aria-label="Difficulty Level">
-          <button id="levelBasicBtn" class="level-tab-btn active" data-level="basic" role="tab" aria-selected="true" title="Switch to Basic Level">
+          <button id="levelBasicBtn" class="level-tab-btn active" data-level="basic" role="tab" aria-selected="true"
+            title="Switch to Basic Level">
             <span class="lvl-icon">🌱</span>
             <span class="lvl-title">Basic Level</span>
           </button>
-          <button id="levelInterBtn" class="level-tab-btn" data-level="intermediate" role="tab" aria-selected="false" title="Switch to Intermediate Level">
+          <button id="levelInterBtn" class="level-tab-btn" data-level="intermediate" role="tab" aria-selected="false"
+            title="Switch to Intermediate Level">
             <span class="lvl-icon">⚡</span>
             <span class="lvl-title">Intermediate Level</span>
           </button>
@@ -56,11 +64,13 @@
       <div class="nav-actions">
         <!-- Mode Tabs -->
         <div class="mode-toggle-group" role="tablist" aria-label="Study or Quiz Mode">
-          <button id="modeQuizBtn" class="mode-btn active" role="tab" aria-selected="true" title="Practice test with instant colored feedback">
+          <button id="modeQuizBtn" class="mode-btn active" role="tab" aria-selected="true"
+            title="Practice test with instant colored feedback">
             <span class="icon">🎯</span>
             <span class="text">Quiz</span>
           </button>
-          <button id="modeReadBtn" class="mode-btn" role="tab" aria-selected="false" title="Study mode with all answers directly shown">
+          <button id="modeReadBtn" class="mode-btn" role="tab" aria-selected="false"
+            title="Study mode with all answers directly shown">
             <span class="icon">📖</span>
             <span class="text">Read</span>
           </button>
@@ -72,7 +82,8 @@
         </button>
 
         <!-- Drawer Toggle Button (Mobile & Desktop) -->
-        <button id="drawerToggleBtn" class="icon-btn highlight" title="Open Question Palette (1-300)" aria-label="Question Grid">
+        <button id="drawerToggleBtn" class="icon-btn highlight" title="Open Question Palette (1-300)"
+          aria-label="Question Grid">
           <span class="icon">🔢</span>
           <span class="drawer-label">Palette</span>
         </button>
@@ -88,7 +99,8 @@
               <span class="help-tooltip-title">Help & Instructions</span>
             </div>
             <div class="help-tooltip-body">
-              The website is for reading and take sample assessment. In case of any wrong answer, contact the owner of this webpage.
+              The website is for reading and take sample assessment. In case of any wrong answer, contact the owner of
+              this webpage.
             </div>
           </div>
         </div>
@@ -104,8 +116,10 @@
               <span class="help-tooltip-title">Contact</span>
             </div>
             <div class="help-tooltip-body" id="contactContent">
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=logeshwaranp.ad25@bitsathy.ac.in&su=Hi%20Logeshwaran%20" target="_blank" rel="noopener noreferrer">Contact Mail_1</a>&emsp;
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=logeshwaranpalanic7@gmail.com&su=Hi%20Logeshwaran%20" target="_blank" rel="noopener noreferrer">Contact Mail_2</a>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=logeshwaranp.ad25@bitsathy.ac.in&su=Hi%20Logeshwaran%20"
+                target="_blank" rel="noopener noreferrer">Contact Mail_1</a>&emsp;
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=logeshwaranpalanic7@gmail.com&su=Hi%20Logeshwaran%20"
+                target="_blank" rel="noopener noreferrer">Contact Mail_2</a>
             </div>
           </div>
         </div>
@@ -158,19 +172,21 @@
       <div class="single-nav-bar" id="singleNavBar">
         <div class="single-left-actions">
           <button id="prevQuestionBtn" class="nav-arrow-btn" title="Previous Question (Left Arrow)">
-            ← 
+            ←
           </button>
-          
+
           <div class="single-indicator">
             <span class="ind-label">Question</span>
-            <input type="number" id="jumpInput" min="1" max="300" value="1" title="Type question number and press Enter" />
+            <input type="number" id="jumpInput" min="1" max="300" value="1"
+              title="Type question number and press Enter" />
             <span class="ind-total">/ <span id="jumpTotal">300</span></span>
           </div>
         </div>
 
         <!-- Quiz Mode Checkbox Controls -->
         <div class="quiz-controls-group" id="quizControlsGroup" aria-label="Quiz Practice Options">
-          <label class="quiz-checkbox-btn" id="autoNextLabel" title="Auto Next: Automatically advance to the next question when correct answer is selected">
+          <label class="quiz-checkbox-btn" id="autoNextLabel"
+            title="Auto Next: Automatically advance to the next question when correct answer is selected">
             <input type="checkbox" id="autoNextCheck" />
             <span class="checkbox-box" aria-hidden="true">
               <span class="check-mark">✓</span>
@@ -178,7 +194,8 @@
             <span class="checkbox-label"><span class="toggle-icon">⚡</span> Auto Next</span>
           </label>
 
-          <label class="quiz-checkbox-btn" id="allowRetryLabel" title="Allow Retry: If selected answer is wrong, allow clicking other options for the same question">
+          <label class="quiz-checkbox-btn" id="allowRetryLabel"
+            title="Allow Retry: If selected answer is wrong, allow clicking other options for the same question">
             <input type="checkbox" id="allowRetryCheck" />
             <span class="checkbox-box" aria-hidden="true">
               <span class="check-mark">✓</span>
@@ -192,7 +209,7 @@
             ★ <span class="star-text">Bookmark</span>
           </button>
           <button id="nextQuestionBtn" class="nav-arrow-btn primary" title="Next Question (Right Arrow)">
-             →
+            →
           </button>
         </div>
       </div>
@@ -213,11 +230,15 @@
       <!-- Filter pills inside drawer -->
       <div class="palette-filters">
         <button class="palette-filter-chip active" data-filter="all">All (<span id="chipAll">300</span>)</button>
-        <button class="palette-filter-chip correct" data-filter="correct">Correct (<span id="chipCorrect">0</span>)</button>
-        <button class="palette-filter-chip retried" data-filter="retried">Retried (<span id="chipRetried">0</span>)</button>
+        <button class="palette-filter-chip correct" data-filter="correct">Correct (<span
+            id="chipCorrect">0</span>)</button>
+        <button class="palette-filter-chip retried" data-filter="retried">Retried (<span
+            id="chipRetried">0</span>)</button>
         <button class="palette-filter-chip wrong" data-filter="wrong">Wrong (<span id="chipWrong">0</span>)</button>
-        <button class="palette-filter-chip unattempted" data-filter="unattempted">Unanswered (<span id="chipUnattempted">300</span>)</button>
-        <button class="palette-filter-chip bookmarked" data-filter="bookmarked">Bookmarked (<span id="chipBookmarked">0</span>)</button>
+        <button class="palette-filter-chip unattempted" data-filter="unattempted">Unanswered (<span
+            id="chipUnattempted">300</span>)</button>
+        <button class="palette-filter-chip bookmarked" data-filter="bookmarked">Bookmarked (<span
+            id="chipBookmarked">0</span>)</button>
       </div>
 
       <div class="drawer-legend">
@@ -302,488 +323,490 @@
   <div id="toastNotification" class="toast"></div>
 
   <!-- Modular Topic Data Files -->
-  <script src="topics/dsa.js"></script>
-  <script src="topics/profit_loss.js"></script>
-  <script src="topics/percentages.js"></script>
-  <script src="topics/ratio_proportion.js"></script>
-  <script src="topics/intermediate_c.js"></script>
-  <script src="topics/ds_programming.js"></script>
-  <script src="topics/dbms_programming.js"></script>
-  <script src="topics/aptitude.js"></script>
-  <script src="topics/logical_reasoning.js"></script>
-  <script src="topics/verbal.js"></script>
+  <!-- Basic Level -->
+  <script src="topics/Placement_training/dsa.js"></script>
+  <script src="topics/Placement_training/profit_loss.js"></script>
+  <script src="topics/Placement_training/percentages.js"></script>
+  <script src="topics/Placement_training/ratio_proportion.js"></script>
+  <!-- Intermediate Level -->
+  <script src="topics/intermediate/intermediate_c.js"></script>
+  <script src="topics/intermediate/ds_programming.js"></script>
+  <script src="topics/intermediate/dbms_programming.js"></script>
+  <script src="topics/intermediate/aptitude.js"></script>
+  <script src="topics/intermediate/logical_reasoning.js"></script>
+  <script src="topics/intermediate/verbal.js"></script>
 
   <script>
-// ==========================================
-// APPLICATION CONTROLLER & LOGIC
-// ==========================================
-/**
- * AlgoMCQ Pro - Application Logic
- * Supports Multi-topic, Quiz Test Mode (with colored feedback), Read Mode,
- * Single & List Views, Question Palette (1-300), Search & Filters, and LocalStorage.
- */
+    // ==========================================
+    // APPLICATION CONTROLLER & LOGIC
+    // ==========================================
+    /**
+     * AlgoMCQ Pro - Application Logic
+     * Supports Multi-topic, Quiz Test Mode (with colored feedback), Read Mode,
+     * Single & List Views, Question Palette (1-300), Search & Filters, and LocalStorage.
+     */
 
-(function () {
-  'use strict';
+    (function () {
+      'use strict';
 
-  // State Management
-  // Level Configuration
-  const LEVEL_CONFIG = {
-    basic: {
-      id: 'basic',
-      name: 'Basic Level',
-      icon: '🌱',
-      topicOrder: ['dsa', 'profit_loss', 'percentages', 'ratio_proportion']
-    },
-    intermediate: {
-      id: 'intermediate',
-      name: 'Intermediate Level',
-      icon: '⚡',
-      topicOrder: ['intermediate_c', 'ds_programming', 'dbms_programming', 'aptitude', 'logical_reasoning', 'verbal']
-    }
-  };
-
-  // State Management
-  const state = {
-    currentLevel: 'basic',
-    currentTopicId: 'dsa',
-    mode: 'quiz', // 'quiz' | 'read'
-    viewMode: 'single', // 'single' | 'list'
-    currentIndex: 0, // 0-based index in filtered questions
-    searchQuery: '',
-    selectedSubtopic: 'all',
-    paletteFilter: 'all', // 'all' | 'correct' | 'wrong' | 'unattempted' | 'bookmarked'
-    userAnswers: {}, // { [qid]: 'A' | 'B' | ... }
-    wrongAnswers: {}, // { [qid]: ['A', 'C'] } for retry mode
-    bookmarks: new Set(),
-    autoNext: localStorage.getItem('algomcq_auto_next') === 'true',
-    allowRetry: localStorage.getItem('algomcq_allow_retry') === 'true',
-    theme: localStorage.getItem('algomcq_theme') || 'dark'
-  };
-
-  // DOM Elements
-  const elements = {
-    body: document.body,
-    levelBasicBtn: document.getElementById('levelBasicBtn'),
-    levelInterBtn: document.getElementById('levelInterBtn'),
-    topicSelect: document.getElementById('topicSelect'),
-    modeQuizBtn: document.getElementById('modeQuizBtn'),
-    modeReadBtn: document.getElementById('modeReadBtn'),
-    themeToggleBtn: document.getElementById('themeToggleBtn'),
-    themeIcon: document.getElementById('themeIcon'),
-    drawerToggleBtn: document.getElementById('drawerToggleBtn'),
-    helpBtn: document.getElementById('helpBtn'),
-    helpWrapper: document.getElementById('helpWrapper'),
-    contactBtn: document.getElementById('contactBtn'),
-    contactWrapper: document.getElementById('contactWrapper'),
-    closeDrawerBtn: document.getElementById('closeDrawerBtn'),
-    paletteDrawer: document.getElementById('paletteDrawer'),
-    paletteGrid: document.getElementById('paletteGrid'),
-    questionsContainer: document.getElementById('questionsContainer'),
-    singleNavBar: document.getElementById('singleNavBar'),
-    prevQuestionBtn: document.getElementById('prevQuestionBtn'),
-    nextQuestionBtn: document.getElementById('nextQuestionBtn'),
-    jumpInput: document.getElementById('jumpInput'),
-    jumpTotal: document.getElementById('jumpTotal'),
-    bookmarkBtn: document.getElementById('bookmarkBtn'),
-    resetQuizBtn: document.getElementById('resetQuizBtn'),
-    // Quiz mode toggles
-    autoNextCheck: document.getElementById('autoNextCheck'),
-    autoNextLabel: document.getElementById('autoNextLabel'),
-    allowRetryCheck: document.getElementById('allowRetryCheck'),
-    allowRetryLabel: document.getElementById('allowRetryLabel'),
-    quizControlsGroup: document.getElementById('quizControlsGroup'),
-    // Stats
-    statTotal: document.getElementById('statTotal'),
-    statAnswered: document.getElementById('statAnswered'),
-    statCorrect: document.getElementById('statCorrect'),
-    statRetried: document.getElementById('statRetried'),
-    statRetriedPill: document.getElementById('statRetriedPill'),
-    statWrong: document.getElementById('statWrong'),
-    statAccuracy: document.getElementById('statAccuracy'),
-    progressBarFill: document.getElementById('progressBarFill'),
-    // Chips in Drawer
-    chipAll: document.getElementById('chipAll'),
-    chipCorrect: document.getElementById('chipCorrect'),
-    chipRetried: document.getElementById('chipRetried'),
-    chipWrong: document.getElementById('chipWrong'),
-    chipUnattempted: document.getElementById('chipUnattempted'),
-    chipBookmarked: document.getElementById('chipBookmarked'),
-    paletteFilterChips: document.querySelectorAll('.palette-filter-chip'),
-    // Modals
-    summaryModal: document.getElementById('summaryModal'),
-    closeModalBtn: document.getElementById('closeModalBtn'),
-    continueQuizBtn: document.getElementById('continueQuizBtn'),
-    retryIncorrectBtn: document.getElementById('retryIncorrectBtn'),
-    modalAccuracy: document.getElementById('modalAccuracy'),
-    scoreCircle: document.getElementById('scoreCircle'),
-    modalTotal: document.getElementById('modalTotal'),
-    modalAnswered: document.getElementById('modalAnswered'),
-    modalCorrect: document.getElementById('modalCorrect'),
-    modalRetried: document.getElementById('modalRetried'),
-    modalWrong: document.getElementById('modalWrong'),
-    resetModal: document.getElementById('resetModal'),
-    closeResetModalBtn: document.getElementById('closeResetModalBtn'),
-    cancelResetBtn: document.getElementById('cancelResetBtn'),
-    confirmResetBtn: document.getElementById('confirmResetBtn'),
-    toast: document.getElementById('toastNotification')
-  };
-
-  // Helper: Toast Message
-  let toastTimer = null;
-  function showToast(msg) {
-    if (!elements.toast) return;
-    elements.toast.textContent = msg;
-    elements.toast.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
-      elements.toast.classList.remove('show');
-    }, 2400);
-  }
-
-  // Get current topic object
-  function getCurrentTopic() {
-    const topics = window.TOPICS || {};
-    return topics[state.currentTopicId] || topics['dsa'] || { questions: [] };
-  }
-
-  // Load / Save State in LocalStorage
-  function loadStoredData() {
-    const key = `algomcq_${state.currentTopicId}_data`;
-    try {
-      const saved = localStorage.getItem(key);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        state.userAnswers = parsed.userAnswers || {};
-        state.wrongAnswers = parsed.wrongAnswers || {};
-        state.bookmarks = new Set(parsed.bookmarks || []);
-      } else {
-        state.userAnswers = {};
-        state.wrongAnswers = {};
-        state.bookmarks = new Set();
-      }
-    } catch (e) {
-      state.userAnswers = {};
-      state.wrongAnswers = {};
-      state.bookmarks = new Set();
-    }
-  }
-
-  function saveStoredData() {
-    const key = `algomcq_${state.currentTopicId}_data`;
-    try {
-      const payload = {
-        userAnswers: state.userAnswers,
-        wrongAnswers: state.wrongAnswers || {},
-        bookmarks: Array.from(state.bookmarks)
+      // State Management
+      // Level Configuration
+      const LEVEL_CONFIG = {
+        basic: {
+          id: 'basic',
+          name: 'Basic Level',
+          icon: '🌱',
+          topicOrder: ['dsa', 'profit_loss', 'percentages', 'ratio_proportion']
+        },
+        intermediate: {
+          id: 'intermediate',
+          name: 'Intermediate Level',
+          icon: '⚡',
+          topicOrder: ['intermediate_c', 'ds_programming', 'dbms_programming', 'aptitude', 'logical_reasoning', 'verbal']
+        }
       };
-      localStorage.setItem(key, JSON.stringify(payload));
-    } catch (e) {
-      console.warn('Failed to save to localStorage:', e);
-    }
-  }
 
-  // Filter questions according to current filters
-  function getFilteredQuestions() {
-    const topic = getCurrentTopic();
-    const all = topic.questions || [];
+      // State Management
+      const state = {
+        currentLevel: 'basic',
+        currentTopicId: 'dsa',
+        mode: 'quiz', // 'quiz' | 'read'
+        viewMode: 'single', // 'single' | 'list'
+        currentIndex: 0, // 0-based index in filtered questions
+        searchQuery: '',
+        selectedSubtopic: 'all',
+        paletteFilter: 'all', // 'all' | 'correct' | 'wrong' | 'unattempted' | 'bookmarked'
+        userAnswers: {}, // { [qid]: 'A' | 'B' | ... }
+        wrongAnswers: {}, // { [qid]: ['A', 'C'] } for retry mode
+        bookmarks: new Set(),
+        autoNext: localStorage.getItem('algomcq_auto_next') === 'true',
+        allowRetry: localStorage.getItem('algomcq_allow_retry') === 'true',
+        theme: localStorage.getItem('algomcq_theme') || 'dark'
+      };
 
-    return all.filter((q) => {
-      // Search query filter
-      if (state.searchQuery) {
-        const qText = (q.question + ' ' + Object.values(q.options).join(' ')).toLowerCase();
-        if (!qText.includes(state.searchQuery)) {
-          return false;
+      // DOM Elements
+      const elements = {
+        body: document.body,
+        levelBasicBtn: document.getElementById('levelBasicBtn'),
+        levelInterBtn: document.getElementById('levelInterBtn'),
+        topicSelect: document.getElementById('topicSelect'),
+        modeQuizBtn: document.getElementById('modeQuizBtn'),
+        modeReadBtn: document.getElementById('modeReadBtn'),
+        themeToggleBtn: document.getElementById('themeToggleBtn'),
+        themeIcon: document.getElementById('themeIcon'),
+        drawerToggleBtn: document.getElementById('drawerToggleBtn'),
+        helpBtn: document.getElementById('helpBtn'),
+        helpWrapper: document.getElementById('helpWrapper'),
+        contactBtn: document.getElementById('contactBtn'),
+        contactWrapper: document.getElementById('contactWrapper'),
+        closeDrawerBtn: document.getElementById('closeDrawerBtn'),
+        paletteDrawer: document.getElementById('paletteDrawer'),
+        paletteGrid: document.getElementById('paletteGrid'),
+        questionsContainer: document.getElementById('questionsContainer'),
+        singleNavBar: document.getElementById('singleNavBar'),
+        prevQuestionBtn: document.getElementById('prevQuestionBtn'),
+        nextQuestionBtn: document.getElementById('nextQuestionBtn'),
+        jumpInput: document.getElementById('jumpInput'),
+        jumpTotal: document.getElementById('jumpTotal'),
+        bookmarkBtn: document.getElementById('bookmarkBtn'),
+        resetQuizBtn: document.getElementById('resetQuizBtn'),
+        // Quiz mode toggles
+        autoNextCheck: document.getElementById('autoNextCheck'),
+        autoNextLabel: document.getElementById('autoNextLabel'),
+        allowRetryCheck: document.getElementById('allowRetryCheck'),
+        allowRetryLabel: document.getElementById('allowRetryLabel'),
+        quizControlsGroup: document.getElementById('quizControlsGroup'),
+        // Stats
+        statTotal: document.getElementById('statTotal'),
+        statAnswered: document.getElementById('statAnswered'),
+        statCorrect: document.getElementById('statCorrect'),
+        statRetried: document.getElementById('statRetried'),
+        statRetriedPill: document.getElementById('statRetriedPill'),
+        statWrong: document.getElementById('statWrong'),
+        statAccuracy: document.getElementById('statAccuracy'),
+        progressBarFill: document.getElementById('progressBarFill'),
+        // Chips in Drawer
+        chipAll: document.getElementById('chipAll'),
+        chipCorrect: document.getElementById('chipCorrect'),
+        chipRetried: document.getElementById('chipRetried'),
+        chipWrong: document.getElementById('chipWrong'),
+        chipUnattempted: document.getElementById('chipUnattempted'),
+        chipBookmarked: document.getElementById('chipBookmarked'),
+        paletteFilterChips: document.querySelectorAll('.palette-filter-chip'),
+        // Modals
+        summaryModal: document.getElementById('summaryModal'),
+        closeModalBtn: document.getElementById('closeModalBtn'),
+        continueQuizBtn: document.getElementById('continueQuizBtn'),
+        retryIncorrectBtn: document.getElementById('retryIncorrectBtn'),
+        modalAccuracy: document.getElementById('modalAccuracy'),
+        scoreCircle: document.getElementById('scoreCircle'),
+        modalTotal: document.getElementById('modalTotal'),
+        modalAnswered: document.getElementById('modalAnswered'),
+        modalCorrect: document.getElementById('modalCorrect'),
+        modalRetried: document.getElementById('modalRetried'),
+        modalWrong: document.getElementById('modalWrong'),
+        resetModal: document.getElementById('resetModal'),
+        closeResetModalBtn: document.getElementById('closeResetModalBtn'),
+        cancelResetBtn: document.getElementById('cancelResetBtn'),
+        confirmResetBtn: document.getElementById('confirmResetBtn'),
+        toast: document.getElementById('toastNotification')
+      };
+
+      // Helper: Toast Message
+      let toastTimer = null;
+      function showToast(msg) {
+        if (!elements.toast) return;
+        elements.toast.textContent = msg;
+        elements.toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          elements.toast.classList.remove('show');
+        }, 2400);
+      }
+
+      // Get current topic object
+      function getCurrentTopic() {
+        const topics = window.TOPICS || {};
+        return topics[state.currentTopicId] || topics['dsa'] || { questions: [] };
+      }
+
+      // Load / Save State in LocalStorage
+      function loadStoredData() {
+        const key = `algomcq_${state.currentTopicId}_data`;
+        try {
+          const saved = localStorage.getItem(key);
+          if (saved) {
+            const parsed = JSON.parse(saved);
+            state.userAnswers = parsed.userAnswers || {};
+            state.wrongAnswers = parsed.wrongAnswers || {};
+            state.bookmarks = new Set(parsed.bookmarks || []);
+          } else {
+            state.userAnswers = {};
+            state.wrongAnswers = {};
+            state.bookmarks = new Set();
+          }
+        } catch (e) {
+          state.userAnswers = {};
+          state.wrongAnswers = {};
+          state.bookmarks = new Set();
         }
       }
 
-      // Palette drawer quick status filter
-      if (state.paletteFilter !== 'all') {
-        const userAnswer = state.userAnswers[q.id];
-        const wrongs = state.wrongAnswers[q.id] || [];
-        const isAnswered = userAnswer !== undefined;
-        const isFirstTryCorrect = isAnswered && userAnswer === q.answer && wrongs.length === 0;
-        const isSolvedOnRetry = isAnswered && userAnswer === q.answer && wrongs.length > 0;
-        const isWrong = (isAnswered && userAnswer !== q.answer) || (!isAnswered && wrongs.length > 0);
-        const hasAttempt = isAnswered || wrongs.length > 0;
-        const isBookmarked = state.bookmarks.has(q.id);
-
-        if (state.paletteFilter === 'correct' && !isFirstTryCorrect) return false;
-        if (state.paletteFilter === 'retried' && !isSolvedOnRetry) return false;
-        if (state.paletteFilter === 'wrong' && !isWrong) return false;
-        if (state.paletteFilter === 'unattempted' && hasAttempt) return false;
-        if (state.paletteFilter === 'bookmarked' && !isBookmarked) return false;
+      function saveStoredData() {
+        const key = `algomcq_${state.currentTopicId}_data`;
+        try {
+          const payload = {
+            userAnswers: state.userAnswers,
+            wrongAnswers: state.wrongAnswers || {},
+            bookmarks: Array.from(state.bookmarks)
+          };
+          localStorage.setItem(key, JSON.stringify(payload));
+        } catch (e) {
+          console.warn('Failed to save to localStorage:', e);
+        }
       }
 
-      return true;
-    });
-  }
+      // Filter questions according to current filters
+      function getFilteredQuestions() {
+        const topic = getCurrentTopic();
+        const all = topic.questions || [];
 
-  // Format Code in Question if found
-  function formatQuestionText(text) {
-    text = (text || '').trim();
+        return all.filter((q) => {
+          // Search query filter
+          if (state.searchQuery) {
+            const qText = (q.question + ' ' + Object.values(q.options).join(' ')).toLowerCase();
+            if (!qText.includes(state.searchQuery)) {
+              return false;
+            }
+          }
 
-    // 1. Backtick code blocks: e.g. "What is the output? `int x=7; ...`"
-    if (text.includes('`')) {
-      const parts = text.split('`');
-      if (parts.length >= 3) {
-        const prompt = parts[0].trim();
-        const code = parts[1].trim();
-        const rest = parts.slice(2).join('`').trim();
-        const fullPrompt = [prompt, rest].filter(Boolean).join(' ');
+          // Palette drawer quick status filter
+          if (state.paletteFilter !== 'all') {
+            const userAnswer = state.userAnswers[q.id];
+            const wrongs = state.wrongAnswers[q.id] || [];
+            const isAnswered = userAnswer !== undefined;
+            const isFirstTryCorrect = isAnswered && userAnswer === q.answer && wrongs.length === 0;
+            const isSolvedOnRetry = isAnswered && userAnswer === q.answer && wrongs.length > 0;
+            const isWrong = (isAnswered && userAnswer !== q.answer) || (!isAnswered && wrongs.length > 0);
+            const hasAttempt = isAnswered || wrongs.length > 0;
+            const isBookmarked = state.bookmarks.has(q.id);
+
+            if (state.paletteFilter === 'correct' && !isFirstTryCorrect) return false;
+            if (state.paletteFilter === 'retried' && !isSolvedOnRetry) return false;
+            if (state.paletteFilter === 'wrong' && !isWrong) return false;
+            if (state.paletteFilter === 'unattempted' && hasAttempt) return false;
+            if (state.paletteFilter === 'bookmarked' && !isBookmarked) return false;
+          }
+
+          return true;
+        });
+      }
+
+      // Format Code in Question if found
+      function formatQuestionText(text) {
+        text = (text || '').trim();
+
+        // 1. Backtick code blocks: e.g. "What is the output? `int x=7; ...`"
+        if (text.includes('`')) {
+          const parts = text.split('`');
+          if (parts.length >= 3) {
+            const prompt = parts[0].trim();
+            const code = parts[1].trim();
+            const rest = parts.slice(2).join('`').trim();
+            const fullPrompt = [prompt, rest].filter(Boolean).join(' ');
+            let out = '';
+            if (fullPrompt) out += `<div class="question-text">${escapeHTML(fullPrompt)}</div>`;
+            if (code) out += `<div class="code-snippet">${escapeHTML(code)}</div>`;
+            return out;
+          }
+        }
+
+        // 2. C programs starting with #include or int main / void main
+        const cMatch = text.match(/(\s*(#include|int\s+main|void\s+main)\b[\s\S]*)/);
+        if (cMatch) {
+          const idx = cMatch.index;
+          const prompt = text.slice(0, idx).trim();
+          const code = text.slice(idx).trim();
+          let out = '';
+          if (prompt) out += `<div class="question-text">${escapeHTML(prompt)}</div>`;
+          if (code) out += `<div class="code-snippet">${escapeHTML(code)}</div>`;
+          return out;
+        }
+
+        // 3. Multi-line code check
+        const codeKeywords = ['int[]', 'for (', 'while (', 'System.out', 'class ', 'Node ', 'Stack<', 'Queue<', 'Map<', 'PriorityQueue<', 'Deque<', 'boolean check('];
+        const hasCode = codeKeywords.some(kw => text.includes(kw));
+
+        if (!hasCode) {
+          return `<div class="question-text">${escapeHTML(text)}</div>`;
+        }
+
+        const lines = text.split('\n');
+        let promptLines = [];
+        let codeLines = [];
+        let inCode = false;
+
+        lines.forEach(line => {
+          const trimmed = line.trim();
+          if (!inCode && (codeKeywords.some(kw => trimmed.startsWith(kw)) || trimmed.startsWith('//') || trimmed.includes('{') || trimmed.endsWith(';'))) {
+            inCode = true;
+          }
+          if (inCode) {
+            codeLines.push(line);
+          } else {
+            promptLines.push(line);
+          }
+        });
+
+        const prompt = promptLines.join('\n').trim();
+        const code = codeLines.join('\n').trim();
         let out = '';
-        if (fullPrompt) out += `<div class="question-text">${escapeHTML(fullPrompt)}</div>`;
+        if (prompt) out += `<div class="question-text">${escapeHTML(prompt)}</div>`;
         if (code) out += `<div class="code-snippet">${escapeHTML(code)}</div>`;
-        return out;
+        return out || `<div class="question-text">${escapeHTML(text)}</div>`;
       }
-    }
 
-    // 2. C programs starting with #include or int main / void main
-    const cMatch = text.match(/(\s*(#include|int\s+main|void\s+main)\b[\s\S]*)/);
-    if (cMatch) {
-      const idx = cMatch.index;
-      const prompt = text.slice(0, idx).trim();
-      const code = text.slice(idx).trim();
-      let out = '';
-      if (prompt) out += `<div class="question-text">${escapeHTML(prompt)}</div>`;
-      if (code) out += `<div class="code-snippet">${escapeHTML(code)}</div>`;
-      return out;
-    }
-
-    // 3. Multi-line code check
-    const codeKeywords = ['int[]', 'for (', 'while (', 'System.out', 'class ', 'Node ', 'Stack<', 'Queue<', 'Map<', 'PriorityQueue<', 'Deque<', 'boolean check('];
-    const hasCode = codeKeywords.some(kw => text.includes(kw));
-
-    if (!hasCode) {
-      return `<div class="question-text">${escapeHTML(text)}</div>`;
-    }
-
-    const lines = text.split('\n');
-    let promptLines = [];
-    let codeLines = [];
-    let inCode = false;
-
-    lines.forEach(line => {
-      const trimmed = line.trim();
-      if (!inCode && (codeKeywords.some(kw => trimmed.startsWith(kw)) || trimmed.startsWith('//') || trimmed.includes('{') || trimmed.endsWith(';'))) {
-        inCode = true;
+      function escapeHTML(str) {
+        return str
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
       }
-      if (inCode) {
-        codeLines.push(line);
-      } else {
-        promptLines.push(line);
-      }
-    });
 
-    const prompt = promptLines.join('\n').trim();
-    const code = codeLines.join('\n').trim();
-    let out = '';
-    if (prompt) out += `<div class="question-text">${escapeHTML(prompt)}</div>`;
-    if (code) out += `<div class="code-snippet">${escapeHTML(code)}</div>`;
-    return out || `<div class="question-text">${escapeHTML(text)}</div>`;
-  }
+      // Render Questions
+      function render() {
+        const topic = getCurrentTopic();
+        const allQuestions = topic.questions || [];
+        const filteredQuestions = getFilteredQuestions();
 
-  function escapeHTML(str) {
-    return str
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
-  }
+        // Ensure valid index
+        if (state.currentIndex >= filteredQuestions.length) {
+          state.currentIndex = Math.max(0, filteredQuestions.length - 1);
+        }
 
-  // Render Questions
-  function render() {
-    const topic = getCurrentTopic();
-    const allQuestions = topic.questions || [];
-    const filteredQuestions = getFilteredQuestions();
+        // Update Top & Single Nav Indicators
+        updateStatsBar(allQuestions);
+        updatePaletteDrawer(allQuestions);
 
-    // Ensure valid index
-    if (state.currentIndex >= filteredQuestions.length) {
-      state.currentIndex = Math.max(0, filteredQuestions.length - 1);
-    }
-
-    // Update Top & Single Nav Indicators
-    updateStatsBar(allQuestions);
-    updatePaletteDrawer(allQuestions);
-
-    if (filteredQuestions.length === 0) {
-      elements.questionsContainer.innerHTML = `
+        if (filteredQuestions.length === 0) {
+          elements.questionsContainer.innerHTML = `
         <div class="question-card" style="text-align: center; padding: 3rem 1.5rem;">
           <h3 style="margin-bottom: 0.5rem;">🔍 No Questions Found</h3>
           <p style="color: var(--text-muted); margin-bottom: 1.25rem;">No questions match your current search or filter criteria.</p>
           <button id="clearFiltersBtn" class="btn-primary">Clear Filters</button>
         </div>
       `;
-      document.getElementById('clearFiltersBtn')?.addEventListener('click', () => {
-        state.searchQuery = '';
-        state.paletteFilter = 'all';
-        elements.paletteFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'all'));
-        render();
-      });
+          document.getElementById('clearFiltersBtn')?.addEventListener('click', () => {
+            state.searchQuery = '';
+            state.paletteFilter = 'all';
+            elements.paletteFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'all'));
+            render();
+          });
 
-      if (state.viewMode === 'single') {
-        elements.singleNavBar.style.display = 'none';
+          if (state.viewMode === 'single') {
+            elements.singleNavBar.style.display = 'none';
+          }
+          return;
+        }
+
+        if (state.viewMode === 'single') {
+          elements.singleNavBar.style.display = 'flex';
+          elements.questionsContainer.className = 'questions-container single-view';
+
+          const currentQ = filteredQuestions[state.currentIndex];
+          elements.jumpInput.value = state.currentIndex + 1;
+          elements.jumpTotal.textContent = filteredQuestions.length;
+          elements.jumpInput.max = filteredQuestions.length;
+
+          // Update Prev / Next buttons
+          elements.prevQuestionBtn.disabled = state.currentIndex === 0;
+          elements.nextQuestionBtn.disabled = state.currentIndex === filteredQuestions.length - 1;
+
+          // Update Single Bookmark button
+          const isBookmarked = state.bookmarks.has(currentQ.id);
+          elements.bookmarkBtn.classList.toggle('active', isBookmarked);
+          elements.bookmarkBtn.querySelector('.star-text').textContent = isBookmarked ? 'Bookmarked' : 'Bookmark';
+
+          // Render Single Card
+          elements.questionsContainer.innerHTML = createQuestionCardHTML(currentQ, state.currentIndex + 1, filteredQuestions.length);
+        } else {
+          // List View
+          elements.singleNavBar.style.display = 'none';
+          elements.questionsContainer.className = 'questions-container list-view';
+
+          elements.questionsContainer.innerHTML = filteredQuestions.map((q, idx) => {
+            return createQuestionCardHTML(q, idx + 1, filteredQuestions.length);
+          }).join('');
+        }
+
+        // Attach Event Listeners to Options and Buttons
+        attachCardEventListeners();
       }
-      return;
-    }
 
-    if (state.viewMode === 'single') {
-      elements.singleNavBar.style.display = 'flex';
-      elements.questionsContainer.className = 'questions-container single-view';
+      // Helper to cancel any pending auto next transition
+      let autoNextTimer = null;
+      function cancelAutoNext() {
+        if (autoNextTimer) {
+          clearTimeout(autoNextTimer);
+          autoNextTimer = null;
+        }
+      }
 
-      const currentQ = filteredQuestions[state.currentIndex];
-      elements.jumpInput.value = state.currentIndex + 1;
-      elements.jumpTotal.textContent = filteredQuestions.length;
-      elements.jumpInput.max = filteredQuestions.length;
+      // Navigation Next / Prev functions (accessible globally within controller)
+      function goPrev() {
+        cancelAutoNext();
+        if (state.currentIndex > 0) {
+          state.currentIndex--;
+          render();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
 
-      // Update Prev / Next buttons
-      elements.prevQuestionBtn.disabled = state.currentIndex === 0;
-      elements.nextQuestionBtn.disabled = state.currentIndex === filteredQuestions.length - 1;
+      function goNext() {
+        cancelAutoNext();
+        const filtered = getFilteredQuestions();
+        if (state.currentIndex < filtered.length - 1) {
+          state.currentIndex++;
+          render();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
 
-      // Update Single Bookmark button
-      const isBookmarked = state.bookmarks.has(currentQ.id);
-      elements.bookmarkBtn.classList.toggle('active', isBookmarked);
-      elements.bookmarkBtn.querySelector('.star-text').textContent = isBookmarked ? 'Bookmarked' : 'Bookmark';
+      // HTML generator for a single question card
+      function createQuestionCardHTML(q, displayNum, totalCount) {
+        const userAnswer = state.userAnswers[q.id];
+        const wrongs = state.wrongAnswers[q.id] || [];
+        const isAnswered = userAnswer !== undefined;
+        const isFirstTryCorrect = isAnswered && userAnswer === q.answer && wrongs.length === 0;
+        const isSolvedOnRetry = isAnswered && userAnswer === q.answer && wrongs.length > 0;
+        const isCorrect = isAnswered && userAnswer === q.answer;
+        const hasWrongs = !isAnswered && wrongs.length > 0;
+        const isBookmarked = state.bookmarks.has(q.id);
 
-      // Render Single Card
-      elements.questionsContainer.innerHTML = createQuestionCardHTML(currentQ, state.currentIndex + 1, filteredQuestions.length);
-    } else {
-      // List View
-      elements.singleNavBar.style.display = 'none';
-      elements.questionsContainer.className = 'questions-container list-view';
+        // Badges
+        let statusBadgeClass = '';
+        let statusBadgeText = '';
+        if (isFirstTryCorrect) {
+          statusBadgeClass = 'correct';
+          statusBadgeText = '✓ Correct';
+        } else if (isSolvedOnRetry) {
+          statusBadgeClass = 'retried';
+          statusBadgeText = '🔄 Solved on Retry';
+        } else if (isAnswered) {
+          statusBadgeClass = 'wrong';
+          statusBadgeText = '✕ Incorrect';
+        } else if (hasWrongs) {
+          statusBadgeClass = 'wrong';
+          statusBadgeText = '✕ Try Again';
+        }
 
-      elements.questionsContainer.innerHTML = filteredQuestions.map((q, idx) => {
-        return createQuestionCardHTML(q, idx + 1, filteredQuestions.length);
-      }).join('');
-    }
+        // Options HTML (Supports A-D or A-F dynamically)
+        const optionKeys = Object.keys(q.options).sort();
+        const optionsHTML = optionKeys.map(letter => {
+          const optText = q.options[letter] || '';
+          let optClass = 'option-item';
+          let icon = '';
+          let isDisabled = false;
 
-    // Attach Event Listeners to Options and Buttons
-    attachCardEventListeners();
-  }
-
-  // Helper to cancel any pending auto next transition
-  let autoNextTimer = null;
-  function cancelAutoNext() {
-    if (autoNextTimer) {
-      clearTimeout(autoNextTimer);
-      autoNextTimer = null;
-    }
-  }
-
-  // Navigation Next / Prev functions (accessible globally within controller)
-  function goPrev() {
-    cancelAutoNext();
-    if (state.currentIndex > 0) {
-      state.currentIndex--;
-      render();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }
-
-  function goNext() {
-    cancelAutoNext();
-    const filtered = getFilteredQuestions();
-    if (state.currentIndex < filtered.length - 1) {
-      state.currentIndex++;
-      render();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }
-
-  // HTML generator for a single question card
-  function createQuestionCardHTML(q, displayNum, totalCount) {
-    const userAnswer = state.userAnswers[q.id];
-    const wrongs = state.wrongAnswers[q.id] || [];
-    const isAnswered = userAnswer !== undefined;
-    const isFirstTryCorrect = isAnswered && userAnswer === q.answer && wrongs.length === 0;
-    const isSolvedOnRetry = isAnswered && userAnswer === q.answer && wrongs.length > 0;
-    const isCorrect = isAnswered && userAnswer === q.answer;
-    const hasWrongs = !isAnswered && wrongs.length > 0;
-    const isBookmarked = state.bookmarks.has(q.id);
-
-    // Badges
-    let statusBadgeClass = '';
-    let statusBadgeText = '';
-    if (isFirstTryCorrect) {
-      statusBadgeClass = 'correct';
-      statusBadgeText = '✓ Correct';
-    } else if (isSolvedOnRetry) {
-      statusBadgeClass = 'retried';
-      statusBadgeText = '🔄 Solved on Retry';
-    } else if (isAnswered) {
-      statusBadgeClass = 'wrong';
-      statusBadgeText = '✕ Incorrect';
-    } else if (hasWrongs) {
-      statusBadgeClass = 'wrong';
-      statusBadgeText = '✕ Try Again';
-    }
-
-    // Options HTML (Supports A-D or A-F dynamically)
-    const optionKeys = Object.keys(q.options).sort();
-    const optionsHTML = optionKeys.map(letter => {
-      const optText = q.options[letter] || '';
-      let optClass = 'option-item';
-      let icon = '';
-      let isDisabled = false;
-
-      if (state.mode === 'quiz') {
-        if (isAnswered) {
-          optClass += ' locked';
-          isDisabled = true;
-          if (letter === userAnswer) {
-            if (isCorrect) {
-              optClass += ' selected-correct';
+          if (state.mode === 'quiz') {
+            if (isAnswered) {
+              optClass += ' locked';
+              isDisabled = true;
+              if (letter === userAnswer) {
+                if (isCorrect) {
+                  optClass += ' selected-correct';
+                  icon = '✓';
+                } else {
+                  optClass += ' selected-wrong';
+                  icon = '✕';
+                }
+              } else if (letter === q.answer) {
+                // Reveal correct answer if user got it wrong
+                optClass += ' revealed-correct';
+                icon = '✓';
+              } else if (wrongs.includes(letter)) {
+                optClass += ' selected-wrong';
+                icon = '✕';
+              }
+            } else if (wrongs.includes(letter)) {
+              // This specific option was tried and was incorrect (Retry mode)
+              optClass += ' selected-wrong locked';
+              icon = '✕';
+              isDisabled = true;
+            }
+          } else {
+            // Read Mode: highlight correct answer directly
+            isDisabled = true;
+            if (letter === q.answer) {
+              optClass += ' is-read-answer locked';
               icon = '✓';
             } else {
-              optClass += ' selected-wrong';
-              icon = '✕';
+              optClass += ' locked';
             }
-          } else if (letter === q.answer) {
-            // Reveal correct answer if user got it wrong
-            optClass += ' revealed-correct';
-            icon = '✓';
-          } else if (wrongs.includes(letter)) {
-            optClass += ' selected-wrong';
-            icon = '✕';
           }
-        } else if (wrongs.includes(letter)) {
-          // This specific option was tried and was incorrect (Retry mode)
-          optClass += ' selected-wrong locked';
-          icon = '✕';
-          isDisabled = true;
-        }
-      } else {
-        // Read Mode: highlight correct answer directly
-        isDisabled = true;
-        if (letter === q.answer) {
-          optClass += ' is-read-answer locked';
-          icon = '✓';
-        } else {
-          optClass += ' locked';
-        }
-      }
 
-      return `
+          return `
         <button class="${optClass}" data-qid="${q.id}" data-option="${letter}" ${isDisabled ? 'disabled' : ''}>
           <span class="option-letter">${letter}</span>
           <span class="option-text">${escapeHTML(optText)}</span>
           <span class="option-status-icon">${icon}</span>
         </button>
       `;
-    }).join('');
+        }).join('');
 
-    // Study Note box (always shown in Read Mode, and shown in Quiz Mode after answering, or always if no valid option)
-    let studyNoteHTML = '';
-    const hasNoValidOption = !q.options || !q.options[q.answer] || q.answer === 'None';
+        // Study Note box (always shown in Read Mode, and shown in Quiz Mode after answering, or always if no valid option)
+        let studyNoteHTML = '';
+        const hasNoValidOption = !q.options || !q.options[q.answer] || q.answer === 'None';
 
-    if (state.mode === 'read' || isAnswered || (hasNoValidOption && state.mode === 'read')) {
-      studyNoteHTML = `
+        if (state.mode === 'read' || isAnswered || (hasNoValidOption && state.mode === 'read')) {
+          studyNoteHTML = `
         <div class="study-note-box ${hasNoValidOption ? 'near-question' : ''}">
           <span class="note-icon">💡</span>
           <div class="note-content">
-            ${q.options && q.options[q.answer] 
-              ? `<strong>Correct Answer: Option ${q.answer}</strong> — <span>${escapeHTML(q.options[q.answer] || '')}</span>` 
+            ${q.options && q.options[q.answer]
+              ? `<strong>Correct Answer: Option ${q.answer}</strong> — <span>${escapeHTML(q.options[q.answer] || '')}</span>`
               : `<strong>Correct Answer: Option ${escapeHTML(q.answer || 'None')} —</strong>`}
             ${q.explanation ? `<div style="margin-top: 0.4rem; color: #38bdf8; font-size: 0.84rem; font-weight: 500;">ℹ️ ${escapeHTML(q.explanation)}</div>` : ''}
             <div style="margin-top: 0.35rem; color: var(--text-muted); font-size: 0.78rem;">
@@ -792,9 +815,9 @@
           </div>
         </div>
       `;
-    }
+        }
 
-    return `
+        return `
       <article class="question-card" id="qcard-${q.id}">
         <div class="card-header">
           <div class="card-badges">
@@ -819,593 +842,594 @@
         ${!hasNoValidOption && studyNoteHTML ? studyNoteHTML : ''}
       </article>
     `;
-  }
+      }
 
-  // Attach card event listeners
-  function attachCardEventListeners() {
-    // Option Clicks in Quiz Mode
-    if (state.mode === 'quiz') {
-      const optionButtons = elements.questionsContainer.querySelectorAll('.option-item:not(.locked)');
-      optionButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          const qid = parseInt(btn.dataset.qid, 10);
-          const chosenOption = btn.dataset.option;
-          handleOptionSelect(qid, chosenOption);
+      // Attach card event listeners
+      function attachCardEventListeners() {
+        // Option Clicks in Quiz Mode
+        if (state.mode === 'quiz') {
+          const optionButtons = elements.questionsContainer.querySelectorAll('.option-item:not(.locked)');
+          optionButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              const qid = parseInt(btn.dataset.qid, 10);
+              const chosenOption = btn.dataset.option;
+              handleOptionSelect(qid, chosenOption);
+            });
+          });
+        }
+
+        // Card Bookmark star clicks
+        const starButtons = elements.questionsContainer.querySelectorAll('.card-star-btn');
+        starButtons.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const qid = parseInt(btn.dataset.qid, 10);
+            toggleBookmark(qid);
+          });
         });
-      });
-    }
-
-    // Card Bookmark star clicks
-    const starButtons = elements.questionsContainer.querySelectorAll('.card-star-btn');
-    starButtons.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const qid = parseInt(btn.dataset.qid, 10);
-        toggleBookmark(qid);
-      });
-    });
-  }
-
-  // Handle user selecting an option in Quiz Test Mode
-  function handleOptionSelect(qid, chosenOption) {
-    if (state.userAnswers[qid] !== undefined) return; // already answered
-
-    const topic = getCurrentTopic();
-    const question = topic.questions.find(q => q.id === qid);
-    if (!question) return;
-
-    // Check if this option was already tried and incorrect
-    const currentWrongs = state.wrongAnswers[qid] || [];
-    if (currentWrongs.includes(chosenOption)) return;
-
-    const isCorrect = chosenOption === question.answer;
-
-    if (isCorrect) {
-      // Record answer
-      state.userAnswers[qid] = chosenOption;
-      saveStoredData();
-
-      // Re-render
-      render();
-      if (currentWrongs.length > 0) {
-        showToast(`🔄 Solved on retry! Option ${chosenOption}`);
-      } else {
-        showToast(`🎯 Correct! Option ${chosenOption}`);
       }
 
-      // Auto Next if enabled
-      if (state.autoNext) {
-        cancelAutoNext();
-        autoNextTimer = setTimeout(() => {
-          autoNextTimer = null;
-          goNext();
-        }, 700);
-      }
-    } else {
-      // Incorrect answer
-      if (state.allowRetry) {
-        // Record wrong attempt
-        if (!state.wrongAnswers[qid]) {
-          state.wrongAnswers[qid] = [];
-        }
-        if (!state.wrongAnswers[qid].includes(chosenOption)) {
-          state.wrongAnswers[qid].push(chosenOption);
-        }
+      // Handle user selecting an option in Quiz Test Mode
+      function handleOptionSelect(qid, chosenOption) {
+        if (state.userAnswers[qid] !== undefined) return; // already answered
 
-        // Check if all options have been tried or if question has no valid option in options list
-        const optionKeys = Object.keys(question.options || {});
-        const remainingOptions = optionKeys.filter(k => !state.wrongAnswers[qid].includes(k));
+        const topic = getCurrentTopic();
+        const question = topic.questions.find(q => q.id === qid);
+        if (!question) return;
 
-        if (remainingOptions.length === 0 || question.answer === 'None' || !question.options[question.answer]) {
-          // All options exhausted: finalize question as incorrect
+        // Check if this option was already tried and incorrect
+        const currentWrongs = state.wrongAnswers[qid] || [];
+        if (currentWrongs.includes(chosenOption)) return;
+
+        const isCorrect = chosenOption === question.answer;
+
+        if (isCorrect) {
+          // Record answer
           state.userAnswers[qid] = chosenOption;
           saveStoredData();
+
+          // Re-render
           render();
-          if (question.options && question.options[question.answer]) {
-            showToast(`❌ Incorrect. Correct answer is Option ${question.answer}`);
+          if (currentWrongs.length > 0) {
+            showToast(`🔄 Solved on retry! Option ${chosenOption}`);
           } else {
-            showToast(`❌ Incorrect. All options are wrong.`);
+            showToast(`🎯 Correct! Option ${chosenOption}`);
+          }
+
+          // Auto Next if enabled
+          if (state.autoNext) {
+            cancelAutoNext();
+            autoNextTimer = setTimeout(() => {
+              autoNextTimer = null;
+              goNext();
+            }, 700);
           }
         } else {
-          saveStoredData();
-          render();
-          showToast(`❌ Option ${chosenOption} is incorrect. Try another option!`);
+          // Incorrect answer
+          if (state.allowRetry) {
+            // Record wrong attempt
+            if (!state.wrongAnswers[qid]) {
+              state.wrongAnswers[qid] = [];
+            }
+            if (!state.wrongAnswers[qid].includes(chosenOption)) {
+              state.wrongAnswers[qid].push(chosenOption);
+            }
+
+            // Check if all options have been tried or if question has no valid option in options list
+            const optionKeys = Object.keys(question.options || {});
+            const remainingOptions = optionKeys.filter(k => !state.wrongAnswers[qid].includes(k));
+
+            if (remainingOptions.length === 0 || question.answer === 'None' || !question.options[question.answer]) {
+              // All options exhausted: finalize question as incorrect
+              state.userAnswers[qid] = chosenOption;
+              saveStoredData();
+              render();
+              if (question.options && question.options[question.answer]) {
+                showToast(`❌ Incorrect. Correct answer is Option ${question.answer}`);
+              } else {
+                showToast(`❌ Incorrect. All options are wrong.`);
+              }
+            } else {
+              saveStoredData();
+              render();
+              showToast(`❌ Option ${chosenOption} is incorrect. Try another option!`);
+            }
+          } else {
+            // Standard mode without retry: lock immediately and reveal correct answer
+            state.userAnswers[qid] = chosenOption;
+            saveStoredData();
+            render();
+
+            if (question.options && question.options[question.answer]) {
+              showToast(`❌ Incorrect. Correct answer is Option ${question.answer}`);
+            } else {
+              showToast(`❌ Incorrect. All options are wrong. Right answer is not given in options.`);
+            }
+          }
         }
-      } else {
-        // Standard mode without retry: lock immediately and reveal correct answer
-        state.userAnswers[qid] = chosenOption;
+      }
+
+      // Toggle Bookmark
+      function toggleBookmark(qid) {
+        if (state.bookmarks.has(qid)) {
+          state.bookmarks.delete(qid);
+          showToast(`Removed Q${qid} from bookmarks`);
+        } else {
+          state.bookmarks.add(qid);
+          showToast(`⭐ Bookmarked Q${qid}`);
+        }
         saveStoredData();
         render();
-
-        if (question.options && question.options[question.answer]) {
-          showToast(`❌ Incorrect. Correct answer is Option ${question.answer}`);
-        } else {
-          showToast(`❌ Incorrect. All options are wrong. Right answer is not given in options.`);
-        }
       }
-    }
-  }
 
-  // Toggle Bookmark
-  function toggleBookmark(qid) {
-    if (state.bookmarks.has(qid)) {
-      state.bookmarks.delete(qid);
-      showToast(`Removed Q${qid} from bookmarks`);
-    } else {
-      state.bookmarks.add(qid);
-      showToast(`⭐ Bookmarked Q${qid}`);
-    }
-    saveStoredData();
-    render();
-  }
+      // Update Top Stats Bar & Progress Track
+      function updateStatsBar(allQuestions) {
+        const total = allQuestions.length;
+        let answered = 0;
+        let correct = 0;
+        let retried = 0;
+        let wrong = 0;
 
-  // Update Top Stats Bar & Progress Track
-  function updateStatsBar(allQuestions) {
-    const total = allQuestions.length;
-    let answered = 0;
-    let correct = 0;
-    let retried = 0;
-    let wrong = 0;
+        allQuestions.forEach(q => {
+          const ans = state.userAnswers[q.id];
+          const wrongs = state.wrongAnswers[q.id] || [];
+          const isAnswered = ans !== undefined;
+          const isFirstTryCorrect = isAnswered && ans === q.answer && wrongs.length === 0;
+          const isSolvedOnRetry = isAnswered && ans === q.answer && wrongs.length > 0;
+          const isWrong = (isAnswered && ans !== q.answer) || (!isAnswered && wrongs.length > 0);
 
-    allQuestions.forEach(q => {
-      const ans = state.userAnswers[q.id];
-      const wrongs = state.wrongAnswers[q.id] || [];
-      const isAnswered = ans !== undefined;
-      const isFirstTryCorrect = isAnswered && ans === q.answer && wrongs.length === 0;
-      const isSolvedOnRetry = isAnswered && ans === q.answer && wrongs.length > 0;
-      const isWrong = (isAnswered && ans !== q.answer) || (!isAnswered && wrongs.length > 0);
-
-      if (isFirstTryCorrect) {
-        answered++;
-        correct++;
-      } else if (isSolvedOnRetry) {
-        answered++;
-        retried++;
-      } else if (isWrong) {
-        answered++;
-        wrong++;
-      }
-    });
-
-    const accuracy = answered > 0 ? Math.round((correct / answered) * 100) : 0;
-    const progressPercent = total > 0 ? Math.round((answered / total) * 100) : 0;
-
-    elements.statTotal.textContent = total;
-    elements.statAnswered.textContent = answered;
-    elements.statCorrect.textContent = correct;
-    if (elements.statRetried) elements.statRetried.textContent = retried;
-    elements.statWrong.textContent = wrong;
-    if (elements.statAccuracy) elements.statAccuracy.textContent = `${accuracy}%`;
-    elements.progressBarFill.style.width = `${progressPercent}%`;
-
-    // Update Drawer Chips counts
-    const unattempted = total - answered;
-    const bookmarkedCount = state.bookmarks.size;
-
-    elements.chipAll.textContent = total;
-    elements.chipCorrect.textContent = correct;
-    if (elements.chipRetried) elements.chipRetried.textContent = retried;
-    elements.chipWrong.textContent = wrong;
-    elements.chipUnattempted.textContent = unattempted;
-    elements.chipBookmarked.textContent = bookmarkedCount;
-
-    // Modal Stats update
-    elements.modalTotal.textContent = total;
-    elements.modalAnswered.textContent = answered;
-    elements.modalCorrect.textContent = correct;
-    if (elements.modalRetried) elements.modalRetried.textContent = retried;
-    elements.modalWrong.textContent = wrong;
-    elements.modalAccuracy.textContent = `${accuracy}%`;
-    elements.scoreCircle.style.setProperty('--acc', accuracy);
-  }
-
-  // Update Palette Drawer (1-300 Grid)
-  function updatePaletteDrawer(allQuestions) {
-    const filteredQuestions = getFilteredQuestions();
-    const currentQ = filteredQuestions[state.currentIndex];
-
-    elements.paletteGrid.innerHTML = allQuestions.map((q, idx) => {
-      const ans = state.userAnswers[q.id];
-      const wrongs = state.wrongAnswers[q.id] || [];
-      const isAnswered = ans !== undefined;
-      const isFirstTryCorrect = isAnswered && ans === q.answer && wrongs.length === 0;
-      const isSolvedOnRetry = isAnswered && ans === q.answer && wrongs.length > 0;
-      const isWrong = (isAnswered && ans !== q.answer) || (!isAnswered && wrongs.length > 0);
-      const isBookmarked = state.bookmarks.has(q.id);
-      const isCurrent = currentQ && currentQ.id === q.id;
-
-      let cls = 'palette-item';
-      if (isFirstTryCorrect) cls += ' correct';
-      else if (isSolvedOnRetry) cls += ' retried';
-      else if (isWrong) cls += ' wrong';
-      if (isBookmarked) cls += ' bookmarked';
-      if (isCurrent && state.viewMode === 'single') cls += ' current';
-
-      return `<button class="${cls}" data-qid="${q.id}" title="Q${q.id}: ${q.subtopic || ''}">${q.id}</button>`;
-    }).join('');
-
-    // Attach click events on palette items to jump directly to question
-    elements.paletteGrid.querySelectorAll('.palette-item').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const targetQid = parseInt(btn.dataset.qid, 10);
-        jumpToQuestionId(targetQid);
-        if (window.innerWidth <= 1024) {
-          elements.paletteDrawer.classList.remove('open');
-        }
-      });
-    });
-  }
-
-  // Jump to Question by QID
-  function jumpToQuestionId(targetQid) {
-    cancelAutoNext();
-    // If target question is hidden by current filters, reset filter to 'all' so it is visible
-    const filtered = getFilteredQuestions();
-    let index = filtered.findIndex(q => q.id === targetQid);
-
-    if (index === -1) {
-      state.searchQuery = '';
-      state.paletteFilter = 'all';
-      elements.searchInput.value = '';
-      elements.paletteFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'all'));
-      const refiltered = getFilteredQuestions();
-      index = refiltered.findIndex(q => q.id === targetQid);
-    }
-
-    if (index !== -1) {
-      state.currentIndex = index;
-      if (state.viewMode === 'list') {
-        render();
-        const card = document.getElementById(`qcard-${targetQid}`);
-        if (card) {
-          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      } else {
-        render();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }
-  }
-
-  // Update Level Switcher Buttons
-  function updateLevelTabs() {
-    const topic = getCurrentTopic();
-    const currentLvl = topic.level || (LEVEL_CONFIG.basic.topicOrder.includes(state.currentTopicId) ? 'basic' : 'intermediate');
-    state.currentLevel = currentLvl;
-
-    if (elements.levelBasicBtn && elements.levelInterBtn) {
-      const isBasic = currentLvl === 'basic';
-      elements.levelBasicBtn.classList.toggle('active', isBasic);
-      elements.levelBasicBtn.setAttribute('aria-selected', isBasic ? 'true' : 'false');
-      elements.levelInterBtn.classList.toggle('active', !isBasic);
-      elements.levelInterBtn.setAttribute('aria-selected', !isBasic ? 'true' : 'false');
-    }
-  }
-
-  // Setup Topics Selector: shows ONLY the courses of the current active level
-  function initTopics() {
-    const topics = window.TOPICS || {};
-    const lvlKey = state.currentLevel === 'intermediate' ? 'intermediate' : 'basic';
-    const cfg = LEVEL_CONFIG[lvlKey];
-
-    let html = '';
-    cfg.topicOrder.forEach(key => {
-      const t = topics[key];
-      if (t) {
-        const count = (t.questions || []).length;
-        html += `<option value="${key}" ${key === state.currentTopicId ? 'selected' : ''}>${t.icon || '📚'} ${escapeHTML(t.title)} (${count} Qs)</option>`;
-      }
-    });
-
-    elements.topicSelect.innerHTML = html;
-    elements.topicSelect.value = state.currentTopicId;
-    updateLevelTabs();
-  }
-
-  // Switch Topic within the current level
-  function switchTopic(topicId) {
-    cancelAutoNext();
-    state.currentTopicId = topicId;
-    localStorage.setItem('algomcq_last_topic', state.currentTopicId);
-    state.currentIndex = 0;
-    state.searchQuery = '';
-    state.paletteFilter = 'all';
-    elements.topicSelect.value = state.currentTopicId;
-    loadStoredData();
-    render();
-    showToast(`Switched to ${getCurrentTopic().title}`);
-  }
-
-  // Switch Level: switches level and updates dropdown to ONLY show that level's courses
-  function switchLevel(levelKey) {
-    cancelAutoNext();
-    state.currentLevel = levelKey;
-    const cfg = LEVEL_CONFIG[levelKey];
-    
-    // If current topic is not in the new level, select first course of this level
-    if (!cfg.topicOrder.includes(state.currentTopicId)) {
-      state.currentTopicId = cfg.topicOrder[0];
-    }
-    
-    localStorage.setItem('algomcq_last_topic', state.currentTopicId);
-    state.currentIndex = 0;
-    state.searchQuery = '';
-    state.paletteFilter = 'all';
-
-    initTopics();
-    loadStoredData();
-    render();
-    showToast(`Switched to ${cfg.name}`);
-  }
-
-  // Helper for checkbox visually active class
-  function updateCheckboxVisual(labelEl, isChecked) {
-    if (!labelEl) return;
-    labelEl.classList.toggle('checked', isChecked);
-  }
-
-  // Event Listeners Initialization
-  function setupEventListeners() {
-    // Level Switcher Buttons
-    elements.levelBasicBtn?.addEventListener('click', () => {
-      if (state.currentLevel === 'basic') return;
-      switchLevel('basic');
-    });
-
-    elements.levelInterBtn?.addEventListener('click', () => {
-      if (state.currentLevel === 'intermediate') return;
-      switchLevel('intermediate');
-    });
-
-    // Topic Change
-    elements.topicSelect.addEventListener('change', (e) => {
-      switchTopic(e.target.value);
-    });
-
-    // Mode Toggle (Quiz Test vs Read Mode)
-    elements.modeQuizBtn.addEventListener('click', () => {
-      if (state.mode === 'quiz') return;
-      state.mode = 'quiz';
-      document.body.classList.remove('mode-read');
-      elements.modeQuizBtn.classList.add('active');
-      elements.modeQuizBtn.setAttribute('aria-selected', 'true');
-      elements.modeReadBtn.classList.remove('active');
-      elements.modeReadBtn.setAttribute('aria-selected', 'false');
-      render();
-      showToast('🎯 Quiz Test Mode active - Click options to test yourself');
-    });
-
-    elements.modeReadBtn.addEventListener('click', () => {
-      if (state.mode === 'read') return;
-      cancelAutoNext();
-      state.mode = 'read';
-      document.body.classList.add('mode-read');
-      elements.modeReadBtn.classList.add('active');
-      elements.modeReadBtn.setAttribute('aria-selected', 'true');
-      elements.modeQuizBtn.classList.remove('active');
-      elements.modeQuizBtn.setAttribute('aria-selected', 'false');
-      render();
-      showToast('📖 Read Mode active - Answers & study notes revealed');
-    });
-
-    // Auto Next Toggle Checkbox
-    if (elements.autoNextCheck) {
-      elements.autoNextCheck.checked = state.autoNext;
-      updateCheckboxVisual(elements.autoNextLabel, state.autoNext);
-      elements.autoNextCheck.addEventListener('change', (e) => {
-        state.autoNext = e.target.checked;
-        localStorage.setItem('algomcq_auto_next', state.autoNext ? 'true' : 'false');
-        updateCheckboxVisual(elements.autoNextLabel, state.autoNext);
-        showToast(state.autoNext ? '⚡ Auto Next enabled' : 'Auto Next disabled');
-        if (!state.autoNext) cancelAutoNext();
-      });
-    }
-
-    // Allow Retry Toggle Checkbox
-    if (elements.allowRetryCheck) {
-      elements.allowRetryCheck.checked = state.allowRetry;
-      updateCheckboxVisual(elements.allowRetryLabel, state.allowRetry);
-      elements.allowRetryCheck.addEventListener('change', (e) => {
-        state.allowRetry = e.target.checked;
-        localStorage.setItem('algomcq_allow_retry', state.allowRetry ? 'true' : 'false');
-        updateCheckboxVisual(elements.allowRetryLabel, state.allowRetry);
-        showToast(state.allowRetry ? '🔄 Allow Retry on wrong answer enabled' : 'Allow Retry disabled');
-      });
-    }
-
-    // Theme Toggle
-    elements.themeToggleBtn.addEventListener('click', () => {
-      const isLight = document.body.classList.toggle('light-theme');
-      state.theme = isLight ? 'light' : 'dark';
-      elements.themeIcon.textContent = isLight ? '🌙' : '☀️';
-      localStorage.setItem('algomcq_theme', state.theme);
-    });
-
-    // Navigation Next / Prev Buttons
-    elements.prevQuestionBtn.addEventListener('click', goPrev);
-    elements.nextQuestionBtn.addEventListener('click', goNext);
-
-    // Jump Input
-    elements.jumpInput.addEventListener('change', () => {
-      cancelAutoNext();
-      let val = parseInt(elements.jumpInput.value, 10);
-      const filtered = getFilteredQuestions();
-      if (isNaN(val) || val < 1) val = 1;
-      if (val > filtered.length) val = filtered.length;
-      state.currentIndex = val - 1;
-      render();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Header Bookmark Button (in single nav bar)
-    elements.bookmarkBtn.addEventListener('click', () => {
-      const filtered = getFilteredQuestions();
-      const currentQ = filtered[state.currentIndex];
-      if (currentQ) {
-        toggleBookmark(currentQ.id);
-      }
-    });
-
-    // Drawer Filter Chips
-    elements.paletteFilterChips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        cancelAutoNext();
-        elements.paletteFilterChips.forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-        state.paletteFilter = chip.dataset.filter;
-        state.currentIndex = 0;
-        render();
-      });
-    });
-
-    // Drawer Mobile Toggle
-    elements.drawerToggleBtn.addEventListener('click', () => {
-      elements.paletteDrawer.classList.toggle('open');
-    });
-    elements.closeDrawerBtn.addEventListener('click', () => {
-      elements.paletteDrawer.classList.remove('open');
-    });
-
-    // Practice Incorrect Only from Modal
-    elements.retryIncorrectBtn.addEventListener('click', () => {
-      cancelAutoNext();
-      elements.summaryModal.style.display = 'none';
-      elements.paletteFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'wrong'));
-      state.paletteFilter = 'wrong';
-      state.currentIndex = 0;
-      render();
-      showToast('⚠️ Filtered to Incorrect Questions only');
-    });
-
-    // Reset Quiz Modal
-    elements.resetQuizBtn.addEventListener('click', () => {
-      elements.resetModal.style.display = 'flex';
-    });
-    elements.closeResetModalBtn.addEventListener('click', () => {
-      elements.resetModal.style.display = 'none';
-    });
-    elements.cancelResetBtn.addEventListener('click', () => {
-      elements.resetModal.style.display = 'none';
-    });
-    elements.confirmResetBtn.addEventListener('click', () => {
-      cancelAutoNext();
-      state.userAnswers = {};
-      state.wrongAnswers = {};
-      state.bookmarks = new Set();
-      saveStoredData();
-      elements.resetModal.style.display = 'none';
-      render();
-      showToast('Progress reset successfully!');
-    });
-
-    // Close modals on clicking backdrop
-    window.addEventListener('click', (e) => {
-      if (e.target === elements.summaryModal) elements.summaryModal.style.display = 'none';
-      if (e.target === elements.resetModal) elements.resetModal.style.display = 'none';
-    });
-
-    // ==========================================
-    // PREVENT COPY & CONTENT THEFT
-    // ==========================================
-    document.addEventListener('copy', (e) => {
-      e.preventDefault();
-      if (e.clipboardData) {
-        e.clipboardData.setData('text/plain', '');
-      }
-      showToast('⚠️ Copying content is disabled');
-      return false;
-    });
-
-    document.addEventListener('cut', (e) => {
-      e.preventDefault();
-      return false;
-    });
-
-    document.addEventListener('contextmenu', (e) => {
-      e.preventDefault();
-      showToast('⚠️ Right click is disabled');
-      return false;
-    });
-
-    document.addEventListener('dragstart', (e) => {
-      e.preventDefault();
-      return false;
-    });
-
-    // Keyboard Shortcuts & Anti-Copy Interception
-    window.addEventListener('keydown', (e) => {
-      const isCtrlOrCmd = e.ctrlKey || e.metaKey;
-      const key = e.key.toLowerCase();
-      const isInput = ['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName);
-
-      // Prevent Ctrl+C, Ctrl+A (outside inputs), Ctrl+X (outside inputs), Ctrl+S, Ctrl+P, Ctrl+U
-      if (isCtrlOrCmd) {
-        if (key === 'c' || (!isInput && key === 'a') || (!isInput && key === 'x') || key === 's' || key === 'p' || key === 'u') {
-          e.preventDefault();
-          if (key === 'c') {
-            showToast('⚠️ Copying content is disabled');
+          if (isFirstTryCorrect) {
+            answered++;
+            correct++;
+          } else if (isSolvedOnRetry) {
+            answered++;
+            retried++;
+          } else if (isWrong) {
+            answered++;
+            wrong++;
           }
-          return false;
-        }
+        });
+
+        const accuracy = answered > 0 ? Math.round((correct / answered) * 100) : 0;
+        const progressPercent = total > 0 ? Math.round((answered / total) * 100) : 0;
+
+        elements.statTotal.textContent = total;
+        elements.statAnswered.textContent = answered;
+        elements.statCorrect.textContent = correct;
+        if (elements.statRetried) elements.statRetried.textContent = retried;
+        elements.statWrong.textContent = wrong;
+        if (elements.statAccuracy) elements.statAccuracy.textContent = `${accuracy}%`;
+        elements.progressBarFill.style.width = `${progressPercent}%`;
+
+        // Update Drawer Chips counts
+        const unattempted = total - answered;
+        const bookmarkedCount = state.bookmarks.size;
+
+        elements.chipAll.textContent = total;
+        elements.chipCorrect.textContent = correct;
+        if (elements.chipRetried) elements.chipRetried.textContent = retried;
+        elements.chipWrong.textContent = wrong;
+        elements.chipUnattempted.textContent = unattempted;
+        elements.chipBookmarked.textContent = bookmarkedCount;
+
+        // Modal Stats update
+        elements.modalTotal.textContent = total;
+        elements.modalAnswered.textContent = answered;
+        elements.modalCorrect.textContent = correct;
+        if (elements.modalRetried) elements.modalRetried.textContent = retried;
+        elements.modalWrong.textContent = wrong;
+        elements.modalAccuracy.textContent = `${accuracy}%`;
+        elements.scoreCircle.style.setProperty('--acc', accuracy);
       }
 
-      // Don't intercept if user is typing in search or jump input
-      if (isInput) {
-        return;
+      // Update Palette Drawer (1-300 Grid)
+      function updatePaletteDrawer(allQuestions) {
+        const filteredQuestions = getFilteredQuestions();
+        const currentQ = filteredQuestions[state.currentIndex];
+
+        elements.paletteGrid.innerHTML = allQuestions.map((q, idx) => {
+          const ans = state.userAnswers[q.id];
+          const wrongs = state.wrongAnswers[q.id] || [];
+          const isAnswered = ans !== undefined;
+          const isFirstTryCorrect = isAnswered && ans === q.answer && wrongs.length === 0;
+          const isSolvedOnRetry = isAnswered && ans === q.answer && wrongs.length > 0;
+          const isWrong = (isAnswered && ans !== q.answer) || (!isAnswered && wrongs.length > 0);
+          const isBookmarked = state.bookmarks.has(q.id);
+          const isCurrent = currentQ && currentQ.id === q.id;
+
+          let cls = 'palette-item';
+          if (isFirstTryCorrect) cls += ' correct';
+          else if (isSolvedOnRetry) cls += ' retried';
+          else if (isWrong) cls += ' wrong';
+          if (isBookmarked) cls += ' bookmarked';
+          if (isCurrent && state.viewMode === 'single') cls += ' current';
+
+          return `<button class="${cls}" data-qid="${q.id}" title="Q${q.id}: ${q.subtopic || ''}">${q.id}</button>`;
+        }).join('');
+
+        // Attach click events on palette items to jump directly to question
+        elements.paletteGrid.querySelectorAll('.palette-item').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const targetQid = parseInt(btn.dataset.qid, 10);
+            jumpToQuestionId(targetQid);
+            if (window.innerWidth <= 1024) {
+              elements.paletteDrawer.classList.remove('open');
+            }
+          });
+        });
       }
 
-      if (e.key === 'ArrowLeft') {
-        goPrev();
-      } else if (e.key === 'ArrowRight') {
-        goNext();
-      } else if (['1', '2', '3', '4', '5', '6', 'a', 'b', 'c', 'd', 'e', 'f', 'A', 'B', 'C', 'D', 'E', 'F'].includes(e.key) && state.mode === 'quiz' && state.viewMode === 'single') {
-        const map = { '1': 'A', '2': 'B', '3': 'C', '4': 'D', '5': 'E', '6': 'F', 'a': 'A', 'b': 'B', 'c': 'C', 'd': 'D', 'e': 'E', 'f': 'F' };
-        const opt = map[e.key] || e.key.toUpperCase();
+      // Jump to Question by QID
+      function jumpToQuestionId(targetQid) {
+        cancelAutoNext();
+        // If target question is hidden by current filters, reset filter to 'all' so it is visible
         const filtered = getFilteredQuestions();
-        const currentQ = filtered[state.currentIndex];
-        if (currentQ && currentQ.options[opt] !== undefined && state.userAnswers[currentQ.id] === undefined) {
-          handleOptionSelect(currentQ.id, opt);
+        let index = filtered.findIndex(q => q.id === targetQid);
+
+        if (index === -1) {
+          state.searchQuery = '';
+          state.paletteFilter = 'all';
+          elements.searchInput.value = '';
+          elements.paletteFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'all'));
+          const refiltered = getFilteredQuestions();
+          index = refiltered.findIndex(q => q.id === targetQid);
+        }
+
+        if (index !== -1) {
+          state.currentIndex = index;
+          if (state.viewMode === 'list') {
+            render();
+            const card = document.getElementById(`qcard-${targetQid}`);
+            if (card) {
+              card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          } else {
+            render();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
         }
       }
-    });
-  }
 
-  // Application Startup
-  function init() {
-    // Restore Theme
-    if (state.theme === 'light') {
-      document.body.classList.add('light-theme');
-      elements.themeIcon.textContent = '🌙';
-    } else {
-      document.body.classList.remove('light-theme');
-      elements.themeIcon.textContent = '☀️';
-    }
+      // Update Level Switcher Buttons
+      function updateLevelTabs() {
+        const topic = getCurrentTopic();
+        const currentLvl = topic.level || (LEVEL_CONFIG.basic.topicOrder.includes(state.currentTopicId) ? 'basic' : 'intermediate');
+        state.currentLevel = currentLvl;
 
-    const savedTopic = localStorage.getItem('algomcq_last_topic');
-    if (savedTopic && window.TOPICS && window.TOPICS[savedTopic]) {
-      state.currentTopicId = savedTopic;
-    } else if (window.TOPICS && window.TOPICS['dsa']) {
-      state.currentTopicId = 'dsa';
-    } else if (window.TOPICS && window.TOPICS['profit_loss']) {
-      state.currentTopicId = 'profit_loss';
-    }
+        if (elements.levelBasicBtn && elements.levelInterBtn) {
+          const isBasic = currentLvl === 'basic';
+          elements.levelBasicBtn.classList.toggle('active', isBasic);
+          elements.levelBasicBtn.setAttribute('aria-selected', isBasic ? 'true' : 'false');
+          elements.levelInterBtn.classList.toggle('active', !isBasic);
+          elements.levelInterBtn.setAttribute('aria-selected', !isBasic ? 'true' : 'false');
+        }
+      }
 
-    const currentTopicObj = getCurrentTopic();
-    state.currentLevel = currentTopicObj.level || (LEVEL_CONFIG.intermediate.topicOrder.includes(state.currentTopicId) ? 'intermediate' : 'basic');
+      // Setup Topics Selector: shows ONLY the courses of the current active level
+      function initTopics() {
+        const topics = window.TOPICS || {};
+        const lvlKey = state.currentLevel === 'intermediate' ? 'intermediate' : 'basic';
+        const cfg = LEVEL_CONFIG[lvlKey];
 
-    initTopics();
-    loadStoredData();
-    setupEventListeners();
-    render();
-  }
+        let html = '';
+        cfg.topicOrder.forEach(key => {
+          const t = topics[key];
+          if (t) {
+            const count = (t.questions || []).length;
+            html += `<option value="${key}" ${key === state.currentTopicId ? 'selected' : ''}>${t.icon || '📚'} ${escapeHTML(t.title)} (${count} Qs)</option>`;
+          }
+        });
 
-  // Run on DOM ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
+        elements.topicSelect.innerHTML = html;
+        elements.topicSelect.value = state.currentTopicId;
+        updateLevelTabs();
+      }
 
-</script>
+      // Switch Topic within the current level
+      function switchTopic(topicId) {
+        cancelAutoNext();
+        state.currentTopicId = topicId;
+        localStorage.setItem('algomcq_last_topic', state.currentTopicId);
+        state.currentIndex = 0;
+        state.searchQuery = '';
+        state.paletteFilter = 'all';
+        elements.topicSelect.value = state.currentTopicId;
+        loadStoredData();
+        render();
+        showToast(`Switched to ${getCurrentTopic().title}`);
+      }
+
+      // Switch Level: switches level and updates dropdown to ONLY show that level's courses
+      function switchLevel(levelKey) {
+        cancelAutoNext();
+        state.currentLevel = levelKey;
+        const cfg = LEVEL_CONFIG[levelKey];
+
+        // If current topic is not in the new level, select first course of this level
+        if (!cfg.topicOrder.includes(state.currentTopicId)) {
+          state.currentTopicId = cfg.topicOrder[0];
+        }
+
+        localStorage.setItem('algomcq_last_topic', state.currentTopicId);
+        state.currentIndex = 0;
+        state.searchQuery = '';
+        state.paletteFilter = 'all';
+
+        initTopics();
+        loadStoredData();
+        render();
+        showToast(`Switched to ${cfg.name}`);
+      }
+
+      // Helper for checkbox visually active class
+      function updateCheckboxVisual(labelEl, isChecked) {
+        if (!labelEl) return;
+        labelEl.classList.toggle('checked', isChecked);
+      }
+
+      // Event Listeners Initialization
+      function setupEventListeners() {
+        // Level Switcher Buttons
+        elements.levelBasicBtn?.addEventListener('click', () => {
+          if (state.currentLevel === 'basic') return;
+          switchLevel('basic');
+        });
+
+        elements.levelInterBtn?.addEventListener('click', () => {
+          if (state.currentLevel === 'intermediate') return;
+          switchLevel('intermediate');
+        });
+
+        // Topic Change
+        elements.topicSelect.addEventListener('change', (e) => {
+          switchTopic(e.target.value);
+        });
+
+        // Mode Toggle (Quiz Test vs Read Mode)
+        elements.modeQuizBtn.addEventListener('click', () => {
+          if (state.mode === 'quiz') return;
+          state.mode = 'quiz';
+          document.body.classList.remove('mode-read');
+          elements.modeQuizBtn.classList.add('active');
+          elements.modeQuizBtn.setAttribute('aria-selected', 'true');
+          elements.modeReadBtn.classList.remove('active');
+          elements.modeReadBtn.setAttribute('aria-selected', 'false');
+          render();
+          showToast('🎯 Quiz Test Mode active - Click options to test yourself');
+        });
+
+        elements.modeReadBtn.addEventListener('click', () => {
+          if (state.mode === 'read') return;
+          cancelAutoNext();
+          state.mode = 'read';
+          document.body.classList.add('mode-read');
+          elements.modeReadBtn.classList.add('active');
+          elements.modeReadBtn.setAttribute('aria-selected', 'true');
+          elements.modeQuizBtn.classList.remove('active');
+          elements.modeQuizBtn.setAttribute('aria-selected', 'false');
+          render();
+          showToast('📖 Read Mode active - Answers & study notes revealed');
+        });
+
+        // Auto Next Toggle Checkbox
+        if (elements.autoNextCheck) {
+          elements.autoNextCheck.checked = state.autoNext;
+          updateCheckboxVisual(elements.autoNextLabel, state.autoNext);
+          elements.autoNextCheck.addEventListener('change', (e) => {
+            state.autoNext = e.target.checked;
+            localStorage.setItem('algomcq_auto_next', state.autoNext ? 'true' : 'false');
+            updateCheckboxVisual(elements.autoNextLabel, state.autoNext);
+            showToast(state.autoNext ? '⚡ Auto Next enabled' : 'Auto Next disabled');
+            if (!state.autoNext) cancelAutoNext();
+          });
+        }
+
+        // Allow Retry Toggle Checkbox
+        if (elements.allowRetryCheck) {
+          elements.allowRetryCheck.checked = state.allowRetry;
+          updateCheckboxVisual(elements.allowRetryLabel, state.allowRetry);
+          elements.allowRetryCheck.addEventListener('change', (e) => {
+            state.allowRetry = e.target.checked;
+            localStorage.setItem('algomcq_allow_retry', state.allowRetry ? 'true' : 'false');
+            updateCheckboxVisual(elements.allowRetryLabel, state.allowRetry);
+            showToast(state.allowRetry ? '🔄 Allow Retry on wrong answer enabled' : 'Allow Retry disabled');
+          });
+        }
+
+        // Theme Toggle
+        elements.themeToggleBtn.addEventListener('click', () => {
+          const isLight = document.body.classList.toggle('light-theme');
+          state.theme = isLight ? 'light' : 'dark';
+          elements.themeIcon.textContent = isLight ? '🌙' : '☀️';
+          localStorage.setItem('algomcq_theme', state.theme);
+        });
+
+        // Navigation Next / Prev Buttons
+        elements.prevQuestionBtn.addEventListener('click', goPrev);
+        elements.nextQuestionBtn.addEventListener('click', goNext);
+
+        // Jump Input
+        elements.jumpInput.addEventListener('change', () => {
+          cancelAutoNext();
+          let val = parseInt(elements.jumpInput.value, 10);
+          const filtered = getFilteredQuestions();
+          if (isNaN(val) || val < 1) val = 1;
+          if (val > filtered.length) val = filtered.length;
+          state.currentIndex = val - 1;
+          render();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Header Bookmark Button (in single nav bar)
+        elements.bookmarkBtn.addEventListener('click', () => {
+          const filtered = getFilteredQuestions();
+          const currentQ = filtered[state.currentIndex];
+          if (currentQ) {
+            toggleBookmark(currentQ.id);
+          }
+        });
+
+        // Drawer Filter Chips
+        elements.paletteFilterChips.forEach(chip => {
+          chip.addEventListener('click', () => {
+            cancelAutoNext();
+            elements.paletteFilterChips.forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            state.paletteFilter = chip.dataset.filter;
+            state.currentIndex = 0;
+            render();
+          });
+        });
+
+        // Drawer Mobile Toggle
+        elements.drawerToggleBtn.addEventListener('click', () => {
+          elements.paletteDrawer.classList.toggle('open');
+        });
+        elements.closeDrawerBtn.addEventListener('click', () => {
+          elements.paletteDrawer.classList.remove('open');
+        });
+
+        // Practice Incorrect Only from Modal
+        elements.retryIncorrectBtn.addEventListener('click', () => {
+          cancelAutoNext();
+          elements.summaryModal.style.display = 'none';
+          elements.paletteFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'wrong'));
+          state.paletteFilter = 'wrong';
+          state.currentIndex = 0;
+          render();
+          showToast('⚠️ Filtered to Incorrect Questions only');
+        });
+
+        // Reset Quiz Modal
+        elements.resetQuizBtn.addEventListener('click', () => {
+          elements.resetModal.style.display = 'flex';
+        });
+        elements.closeResetModalBtn.addEventListener('click', () => {
+          elements.resetModal.style.display = 'none';
+        });
+        elements.cancelResetBtn.addEventListener('click', () => {
+          elements.resetModal.style.display = 'none';
+        });
+        elements.confirmResetBtn.addEventListener('click', () => {
+          cancelAutoNext();
+          state.userAnswers = {};
+          state.wrongAnswers = {};
+          state.bookmarks = new Set();
+          saveStoredData();
+          elements.resetModal.style.display = 'none';
+          render();
+          showToast('Progress reset successfully!');
+        });
+
+        // Close modals on clicking backdrop
+        window.addEventListener('click', (e) => {
+          if (e.target === elements.summaryModal) elements.summaryModal.style.display = 'none';
+          if (e.target === elements.resetModal) elements.resetModal.style.display = 'none';
+        });
+
+        // ==========================================
+        // PREVENT COPY & CONTENT THEFT
+        // ==========================================
+        document.addEventListener('copy', (e) => {
+          e.preventDefault();
+          if (e.clipboardData) {
+            e.clipboardData.setData('text/plain', '');
+          }
+          showToast('⚠️ Copying content is disabled');
+          return false;
+        });
+
+        document.addEventListener('cut', (e) => {
+          e.preventDefault();
+          return false;
+        });
+
+        document.addEventListener('contextmenu', (e) => {
+          e.preventDefault();
+          showToast('⚠️ Right click is disabled');
+          return false;
+        });
+
+        document.addEventListener('dragstart', (e) => {
+          e.preventDefault();
+          return false;
+        });
+
+        // Keyboard Shortcuts & Anti-Copy Interception
+        window.addEventListener('keydown', (e) => {
+          const isCtrlOrCmd = e.ctrlKey || e.metaKey;
+          const key = e.key.toLowerCase();
+          const isInput = ['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName);
+
+          // Prevent Ctrl+C, Ctrl+A (outside inputs), Ctrl+X (outside inputs), Ctrl+S, Ctrl+P, Ctrl+U
+          if (isCtrlOrCmd) {
+            if (key === 'c' || (!isInput && key === 'a') || (!isInput && key === 'x') || key === 's' || key === 'p' || key === 'u') {
+              e.preventDefault();
+              if (key === 'c') {
+                showToast('⚠️ Copying content is disabled');
+              }
+              return false;
+            }
+          }
+
+          // Don't intercept if user is typing in search or jump input
+          if (isInput) {
+            return;
+          }
+
+          if (e.key === 'ArrowLeft') {
+            goPrev();
+          } else if (e.key === 'ArrowRight') {
+            goNext();
+          } else if (['1', '2', '3', '4', '5', '6', 'a', 'b', 'c', 'd', 'e', 'f', 'A', 'B', 'C', 'D', 'E', 'F'].includes(e.key) && state.mode === 'quiz' && state.viewMode === 'single') {
+            const map = { '1': 'A', '2': 'B', '3': 'C', '4': 'D', '5': 'E', '6': 'F', 'a': 'A', 'b': 'B', 'c': 'C', 'd': 'D', 'e': 'E', 'f': 'F' };
+            const opt = map[e.key] || e.key.toUpperCase();
+            const filtered = getFilteredQuestions();
+            const currentQ = filtered[state.currentIndex];
+            if (currentQ && currentQ.options[opt] !== undefined && state.userAnswers[currentQ.id] === undefined) {
+              handleOptionSelect(currentQ.id, opt);
+            }
+          }
+        });
+      }
+
+      // Application Startup
+      function init() {
+        // Restore Theme
+        if (state.theme === 'light') {
+          document.body.classList.add('light-theme');
+          elements.themeIcon.textContent = '🌙';
+        } else {
+          document.body.classList.remove('light-theme');
+          elements.themeIcon.textContent = '☀️';
+        }
+
+        const savedTopic = localStorage.getItem('algomcq_last_topic');
+        if (savedTopic && window.TOPICS && window.TOPICS[savedTopic]) {
+          state.currentTopicId = savedTopic;
+        } else if (window.TOPICS && window.TOPICS['dsa']) {
+          state.currentTopicId = 'dsa';
+        } else if (window.TOPICS && window.TOPICS['profit_loss']) {
+          state.currentTopicId = 'profit_loss';
+        }
+
+        const currentTopicObj = getCurrentTopic();
+        state.currentLevel = currentTopicObj.level || (LEVEL_CONFIG.intermediate.topicOrder.includes(state.currentTopicId) ? 'intermediate' : 'basic');
+
+        initTopics();
+        loadStoredData();
+        setupEventListeners();
+        render();
+      }
+
+      // Run on DOM ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+
+  </script>
 </body>
+
 </html>

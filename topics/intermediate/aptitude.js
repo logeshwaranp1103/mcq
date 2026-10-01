@@ -38,7 +38,7 @@ window.TOPICS["aptitude"] = {
         "C": "2",
         "D": "4"
       },
-      "answer": "A"
+      "answer": "C"
     },
     {
       "id": 4,
@@ -104,7 +104,7 @@ window.TOPICS["aptitude"] = {
         "C": "36",
         "D": "48"
       },
-      "answer": "B"
+      "answer": "C"
     },
     {
       "id": 10,
@@ -115,7 +115,7 @@ window.TOPICS["aptitude"] = {
         "C": "7",
         "D": "9"
       },
-      "answer": "D"
+      "answer": "B"
     },
     {
       "id": 11,
@@ -126,7 +126,7 @@ window.TOPICS["aptitude"] = {
         "C": "6",
         "D": "4"
       },
-      "answer": "B"
+      "answer": "C"
     },
     {
       "id": 12,
@@ -214,7 +214,7 @@ window.TOPICS["aptitude"] = {
         "C": "23",
         "D": "28"
       },
-      "answer": "A"
+      "answer": "B"
     },
     {
       "id": 20,
@@ -269,7 +269,7 @@ window.TOPICS["aptitude"] = {
         "C": "16",
         "D": "20"
       },
-      "answer": "C"
+      "answer": "B"
     },
     {
       "id": 25,
@@ -533,7 +533,7 @@ window.TOPICS["aptitude"] = {
         "C": "₹400",
         "D": "₹480"
       },
-      "answer": "A"
+      "answer": "B"
     },
     {
       "id": 49,
@@ -1721,7 +1721,7 @@ window.TOPICS["aptitude"] = {
         "C": "50 km/h",
         "D": "52 km/h"
       },
-      "answer": "C"
+      "answer": "B"
     },
     {
       "id": 157,
