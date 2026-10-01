@@ -3,7 +3,7 @@
 window.TOPICS = window.TOPICS || {};
 window.TOPICS["dsa"] = {
   id: "dsa",
-  level: "basic",
+  level: "placement",
   title: "Data Structures & Algorithms",
   icon: "⚡",
   description: "300 comprehensive multiple-choice questions with verified answers covering Arrays, Strings, Trees, Graphs, DP, and more.",

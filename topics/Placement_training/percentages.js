@@ -2,7 +2,7 @@
 window.TOPICS = window.TOPICS || {};
 window.TOPICS["percentages"] = {
   id: "percentages",
-  level: "basic",
+  level: "placement",
   title: "Percentages",
   icon: "📊",
   description: "150 essential quantitative aptitude questions on Percentages, Profit & Loss, Population, and Successive Changes.",

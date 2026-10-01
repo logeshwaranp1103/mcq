@@ -4,9 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MCQ Master | Basic & Intermediate Level Quiz Platform</title>
-  <meta name="description"
-    content="Master 300 Data Structures & Algorithms Multiple Choice Questions with interactive Quiz Test Mode and Study Read Mode." />
+  <title>MCQ Master | Quiz Platform</title>
 
   <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,18 +33,16 @@
 
       <!-- Level Switcher & Topic Selector -->
       <div class="level-topic-container">
-        <!-- Level Switcher Tabs -->
-        <div class="level-switcher" role="tablist" aria-label="Difficulty Level">
-          <button id="levelBasicBtn" class="level-tab-btn active" data-level="basic" role="tab" aria-selected="true"
-            title="Switch to Basic Level">
-            <span class="lvl-icon">🌱</span>
-            <span class="lvl-title">Basic Level</span>
-          </button>
-          <button id="levelInterBtn" class="level-tab-btn" data-level="intermediate" role="tab" aria-selected="false"
-            title="Switch to Intermediate Level">
-            <span class="lvl-icon">⚡</span>
-            <span class="lvl-title">Intermediate Level</span>
-          </button>
+        <!-- Level Switcher Dropdown -->
+        <div class="level-select-wrapper">
+          <label for="levelSelect" class="sr-only">Select Track</label>
+          <div class="custom-select">
+            <select id="levelSelect" aria-label="Select Track">
+              <option value="basic">🌱 Basic Level</option>
+              <option value="placement">🎓 Placement Training</option>
+              <option value="intermediate">⚡ Intermediate Level</option>
+            </select>
+          </div>
         </div>
 
         <!-- Topic Selector Dropdown -->
@@ -324,6 +320,13 @@
 
   <!-- Modular Topic Data Files -->
   <!-- Basic Level -->
+  <script src="topics/basic/aptitude.js"></script>
+  <script src="topics/basic/logical.js"></script>
+  <script src="topics/basic/verbal.js"></script>
+  <script src="topics/basic/programming.js"></script>
+  <script src="topics/basic/data_structures.js"></script>
+  <script src="topics/basic/dbms.js"></script>
+  <!-- Placement Training -->
   <script src="topics/Placement_training/dsa.js"></script>
   <script src="topics/Placement_training/profit_loss.js"></script>
   <script src="topics/Placement_training/percentages.js"></script>
@@ -356,6 +359,12 @@
           id: 'basic',
           name: 'Basic Level',
           icon: '🌱',
+          topicOrder: ['basic_aptitude', 'basic_logical', 'basic_verbal', 'basic_programming', 'basic_data_structures', 'basic_dbms']
+        },
+        placement: {
+          id: 'placement',
+          name: 'Placement Training',
+          icon: '🎓',
           topicOrder: ['dsa', 'profit_loss', 'percentages', 'ratio_proportion']
         },
         intermediate: {
@@ -369,7 +378,7 @@
       // State Management
       const state = {
         currentLevel: 'basic',
-        currentTopicId: 'dsa',
+        currentTopicId: 'basic_aptitude',
         mode: 'quiz', // 'quiz' | 'read'
         viewMode: 'single', // 'single' | 'list'
         currentIndex: 0, // 0-based index in filtered questions
@@ -387,8 +396,7 @@
       // DOM Elements
       const elements = {
         body: document.body,
-        levelBasicBtn: document.getElementById('levelBasicBtn'),
-        levelInterBtn: document.getElementById('levelInterBtn'),
+        levelSelect: document.getElementById('levelSelect'),
         topicSelect: document.getElementById('topicSelect'),
         modeQuizBtn: document.getElementById('modeQuizBtn'),
         modeReadBtn: document.getElementById('modeReadBtn'),
@@ -467,7 +475,7 @@
       // Get current topic object
       function getCurrentTopic() {
         const topics = window.TOPICS || {};
-        return topics[state.currentTopicId] || topics['dsa'] || { questions: [] };
+        return topics[state.currentTopicId] || topics['basic_aptitude'] || topics['dsa'] || { questions: [] };
       }
 
       // Load / Save State in LocalStorage
@@ -1089,26 +1097,31 @@
         }
       }
 
-      // Update Level Switcher Buttons
-      function updateLevelTabs() {
+      // Update Level Selector Dropdown
+      function updateLevelSelector() {
         const topic = getCurrentTopic();
-        const currentLvl = topic.level || (LEVEL_CONFIG.basic.topicOrder.includes(state.currentTopicId) ? 'basic' : 'intermediate');
+        let currentLvl = topic.level;
+        if (!currentLvl) {
+          if (LEVEL_CONFIG.basic && LEVEL_CONFIG.basic.topicOrder.includes(state.currentTopicId)) {
+            currentLvl = 'basic';
+          } else if (LEVEL_CONFIG.placement && LEVEL_CONFIG.placement.topicOrder.includes(state.currentTopicId)) {
+            currentLvl = 'placement';
+          } else {
+            currentLvl = 'intermediate';
+          }
+        }
         state.currentLevel = currentLvl;
 
-        if (elements.levelBasicBtn && elements.levelInterBtn) {
-          const isBasic = currentLvl === 'basic';
-          elements.levelBasicBtn.classList.toggle('active', isBasic);
-          elements.levelBasicBtn.setAttribute('aria-selected', isBasic ? 'true' : 'false');
-          elements.levelInterBtn.classList.toggle('active', !isBasic);
-          elements.levelInterBtn.setAttribute('aria-selected', !isBasic ? 'true' : 'false');
+        if (elements.levelSelect) {
+          elements.levelSelect.value = currentLvl;
         }
       }
 
       // Setup Topics Selector: shows ONLY the courses of the current active level
       function initTopics() {
         const topics = window.TOPICS || {};
-        const lvlKey = state.currentLevel === 'intermediate' ? 'intermediate' : 'basic';
-        const cfg = LEVEL_CONFIG[lvlKey];
+        const lvlKey = state.currentLevel || 'basic';
+        const cfg = LEVEL_CONFIG[lvlKey] || LEVEL_CONFIG.basic || LEVEL_CONFIG.placement;
 
         let html = '';
         cfg.topicOrder.forEach(key => {
@@ -1121,7 +1134,7 @@
 
         elements.topicSelect.innerHTML = html;
         elements.topicSelect.value = state.currentTopicId;
-        updateLevelTabs();
+        updateLevelSelector();
       }
 
       // Switch Topic within the current level
@@ -1142,7 +1155,7 @@
       function switchLevel(levelKey) {
         cancelAutoNext();
         state.currentLevel = levelKey;
-        const cfg = LEVEL_CONFIG[levelKey];
+        const cfg = LEVEL_CONFIG[levelKey] || LEVEL_CONFIG.basic || LEVEL_CONFIG.placement;
 
         // If current topic is not in the new level, select first course of this level
         if (!cfg.topicOrder.includes(state.currentTopicId)) {
@@ -1168,15 +1181,11 @@
 
       // Event Listeners Initialization
       function setupEventListeners() {
-        // Level Switcher Buttons
-        elements.levelBasicBtn?.addEventListener('click', () => {
-          if (state.currentLevel === 'basic') return;
-          switchLevel('basic');
-        });
-
-        elements.levelInterBtn?.addEventListener('click', () => {
-          if (state.currentLevel === 'intermediate') return;
-          switchLevel('intermediate');
+        // Level Change Dropdown
+        elements.levelSelect?.addEventListener('change', (e) => {
+          const newLevel = e.target.value;
+          if (newLevel === state.currentLevel) return;
+          switchLevel(newLevel);
         });
 
         // Topic Change
@@ -1406,6 +1415,8 @@
         const savedTopic = localStorage.getItem('algomcq_last_topic');
         if (savedTopic && window.TOPICS && window.TOPICS[savedTopic]) {
           state.currentTopicId = savedTopic;
+        } else if (window.TOPICS && window.TOPICS['basic_aptitude']) {
+          state.currentTopicId = 'basic_aptitude';
         } else if (window.TOPICS && window.TOPICS['dsa']) {
           state.currentTopicId = 'dsa';
         } else if (window.TOPICS && window.TOPICS['profit_loss']) {
@@ -1413,7 +1424,17 @@
         }
 
         const currentTopicObj = getCurrentTopic();
-        state.currentLevel = currentTopicObj.level || (LEVEL_CONFIG.intermediate.topicOrder.includes(state.currentTopicId) ? 'intermediate' : 'basic');
+        let initLvl = currentTopicObj.level;
+        if (!initLvl) {
+          if (LEVEL_CONFIG.basic && LEVEL_CONFIG.basic.topicOrder.includes(state.currentTopicId)) {
+            initLvl = 'basic';
+          } else if (LEVEL_CONFIG.intermediate && LEVEL_CONFIG.intermediate.topicOrder.includes(state.currentTopicId)) {
+            initLvl = 'intermediate';
+          } else {
+            initLvl = 'placement';
+          }
+        }
+        state.currentLevel = initLvl;
 
         initTopics();
         loadStoredData();

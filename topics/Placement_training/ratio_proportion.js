@@ -3,7 +3,7 @@
 window.TOPICS = window.TOPICS || {};
 window.TOPICS["ratio_proportion"] = {
   id: "ratio_proportion",
-  level: "basic",
+  level: "placement",
   title: "Ratio & Proportion",
   icon: "⚖️",
   description: "150 high-yield multiple-choice questions on Ratio & Proportion, Variations, Mixtures, and Work & Wages.",

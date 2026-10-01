@@ -2,7 +2,7 @@
 window.TOPICS = window.TOPICS || {};
 window.TOPICS["profit_loss"] = {
   id: "profit_loss",
-  level: "basic",
+  level: "placement",
   title: "Profit & Loss",
   icon: "🏷️",
   description: "150 comprehensive aptitude questions on Cost Price, Selling Price, Marked Price, Successive Discounts, Dishonest Dealers, and Mixture Trades.",
