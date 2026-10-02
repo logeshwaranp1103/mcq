@@ -13,7 +13,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=mobile4" />
 </head>
 
 <body class="dark-theme" oncopy="return false;" oncut="return false;" oncontextmenu="return false;"
@@ -36,22 +36,32 @@
         <!-- Level Switcher Dropdown -->
         <div class="level-select-wrapper">
           <label for="levelSelect" class="sr-only">Select Track</label>
-          <div class="custom-select">
-            <select id="levelSelect" aria-label="Select Track">
+          <div class="custom-select" id="customLevelSelect">
+            <select id="levelSelect" class="real-select" aria-label="Select Track" tabindex="-1">
               <option value="basic">🌱 Basic Level</option>
               <option value="placement">🎓 Placement Training</option>
               <option value="intermediate">⚡ Intermediate Level</option>
             </select>
+            <button type="button" class="custom-select-trigger" id="levelSelectTrigger" aria-haspopup="listbox" aria-expanded="false">
+              <span class="custom-select-label">🌱 Basic Level</span>
+              <span class="custom-select-arrow">▾</span>
+            </button>
+            <div class="custom-select-menu" id="levelSelectMenu" role="listbox"></div>
           </div>
         </div>
 
         <!-- Topic Selector Dropdown -->
         <div class="topic-select-wrapper">
           <label for="topicSelect" class="sr-only">Select Topic</label>
-          <div class="custom-select">
-            <select id="topicSelect" aria-label="Select Topic">
+          <div class="custom-select" id="customTopicSelect">
+            <select id="topicSelect" class="real-select" aria-label="Select Topic" tabindex="-1">
               <!-- Loaded dynamically from TOPICS -->
             </select>
+            <button type="button" class="custom-select-trigger" id="topicSelectTrigger" aria-haspopup="listbox" aria-expanded="false">
+              <span class="custom-select-label">Select Topic</span>
+              <span class="custom-select-arrow">▾</span>
+            </button>
+            <div class="custom-select-menu" id="topicSelectMenu" role="listbox"></div>
           </div>
         </div>
       </div>
@@ -166,16 +176,27 @@
     <div class="content-area">
       <!-- Single Question Navigation Header (shown in single view) -->
       <div class="single-nav-bar" id="singleNavBar">
-        <div class="single-left-actions">
-          <button id="prevQuestionBtn" class="nav-arrow-btn" title="Previous Question (Left Arrow)">
-            ←
-          </button>
+        <div class="single-nav-top-row">
+          <div class="single-left-actions">
+            <button id="prevQuestionBtn" class="nav-arrow-btn" title="Previous Question (Left Arrow)">
+              ←
+            </button>
 
-          <div class="single-indicator">
-            <span class="ind-label">Question</span>
-            <input type="number" id="jumpInput" min="1" max="300" value="1"
-              title="Type question number and press Enter" />
-            <span class="ind-total">/ <span id="jumpTotal">300</span></span>
+            <div class="single-indicator">
+              <span class="ind-label">Question</span>
+              <input type="number" id="jumpInput" min="1" max="300" value="1"
+                title="Type question number and press Enter" />
+              <span class="ind-total">/ <span id="jumpTotal">300</span></span>
+            </div>
+          </div>
+
+          <div class="single-right-actions">
+            <button id="bookmarkBtn" class="star-btn" title="Bookmark this question">
+              ★ <span class="star-text">Bookmark</span>
+            </button>
+            <button id="nextQuestionBtn" class="nav-arrow-btn primary" title="Next Question (Right Arrow)">
+              →
+            </button>
           </div>
         </div>
 
@@ -198,15 +219,6 @@
             </span>
             <span class="checkbox-label"><span class="toggle-icon">🔄</span> Allow Retry</span>
           </label>
-        </div>
-
-        <div class="single-right-actions">
-          <button id="bookmarkBtn" class="star-btn" title="Bookmark this question">
-            ★ <span class="star-text">Bookmark</span>
-          </button>
-          <button id="nextQuestionBtn" class="nav-arrow-btn primary" title="Next Question (Right Arrow)">
-            →
-          </button>
         </div>
       </div>
 
@@ -250,6 +262,9 @@
         <!-- Rendered dynamically -->
       </div>
     </aside>
+
+    <!-- Palette Drawer Backdrop for Mobile/Tablet -->
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
   </main>
 
   <!-- Summary Modal -->
@@ -409,6 +424,7 @@
         contactWrapper: document.getElementById('contactWrapper'),
         closeDrawerBtn: document.getElementById('closeDrawerBtn'),
         paletteDrawer: document.getElementById('paletteDrawer'),
+        drawerBackdrop: document.getElementById('drawerBackdrop'),
         paletteGrid: document.getElementById('paletteGrid'),
         questionsContainer: document.getElementById('questionsContainer'),
         singleNavBar: document.getElementById('singleNavBar'),
@@ -1061,6 +1077,7 @@
             jumpToQuestionId(targetQid);
             if (window.innerWidth <= 1024) {
               elements.paletteDrawer.classList.remove('open');
+              elements.drawerBackdrop?.classList.remove('active');
             }
           });
         });
@@ -1097,6 +1114,58 @@
         }
       }
 
+      // ==========================================
+      // Custom In-Page Dropdown Controller
+      // Guarantees dropdown never overflows the layout on mobile or desktop
+      // ==========================================
+      function updateCustomSelectUI(selectId) {
+        const realSelect = document.getElementById(selectId);
+        if (!realSelect) return;
+        const isLevel = selectId === 'levelSelect';
+        const trigger = document.getElementById(isLevel ? 'levelSelectTrigger' : 'topicSelectTrigger');
+        const label = trigger?.querySelector('.custom-select-label');
+        const menu = document.getElementById(isLevel ? 'levelSelectMenu' : 'topicSelectMenu');
+        if (!trigger || !menu) return;
+
+        const selectedOption = realSelect.options[realSelect.selectedIndex] || realSelect.options[0];
+        if (selectedOption && label) {
+          label.textContent = selectedOption.textContent;
+        }
+
+        // Render menu items
+        let menuHtml = '';
+        Array.from(realSelect.options).forEach((opt) => {
+          const isSelected = opt.value === realSelect.value;
+          menuHtml += `
+            <div class="custom-select-item ${isSelected ? 'selected' : ''}" data-value="${opt.value}" role="option" aria-selected="${isSelected}">
+              <span class="custom-item-text">${escapeHTML(opt.textContent)}</span>
+              <span class="check-icon">✓</span>
+            </div>
+          `;
+        });
+        menu.innerHTML = menuHtml;
+
+        // Attach click listeners to options
+        menu.querySelectorAll('.custom-select-item').forEach((item) => {
+          item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const val = item.dataset.value;
+            if (val !== realSelect.value) {
+              realSelect.value = val;
+              realSelect.dispatchEvent(new Event('change'));
+            }
+            closeAllCustomSelects();
+          });
+        });
+      }
+
+      function closeAllCustomSelects() {
+        document.querySelectorAll('.custom-select.open').forEach(cs => {
+          cs.classList.remove('open');
+          cs.querySelector('.custom-select-trigger')?.setAttribute('aria-expanded', 'false');
+        });
+      }
+
       // Update Level Selector Dropdown
       function updateLevelSelector() {
         const topic = getCurrentTopic();
@@ -1114,6 +1183,7 @@
 
         if (elements.levelSelect) {
           elements.levelSelect.value = currentLvl;
+          updateCustomSelectUI('levelSelect');
         }
       }
 
@@ -1134,6 +1204,7 @@
 
         elements.topicSelect.innerHTML = html;
         elements.topicSelect.value = state.currentTopicId;
+        updateCustomSelectUI('topicSelect');
         updateLevelSelector();
       }
 
@@ -1146,6 +1217,7 @@
         state.searchQuery = '';
         state.paletteFilter = 'all';
         elements.topicSelect.value = state.currentTopicId;
+        updateCustomSelectUI('topicSelect');
         loadStoredData();
         render();
         showToast(`Switched to ${getCurrentTopic().title}`);
@@ -1289,12 +1361,71 @@
           });
         });
 
-        // Drawer Mobile Toggle
-        elements.drawerToggleBtn.addEventListener('click', () => {
-          elements.paletteDrawer.classList.toggle('open');
-        });
-        elements.closeDrawerBtn.addEventListener('click', () => {
+        // Drawer Mobile Toggle & Backdrop
+        function openDrawer() {
+          elements.paletteDrawer.classList.add('open');
+          elements.drawerBackdrop?.classList.add('active');
+        }
+        function closeDrawer() {
           elements.paletteDrawer.classList.remove('open');
+          elements.drawerBackdrop?.classList.remove('active');
+        }
+        elements.drawerToggleBtn.addEventListener('click', () => {
+          if (elements.paletteDrawer.classList.contains('open')) {
+            closeDrawer();
+          } else {
+            openDrawer();
+          }
+        });
+        elements.closeDrawerBtn.addEventListener('click', closeDrawer);
+        elements.drawerBackdrop?.addEventListener('click', closeDrawer);
+
+        // Custom Select Triggers
+        document.getElementById('levelSelectTrigger')?.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const parent = e.currentTarget.closest('.custom-select');
+          const isOpen = parent.classList.contains('open');
+          closeAllCustomSelects();
+          if (!isOpen) {
+            parent.classList.add('open');
+            e.currentTarget.setAttribute('aria-expanded', 'true');
+          }
+        });
+
+        document.getElementById('topicSelectTrigger')?.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const parent = e.currentTarget.closest('.custom-select');
+          const isOpen = parent.classList.contains('open');
+          closeAllCustomSelects();
+          if (!isOpen) {
+            parent.classList.add('open');
+            e.currentTarget.setAttribute('aria-expanded', 'true');
+          }
+        });
+
+        // Help and Contact Popover Click Handling (mobile touch support)
+        elements.helpBtn?.addEventListener('click', (e) => {
+          e.stopPropagation();
+          elements.contactWrapper?.classList.remove('active');
+          elements.helpWrapper?.classList.toggle('active');
+          closeAllCustomSelects();
+        });
+        elements.contactBtn?.addEventListener('click', (e) => {
+          e.stopPropagation();
+          elements.helpWrapper?.classList.remove('active');
+          elements.contactWrapper?.classList.toggle('active');
+          closeAllCustomSelects();
+        });
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('#helpWrapper')) {
+            elements.helpWrapper?.classList.remove('active');
+          }
+          if (!e.target.closest('#contactWrapper')) {
+            elements.contactWrapper?.classList.remove('active');
+          }
+          if (!e.target.closest('.custom-select')) {
+            closeAllCustomSelects();
+          }
         });
 
         // Practice Incorrect Only from Modal
